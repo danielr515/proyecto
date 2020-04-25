@@ -12,11 +12,13 @@ CREATE TABLE users(
 	UNIQUE(email)
 );
 CREATE TABLE admins(
+	PRIMARY KEY(uname)
 ) INHERITS (users);
 
 CREATE TABLE players(
 	rankpoints INT NOT NULL,
-	money INT NOT NULL
+	money INT NOT NULL,
+	PRIMARY KEY(uname)
 ) INHERITS (users);
 
 CREATE TABLE items(
@@ -121,7 +123,7 @@ CREATE TABLE rooms(
 	FOREIGN KEY(player1) REFERENCES players(uname),
 	FOREIGN KEY(player2) REFERENCES players(uname),
 	FOREIGN KEY(p1team) REFERENCES teams(id),
-	FOREIGN KEY(p2team) REFERENCES teams(id),
+	FOREIGN KEY(p2team) REFERENCES teams(id)
 );
 CREATE TABLE characterbattlehistory(
 	id SERIAL NOT NULL,
