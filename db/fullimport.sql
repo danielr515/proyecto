@@ -1,3 +1,3 @@
-\i ./tables.sql
-\i ./users.sql
-\i ./inserts.sql
+\i ./db/tables.sql
+\i ./db/users.sql
+\i ./db/inserts.sql
