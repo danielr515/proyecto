@@ -17,7 +17,7 @@ CREATE TABLE admins(
 CREATE TABLE players(
 	rankpoints INT NOT NULL,
 	money INT NOT NULL
-);
+) INHERITS (users);
 
 CREATE TABLE items(
 	id SERIAL NOT NULL,
