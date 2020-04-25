@@ -39,7 +39,7 @@ CREATE TABLE types(
 CREATE TABLE typesrelation (
 	typeatk INT NOT NULL,
 	typedef INT NOT NULL,
-	relation decimal(2,1) NOT NULL
+	relation decimal(2,1) NOT NULL,
 	PRIMARY KEY(typeatk, typedef),
 	FOREIGN KEY(typeatk) REFERENCES types(id),
 	FOREIGN KEY(typedef) REFERENCES types(id)
