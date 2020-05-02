@@ -28,7 +28,7 @@ class WS_LoginController extends RestController {
                 $code = RestController::HTTP_OK;
             } else {
                 $restmsg = 'Datos incorectos';
-                $code = RestController::HTTP_BAD_REQUEST;
+                $code = RestController::HTTP_UNAUTHORIZED;
             }
         }
         // $this->setHeaders();

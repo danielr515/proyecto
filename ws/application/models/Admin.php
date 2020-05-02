@@ -8,11 +8,11 @@ class Admin extends CI_Model {
     private $sessiontoken;
 
     public function __construct( $email = '', $uname = '', $passwd = '', $status = '', $sessiontoken = '' ) {
-        $this->email = '';
-        $this->uname = '';
-        $this->passwd = '';
-        $this->status = '';
-        $this->sessiontoken = '';
+        $this->email = $email;
+        $this->uname = $uname;
+        $this->passwd = $passwd;
+        $this->status = $status;
+        $this->sessiontoken = $sessiontoken;
     }
 
     public function getEmail() {
