@@ -7,7 +7,15 @@ class Admin extends CI_Model {
     private $status;
     private $sessiontoken;
 
-    public function __construct( $email = '', $uname = '', $passwd = '', $status = '', $sessiontoken = '' ) {
+    public function __construct() {
+        $this->email = '';
+        $this->uname = '';
+        $this->passwd = '';
+        $this->status = '';
+        $this->sessiontoken = '';
+    }
+
+    public function setAll( $email = '', $uname = '', $passwd = '', $status = '', $sessiontoken = '' ) {
         $this->email = $email;
         $this->uname = $uname;
         $this->passwd = $passwd;
@@ -69,7 +77,10 @@ class Admin extends CI_Model {
         $query = $this->db->query( "SELECT * FROM admins WHERE uname='" . $uname . "' AND passwd='" . $passwd . "';
         " );
         $rows = $query->result_array();
-        $admin = new Admin( $rows[0]['email'], $rows[0]['uname'], $rows[0]['passwd'], $rows[0]['status'], $rows[0]['sessiontoken'], );
+        $admin = new Admin();
+        if ( count( $rows ) > 0 ) {
+            $admin->setAll( $rows[0]['email'], $rows[0]['uname'], $rows[0]['passwd'], $rows[0]['status'], $rows[0]['sessiontoken'] );
+        }
         return $admin;
     }
 }
