@@ -9,11 +9,17 @@
 			parent::__construct();
 		}
 
-        protected function getPrueba() {
-			$retmsg = json_encode(array(
-				"id" => 1,
-				"nombre" => "prueba"
-			));
+        protected function getPrueba_get() {
+			$retmsg = array(
+				array(
+					"id" => 1,
+					"nombre" => "prueba"
+				),
+				array(
+					"id" => 2,
+					"nombre" => "otro"
+				)
+			);
 			$this->setHeaders();
             $this->response($retmsg, RestController::HTTP_OK);
 		}
