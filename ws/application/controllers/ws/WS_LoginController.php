@@ -19,15 +19,15 @@ class WS_LoginController extends RestController {
         $retmsg = '';
         $code = '';
         if ( !isset( $uname ) || !isset( $passwd ) ) {
-            $restmsg = 'Falta nombre de usuario o contraseña.';
+            $retmsg = 'Falta nombre de usuario o contraseña.';
             $code = RestController::HTTP_BAD_REQUEST;
         } else {
             $user = $this->admin->getUserByLoginData( $uname, $passwd );
             if ( $user->getUname() != '' ) {
-                $restmsg = 'Login correcto';
+                $retmsg = 'Login correcto';
                 $code = RestController::HTTP_OK;
             } else {
-                $restmsg = 'Datos incorectos';
+                $retmsg = 'Datos erróneos';
                 $code = RestController::HTTP_UNAUTHORIZED;
             }
         }
