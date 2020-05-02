@@ -1,5 +1,5 @@
 <?php
-    use chriskacerguis\RestServer\RestController;	//Ús del namespace
+    use chriskacerguis\RestServer\RestController;
 	require_once(APPPATH . 'libraries/codeigniter-restserver/src/RestController.php');
 	require_once(APPPATH . 'libraries/codeigniter-restserver/src/Format.php');
 
@@ -28,8 +28,6 @@
             $this->output->set_header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept");
             $this->output->set_header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 			$this->output->set_header("Access-Control-Allow-Origin: *");
-			$this->output->set_header("Access-Control-Expose-Headers: Authorization");
-			$this->output->set_header("Authorization: untokendpm");
         }
     }
 ?>
