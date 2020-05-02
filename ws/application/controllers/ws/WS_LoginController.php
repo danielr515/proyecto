@@ -33,6 +33,7 @@ class WS_PruebaController extends RestController {
         }
         // $this->setHeaders();
         $this->response( $retmsg, $code );
+        return 'a';
     }
 
     protected function setHeaders( $token = null ) {
