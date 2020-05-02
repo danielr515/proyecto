@@ -50,6 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['prueba'] = 'ws/WS_PruebaController/getPrueba';
-$route['default_controller'] = 'ws/WS_PruebaController/getPrueba';
+// $route['default_controller'] = 'ws/WS_PruebaController/getPrueba';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
