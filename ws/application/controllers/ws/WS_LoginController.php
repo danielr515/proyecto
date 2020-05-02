@@ -5,7 +5,7 @@ use chriskacerguis\RestServer\RestController;
 require_once( APPPATH . 'libraries/codeigniter-restserver/src/RestController.php' );
 require_once( APPPATH . 'libraries/codeigniter-restserver/src/Format.php' );
 
-class WS_PruebaController extends RestController {
+class WS_LoginController extends RestController {
 
     public function __construct() {
         parent::__construct();
@@ -14,37 +14,25 @@ class WS_PruebaController extends RestController {
     }
 
     protected function loginAdmin_get() {
-        // $uname =  $this->get( 'uname' );
-        // $passwd = $this->get( 'passwd' );
-        // $retmsg = '';
-        // $code = '';
-        // if ( !isset( $uname ) || !isset( $passwd ) ) {
-        //     $restmsg = 'Falta nombre de usuario o contraseña.';
-        //     $code = RestController::HTTP_BAD_REQUEST;
-        // } else {
-        //     $user = $this->admin->getUserByLoginData( $uname, $passwd );
-        //     if ( $user->getUname() != '' ) {
-        //         $restmsg = 'Login correcto';
-        //         $code = RestController::HTTP_OK;
-        //     } else {
-        //         $restmsg = 'Datos incorectos';
-        //         $code = RestController::HTTP_UNAUTHORIZED;
-        //     }
-        // }
-        // // $this->setHeaders();
-        // $this->response( $retmsg, $code );
-        $retmsg = [
-            [
-                'id' => 1,
-                'nombre' => 'prueba'
-            ],
-            [
-                'id' => 2,
-                'nombre' => 'otro'
-            ]
-        ];
+        $uname =  $this->get( 'uname' );
+        $passwd = $this->get( 'passwd' );
+        $retmsg = '';
+        $code = '';
+        if ( !isset( $uname ) || !isset( $passwd ) ) {
+            $restmsg = 'Falta nombre de usuario o contraseña.';
+            $code = RestController::HTTP_BAD_REQUEST;
+        } else {
+            $user = $this->admin->getUserByLoginData( $uname, $passwd );
+            if ( $user->getUname() != '' ) {
+                $restmsg = 'Login correcto';
+                $code = RestController::HTTP_OK;
+            } else {
+                $restmsg = 'Datos incorectos';
+                $code = RestController::HTTP_UNAUTHORIZED;
+            }
+        }
         // $this->setHeaders();
-        $this->response( $retmsg, RestController::HTTP_OK );
+        $this->response( $retmsg, $code );
     }
 
     protected function setHeaders( $token = null ) {
