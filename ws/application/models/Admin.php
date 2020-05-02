@@ -1,7 +1,5 @@
 <?php
 
-require_once( APPPATH . 'models/Book.php' );
-
 class Admin extends CI_Model {
     private $email;
     private $uname;
