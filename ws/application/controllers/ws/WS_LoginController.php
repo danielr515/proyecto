@@ -23,7 +23,7 @@ class WS_PruebaController extends RestController {
             $code = RestController::HTTP_BAD_REQUEST;
         } else {
             $user = $this->admin->getUserByLoginData( $uname, $passwd );
-            if ( isset( $user->getUname() ) ) {
+            if ( $user->getUname() != '' ) {
                 $restmsg = 'Login correcto';
                 $code = RestController::HTTP_OK;
             } else {
