@@ -66,7 +66,7 @@ class Admin extends CI_Model {
 
     public function getUserByLoginData( $uname, $passwd ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( 'SELECT * FROM admins WHERE uname = ' . $uname . ' AND passwd = ' . $passwd . ';
+        $query = $this->db->query( 'SELECT * FROM admins WHERE uname = "' . $uname . '" AND passwd = "' . $passwd . '";
         ' );
         $rows = $query->result_array();
         $admin = new Admin( $rows[0]['email'], $rows[0]['uname'], $rows[0]['passwd'], $rows[0]['status'], $rows[0]['sessiontoken'], );
