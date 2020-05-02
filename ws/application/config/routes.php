@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined( 'BASEPATH' ) OR exit( 'No direct script access allowed' );
 
 /*
 | -------------------------------------------------------------------------
@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	$route['default_controller'] = 'welcome';
 |
 | This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
+| URI contains no data. In the above example, the 'welcome' class
 | would be loaded.
 |
 |	$route['404_override'] = 'errors/page_missing';
@@ -50,5 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['prueba'] = 'ws/WS_PruebaController/getPrueba';
+$route['loginAdmin'] = 'ws/WS_LoginController/loginAdmin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
