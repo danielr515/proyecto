@@ -7,7 +7,7 @@ import { User } from './app.model';
 })
 export class AppApi {
   // que el resto de api extiendan esta para que puedan pillar el enlace y tal
-  readonly API = '192.168.1.155:1080/ws/index.php/loginAdmin';
+  readonly API = 'http://192.168.1.155:1080/ws/index.php/loginAdmin';
 
   constructor(private http: HttpClient) { }
 
