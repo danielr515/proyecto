@@ -7,7 +7,7 @@ CREATE TABLE users(
 	uname VARCHAR(20) NOT NULL,
 	passwd VARCHAR(20) NOT NULL,
 	status VARCHAR(10),
-	sessiontoken VARCHAR(10),
+	sessiontoken VARCHAR(20),
 	PRIMARY KEY(uname),
 	UNIQUE(email)
 );
