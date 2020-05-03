@@ -28,7 +28,7 @@ class WS_LoginController extends RestController {
                 $code = RestController::HTTP_OK;
                 $token = $this->generateToken();
                 $user->setLastSessionToken( $token );
-                $this->setHeaders( $token );
+                // $this->setHeaders( $token );
             } else {
                 $retmsg = 'Datos erróneos';
                 $code = RestController::HTTP_UNAUTHORIZED;
