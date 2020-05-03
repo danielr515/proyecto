@@ -1,0 +1,20 @@
+<div class="mobile-menu">
+  <button class="mobile-menu-open" *ngIf="!mobileMenuOpen" (click)="openMobileMenu()">
+    <i class="fas fa-bars"></i>
+  </button>
+  <button class="mobile-menu-close" *ngIf="mobileMenuOpen" (click)="closeMobileMenu()">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+
+<nav class="menu" id="menu" [ngClass]="{'display': !mobileMenuOpen}">
+  <button>
+    <i class="fas fa-home"></i>
+  </button>
+  <button>
+    <i class="fas fa-home"></i>
+  </button>
+  <button>
+    <i class="fas fa-home"></i>
+  </button>
+</nav>

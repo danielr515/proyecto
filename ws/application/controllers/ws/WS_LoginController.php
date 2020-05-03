@@ -26,6 +26,9 @@ class WS_LoginController extends RestController {
             if ( $user->getUname() != '' ) {
                 $retmsg = 'Login correcto';
                 $code = RestController::HTTP_OK;
+                $token = $this->generateToken();
+                $user->setLastSessionToken( $token );
+                $this->setHeaders( $token );
             } else {
                 $retmsg = 'Datos erróneos';
                 $code = RestController::HTTP_UNAUTHORIZED;
@@ -39,6 +42,7 @@ class WS_LoginController extends RestController {
         $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
         $this->output->set_header( 'Access-Control-Allow-Origin: *' );
+        $this->output->set_header( 'Authorization: Bearer ' . $token );
     }
 
     private function generateToken() {
