@@ -84,11 +84,11 @@ class Admin extends CI_Model {
         return $admin;
     }
 
-    // public function setLastSessionToken( $token ) {
-    //     $this->load->database( 'rpg' );
-    //     $query = $this->db->query( "UPDATE admins SET sessiontoken='" . $token . "' WHERE uname='" . $this->getUname() . "';" );
+    public function setLastSessionToken( $token ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "UPDATE admins SET sessiontoken='" . $token . "' WHERE uname='" . $this->getUname() . "';" );
 
-    // }
+    }
 }
 
 ?>

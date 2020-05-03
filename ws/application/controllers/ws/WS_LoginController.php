@@ -42,7 +42,7 @@ class WS_LoginController extends RestController {
         $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
         $this->output->set_header( 'Access-Control-Allow-Origin: *' );
-        // $this->output->set_header( 'Authorization: Bearer ' . $token );
+        $this->output->set_header( 'Authorization: Bearer ' . $token );
     }
 
     private function generateToken() {
