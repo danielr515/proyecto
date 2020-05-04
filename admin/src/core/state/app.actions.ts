@@ -18,8 +18,17 @@ export class AppAction {
 
   @action('updateSessionToken')
   updateSessionToken(sessionToken: string) {
+    sessionStorage.setItem('rpg-auth-sessiontoken', sessionToken);
     this.store.update({
       sessionToken
+    });
+  }
+
+  @action('updateCurrentRoute')
+  updateCurrentRoute(currentRoute: string) {
+    console.log(currentRoute);
+    this.store.update({
+      currentRoute
     });
   }
 }

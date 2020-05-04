@@ -1,5 +1,9 @@
-<div [formGroup]="form">
-  <label for="uname">Nombre de usuario: </label><input type="text" id="uname" formControlName="uname">
-  <label for="passwd">Contraseña: </label><input type="password" id="passwd" formControlName="passwd">
-  <button (click)="login()">Iniciar sesión</button>
-</div>
+<form class="card" [formGroup]="form">
+  <h1>INICIAR<br />SESIÓN</h1>
+  <label for="uname"><i class="fas fa-user"></i></label>
+  <input type="text" id="uname" formControlName="uname" placeholder="Nombre de usuario">
+  <label for="passwd"><i class="fas fa-key"></i></label>
+  <input type="password" id="passwd" formControlName="passwd" placeholder="Contraseña">
+
+  <button type="submit" (click)="login()">Entrar</button>
+</form>

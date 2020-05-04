@@ -18,8 +18,15 @@ export class AppService {
   }
   login(user) {
     this.api.login(user).subscribe((elem: HttpResponse<any>) => {
-      // this.action.updateUser(elem);
-      console.log(elem.headers.get('Authorization'));
+      const token = elem.headers.get('Authorization').split(' ')[1];
+      this.action.updateSessionToken(token);
     });
+  }
+  logout() {
+    console.log('logout');
+    // this.api.logout(token).subscribe((elem: HttpResponse<any>) => {
+    //   const token = elem.headers.get('Authorization').split(' ')[1];
+    //   this.action.updateSessionToken(token);
+    // });
   }
 }

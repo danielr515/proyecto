@@ -17,4 +17,8 @@ export class AppQuery extends Query<AppState> {
   selectSessionToken() {
     return this.select(state => state.sessionToken)
   }
+
+  selectCurrentRoute() {
+    return this.select(state => state.currentRoute);
+  }
 }

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AppAction } from 'src/core/state/app.actions';
 
 @Component({
-  selector: 'app-register-admin',
-  templateUrl: './register-admin.component.html',
-  styleUrls: ['./register-admin.component.scss']
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
-export class RegisterAdminComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
   constructor(
     private router: Router,

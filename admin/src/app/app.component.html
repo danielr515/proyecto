@@ -1,4 +1,6 @@
-<app-menu></app-menu>
+<app-menu *ngIf="!(currentRoute$ | async).includes('/login') && (currentRoute$ | async) != ''" (logout)="onLogOut()">
+</app-menu>
+
 <div class="page">
   <router-outlet></router-outlet>
 </div>

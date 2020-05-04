@@ -19,7 +19,6 @@ export class AppApi {
       observe: 'response' as 'body',
       params: queryParams
     };
-    console.log(user);
     return this.http.get<HttpResponse<any>>(this.API, options);
   }
 

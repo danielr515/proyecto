@@ -37,7 +37,11 @@ class WS_LoginController extends RestController {
         // $this->setHeaders();
         $this->response( $retmsg, $code );
     }
+    protected function logoutAdmin_post() {
+        $uname =  $this->get( 'uname' );
+        $this->response( $this->output->get_headers() );
 
+    }
     protected function setHeaders( $token = null ) {
         $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );

@@ -2,12 +2,14 @@
 import { Injectable } from '@angular/core';
 import { User } from './app.model';
 import { Store, StoreConfig } from '@datorama/akita';
+import { stringify } from 'querystring';
 
 
 
 export interface AppState {
   user: User;
   sessionToken: string;
+  currentRoute: string;
 }
 
 export function createInitialState() {
@@ -16,7 +18,8 @@ export function createInitialState() {
       uname: '',
       passwd: ''
     },
-    sessionToken: ''
+    sessionToken: '',
+    currentRoute: ''
   };
 }
 
