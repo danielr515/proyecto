@@ -23,6 +23,13 @@ export class AppAction {
       sessionToken
     });
   }
+  @action('deleteSessionToken')
+  deleteSessionToken() {
+    sessionStorage.deleteItem('rpg-auth-sessiontoken');
+    this.store.update({
+      sessionToken: ''
+    });
+  }
 
   @action('updateCurrentRoute')
   updateCurrentRoute(currentRoute: string) {

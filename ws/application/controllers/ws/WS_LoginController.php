@@ -40,7 +40,10 @@ class WS_LoginController extends RestController {
     protected function logoutAdmin_post() {
         $uname =  $this->get( 'uname' );
         $authorization = $this->input->get_request_header( 'Authorization' );
-        $token = explode( ' ', $authorization )[1];
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
         $retmsg = '';
         $code = '';
         if ( !isset( $token ) || !isset( $uname ) ) {

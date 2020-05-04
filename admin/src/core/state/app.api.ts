@@ -7,7 +7,7 @@ import { User } from './app.model';
 })
 export class AppApi {
   // que el resto de api extiendan esta para que puedan pillar el enlace y tal
-  readonly API = 'http://192.168.1.155:1080/ws/index.php/loginAdmin';
+  readonly API = 'http://192.168.1.155:1080/ws/index.php';
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,23 @@ export class AppApi {
       observe: 'response' as 'body',
       params: queryParams
     };
-    return this.http.get<HttpResponse<any>>(this.API, options);
+    return this.http.get<HttpResponse<any>>(this.API + '/loginAdmin', options);
+  }
+
+  logout(token: string, uname: string) {
+    let queryParams = new HttpParams();
+    queryParams = this.appendQueryParams(queryParams, { uname });
+    const headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + token);
+    headers.append('Access-Control-Allow-Origin', '*');
+
+    const options = {
+      observe: 'response' as 'body',
+      params: queryParams,
+      headers: headers
+    };
+
+    return this.http.post<HttpResponse<any>>(this.API + '/logoutAdmin', options);
   }
 
   appendQueryParams(queryParams, filterParams) {
