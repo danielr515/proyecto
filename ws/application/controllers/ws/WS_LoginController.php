@@ -39,7 +39,7 @@ class WS_LoginController extends RestController {
     }
     protected function logoutAdmin_post() {
         $uname =  $this->get( 'uname' );
-
+        error_log( $this->input->get_request_header( 'Authorization' ) );
         $this->response( $this->input->get_request_header( 'Authorization' ), RestController::HTTP_UNAUTHORIZED );
 
     }
