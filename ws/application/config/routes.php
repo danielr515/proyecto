@@ -51,5 +51,6 @@ defined( 'BASEPATH' ) OR exit( 'No direct script access allowed' );
 */
 $route['prueba'] = 'ws/WS_PruebaController/getPrueba';
 $route['loginAdmin'] = 'ws/WS_LoginController/loginAdmin';
+$route['logoutAdmin'] = 'ws/WS_LoginController/logoutAdmin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
