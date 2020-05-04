@@ -18,7 +18,7 @@ class Admin extends CI_Model {
     public function setAll( $email = '', $uname = '', $passwd = '', $status = '', $sessiontoken = '' ) {
         $this->email = $email;
         $this->uname = $uname;
-        $this->passwd = $passwd;
+        $this->passwd = '';
         $this->status = $status;
         $this->sessiontoken = $sessiontoken;
     }
@@ -84,9 +84,21 @@ class Admin extends CI_Model {
         return $admin;
     }
 
-    public function setLastSessionToken( $token ) {
+    public function getUserByLogoutData( $uname, $token ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "UPDATE admins SET status='online', sessiontoken='" . $token . "' WHERE uname='" . $this->getUname() . "';" );
+        $query = $this->db->query( "SELECT * FROM admins WHERE uname='" . $uname . "' AND sessiontoken='" . $token . "';
+        " );
+        $rows = $query->result_array();
+        $admin = new Admin();
+        if ( count( $rows ) > 0 ) {
+            $admin->setAll( $rows[0]['email'], $rows[0]['uname'], $rows[0]['passwd'], $rows[0]['status'], $rows[0]['sessiontoken'] );
+        }
+        return $admin;
+    }
+
+    public function setLastSessionToken( $token, $status ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "UPDATE admins SET status='" . $status . "', sessiontoken='" . $token . "' WHERE uname='" . $this->getUname() . "';" );
 
     }
 }

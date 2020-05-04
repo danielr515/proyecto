@@ -24,11 +24,11 @@ class WS_LoginController extends RestController {
         } else {
             $user = $this->admin->getUserByLoginData( $uname, $passwd );
             if ( $user->getUname() != '' ) {
+                $token = $this->generateToken();
+                $user->setLastSessionToken( $token, 'online' );
+                $this->setHeaders( $token );
                 $retmsg = 'Login correcto';
                 $code = RestController::HTTP_OK;
-                $token = $this->generateToken();
-                $user->setLastSessionToken( $token );
-                $this->setHeaders( $token );
             } else {
                 $retmsg = 'Datos erróneos';
                 $code = RestController::HTTP_UNAUTHORIZED;
@@ -41,16 +41,35 @@ class WS_LoginController extends RestController {
         $uname =  $this->get( 'uname' );
         $authorization = $this->input->get_request_header( 'Authorization' );
         $token = explode( ' ', $authorization )[1];
-        error_log( $token );
-        $this->response( $this->input->get_request_header( 'Authorization' ), RestController::HTTP_UNAUTHORIZED );
+        $retmsg = '';
+        $code = '';
+        if ( !isset( $token ) || !isset( $uname ) ) {
+            $retmsg = 'Falta el usuario o el token de autenticación';
+            $code = RestController::HTTP_BAD_REQUEST;
+        } else {
+            $user = $this->admin->logoutByUnameAndToken( $uname, $token );
+            if ( $user->getUname() != '' ) {
+                $user ->setLastSessionToken( '', 'offline' );
+                $this->setHeaders();
+                $retmsg = 'Logout correcto';
+                $code = RestController::HTTP_OK;
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = RestController::HTTP_UNAUTHORIZED;
+            }
+        }
+        $this->response( $retmsg, $code );
 
     }
     protected function setHeaders( $token = null ) {
         $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
         $this->output->set_header( 'Access-Control-Allow-Origin: *' );
-        $this->output->set_header( 'Access-Control-Expose-Headers: Authorization' );
-        $this->output->set_header( 'Authorization: Bearer ' . $token );
+        if ( isset( $token ) ) {
+            $this->output->set_header( 'Access-Control-Expose-Headers: Authorization' );
+            $this->output->set_header( 'Authorization: Bearer ' . $token );
+        }
+
     }
 
     private function generateToken() {
