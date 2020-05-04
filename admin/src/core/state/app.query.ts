@@ -13,4 +13,8 @@ export class AppQuery extends Query<AppState> {
   selectUser() {
     return this.select(state => state.user);
   }
+
+  selectSessionToken() {
+    return this.select(state => state.sessionToken)
+  }
 }

@@ -18,7 +18,7 @@ export class AppService {
   login(user) {
     this.api.login(user).subscribe(elem => {
       // this.action.updateUser(elem);
-      console.log(elem);
-    })
+      console.log(elem.headers.get('Authorization'));
+    });
   }
 }

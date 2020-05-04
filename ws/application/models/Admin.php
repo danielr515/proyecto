@@ -86,7 +86,7 @@ class Admin extends CI_Model {
 
     public function setLastSessionToken( $token ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "UPDATE admins SET sessiontoken='" . $token . "' WHERE uname='" . $this->getUname() . "';" );
+        $query = $this->db->query( "UPDATE admins SET status='online', sessiontoken='" . $token . "' WHERE uname='" . $this->getUname() . "';" );
 
     }
 }

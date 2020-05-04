@@ -15,4 +15,11 @@ export class AppAction {
       user
     });
   }
+
+  @action('updateSessionToken')
+  updateSessionToken(sessionToken: string) {
+    this.store.update({
+      sessionToken
+    });
+  }
 }

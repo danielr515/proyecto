@@ -7,6 +7,7 @@ import { Store, StoreConfig } from '@datorama/akita';
 
 export interface AppState {
   user: User;
+  sessionToken: string;
 }
 
 export function createInitialState() {
@@ -14,7 +15,8 @@ export function createInitialState() {
     user: {
       uname: '',
       passwd: ''
-    }
+    },
+    sessionToken: ''
   };
 }
 
