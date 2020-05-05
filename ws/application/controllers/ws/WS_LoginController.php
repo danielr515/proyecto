@@ -84,7 +84,6 @@ class WS_LoginController extends RestController {
             }
         }
         var_dump( $uname );
-        var_dump()
         $this->response( $retmsg, $code );
 
     }
