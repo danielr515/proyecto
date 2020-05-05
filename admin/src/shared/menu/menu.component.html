@@ -8,10 +8,10 @@
 </div>
 
 <nav class="menu" id="menu" [ngClass]="{'display': !mobileMenuOpen}">
-  <button>
+  <button (click)="onNavigate('/index')">
     <i class="fas fa-home"></i>
   </button>
-  <button>
+  <button (click)="onNavigate('/register')">
     <i class="fas fa-home"></i>
   </button>
   <button (click)="onLogOut()">

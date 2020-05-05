@@ -1,5 +1,9 @@
-<app-menu *ngIf="!(currentRoute$ | async).includes('/login') && (currentRoute$ | async) != ''" (logout)="onLogOut()">
-</app-menu>
+<!-- !(currentRoute$ | async).includes('/login') && (currentRoute$ | async) != '' -->
+<div>
+  <app-menu [ngClass]="{'displaynone' : router.url.includes('/login')}" (logout)="onLogOut()">
+  </app-menu>
+</div>
+
 
 <div class="page">
   <router-outlet></router-outlet>

@@ -37,6 +37,27 @@ class WS_LoginController extends RestController {
         // $this->setHeaders();
         $this->response( $retmsg, $code );
     }
+
+    protected function logoutAdmin_options() {
+        $this->setOptions();
+    }
+    protected function _parse_post() {
+        if ( $this->request->format === 'json' ) {
+            //Truc per tal que el JSON quedi ben carregat ( parsejat ) a $_POST
+            $_POST = json_decode( file_get_contents( 'php://input' ), true );
+        }
+        parent::_parse_post();
+    }
+
+    protected function setOptions() {
+        $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
+        $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
+        $this->output->set_header( 'Access-Control-Allow-Origin: *' );
+        // $this->output->set_header( 'Authentication: Beared xxx' );
+
+        $this->response( NULL, RestController::HTTP_OK );
+    }
+
     protected function logoutAdmin_post() {
         $uname =  $this->get( 'uname' );
         $authorization = $this->input->get_request_header( 'Authorization' );

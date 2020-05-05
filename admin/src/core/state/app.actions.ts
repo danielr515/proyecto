@@ -36,7 +36,6 @@ export class AppAction {
 
   @action('updateCurrentRoute')
   updateCurrentRoute(currentRoute: string) {
-    console.log(currentRoute);
     this.store.update({
       currentRoute
     });

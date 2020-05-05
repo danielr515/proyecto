@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ export class MenuComponent implements OnInit, OnChanges {
   @Input() currentRoute: string;
   @Output() logout: EventEmitter<any> = new EventEmitter<any>();
   mobileMenuOpen = false;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,9 @@ export class MenuComponent implements OnInit, OnChanges {
 
   closeMobileMenu() {
     this.mobileMenuOpen = false;
+  }
+  onNavigate(route) {
+    this.router.navigate([route]);
   }
   onLogOut() {
     this.logout.emit();
