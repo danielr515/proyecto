@@ -37,7 +37,7 @@ export class AppApi {
       headers
     };
 
-    return this.http.post<HttpResponse<any>>(this.API + '/logoutAdmin', uname, options);
+    return this.http.post(this.API + '/logoutAdmin', uname, options);
   }
 
   appendQueryParams(queryParams, filterParams) {
