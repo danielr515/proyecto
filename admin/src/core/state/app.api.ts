@@ -26,14 +26,13 @@ export class AppApi {
     console.log(token);
     console.log(uname);
 
-    let queryParams = new HttpParams();
-    queryParams = this.appendQueryParams(queryParams, { uname });
+    // let queryParams = new HttpParams();
+    // queryParams = this.appendQueryParams(queryParams, { uname });
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer ' + token);
     headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
     const options = {
       observe: 'response' as 'body',
-      params: queryParams,
       headers
     };
 
