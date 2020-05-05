@@ -60,7 +60,7 @@ class WS_LoginController extends RestController {
     }
 
     protected function logoutAdmin_post() {
-        $uname =  $this->get( 'uname' );
+        $uname =  $this->post( 'uname' );
         $authorization = $this->input->get_request_header( 'Authorization' );
         $token = explode( ' ', $authorization );
         if ( count( $token ) > 1 ) {
@@ -83,7 +83,8 @@ class WS_LoginController extends RestController {
                 $code = RestController::HTTP_UNAUTHORIZED;
             }
         }
-        var_dump( $retmsg );
+        var_dump( $uname );
+        var_dump()
         $this->response( $retmsg, $code );
 
     }
