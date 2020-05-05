@@ -82,6 +82,7 @@ class WS_LoginController extends RestController {
                 $code = RestController::HTTP_UNAUTHORIZED;
             }
         }
+        var_dump( $retmsg );
         $this->response( $retmsg, $code );
 
     }
