@@ -15,8 +15,17 @@ export class AppComponent {
   constructor(
     private query: AppQuery,
     private router: Router,
-    private service: AppService
-  ) { }
+    private service: AppService,
+    private action: AppAction
+  ) {
+
+    if (sessionStorage.getItem('rpg-auth-sessiontoken') && sessionStorage.getItem('rpg-auth-uname')) {
+      this.action.updateSessionToken(sessionStorage.getItem('rpg-auth-sessiontoken'));
+      this.action.updateUser({ uname: sessionStorage.getItem('rpg-auth-uname'), passwd: '' });
+    }
+
+
+  }
 
   onLogOut() {
     this.service.logout();

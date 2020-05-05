@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { User } from './app.model';
 
 @Injectable({
@@ -23,19 +23,21 @@ export class AppApi {
   }
 
   logout(token: string, uname: string) {
+    console.log(token);
+    console.log(uname);
+
     let queryParams = new HttpParams();
     queryParams = this.appendQueryParams(queryParams, { uname });
-    const headers = new Headers();
-    headers.append('Authorization', 'Bearer ' + token);
-    headers.append('Access-Control-Allow-Origin', '*');
-
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
     const options = {
       observe: 'response' as 'body',
       params: queryParams,
-      headers: headers
+      headers
     };
 
-    return this.http.post<HttpResponse<any>>(this.API + '/logoutAdmin', options);
+    return this.http.post<HttpResponse<any>>(this.API + '/logoutAdmin', uname, options);
   }
 
   appendQueryParams(queryParams, filterParams) {

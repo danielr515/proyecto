@@ -11,6 +11,7 @@ export class AppAction {
 
   @action('updateUser')
   updateUser(user: User) {
+    sessionStorage.setItem('rpg-auth-uname', user.uname);
     this.store.update({
       user
     });
@@ -26,8 +27,10 @@ export class AppAction {
   @action('deleteSessionToken')
   deleteSessionToken() {
     sessionStorage.deleteItem('rpg-auth-sessiontoken');
+    sessionStorage.deleteItem('rpg-auth-uname');
     this.store.update({
-      sessionToken: ''
+      sessionToken: '',
+      user: { uname: '', passwd: '' }
     });
   }
 

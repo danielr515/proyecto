@@ -39,5 +39,7 @@ export class AppService {
         this.action.deleteSessionToken();
       }
     });
+
+
   }
 }
