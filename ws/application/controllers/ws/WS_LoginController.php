@@ -68,11 +68,14 @@ class WS_LoginController extends RestController {
         }
         $retmsg = '';
         $code = '';
+        var_dump( $uname );
+        var_dump( $token );
+
         if ( !isset( $token ) || !isset( $uname ) ) {
             $retmsg = 'Falta el usuario o el token de autenticación';
             $code = RestController::HTTP_BAD_REQUEST;
         } else {
-            $user = $this->admin->logoutByUnameAndToken( $uname, $token );
+            $user = $this->admin->getUserByLogoutData( $uname, $token );
             if ( $user->getUname() != '' ) {
                 $user ->setLastSessionToken( '', 'offline' );
                 $this->setHeaders();
@@ -83,7 +86,7 @@ class WS_LoginController extends RestController {
                 $code = RestController::HTTP_UNAUTHORIZED;
             }
         }
-        var_dump( $uname );
+
         $this->response( $retmsg, $code );
 
     }
