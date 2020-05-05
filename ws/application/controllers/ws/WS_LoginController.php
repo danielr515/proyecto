@@ -68,9 +68,6 @@ class WS_LoginController extends RestController {
         }
         $retmsg = '';
         $code = '';
-        var_dump( $uname );
-        var_dump( $token );
-
         if ( !isset( $token ) || !isset( $uname ) ) {
             $retmsg = 'Falta el usuario o el token de autenticación';
             $code = RestController::HTTP_BAD_REQUEST;

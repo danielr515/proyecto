@@ -35,7 +35,9 @@ export class AppService {
       uname = user.uname;
     });
     this.api.logout(token, uname).subscribe((elem: HttpResponse<any>) => {
-      console.log(elem);
+      console.log('ok');
+
+      console.log(elem.ok);
       if (elem.ok) {
         this.action.deleteSessionToken();
       }
