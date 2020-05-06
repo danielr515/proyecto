@@ -1,1 +1,11 @@
-register-admin works!
+<form class="card" [formGroup]="form">
+  <h1>REGISTRAR<br />ADMINISTRADOR</h1>
+  <label for="uname"><i class="far fa-envelope"></i></label>
+  <input type="text" id="uname" formControlName="uname" placeholder="Nombre de usuario">
+  <label for="uname"><i class="fas fa-user"></i></label>
+  <input type="text" id="uname" formControlName="uname" placeholder="Nombre de usuario">
+  <label for="passwd"><i class="fas fa-key"></i></label>
+  <input type="password" id="passwd" formControlName="passwd" placeholder="Contraseña">
+
+  <button type="submit" (click)="register()">Entrar</button>
+</form>

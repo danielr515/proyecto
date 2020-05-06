@@ -29,6 +29,7 @@ export class MenuComponent implements OnInit, OnChanges {
   }
   onNavigate(route) {
     this.router.navigate([route]);
+    this.closeMobileMenu();
   }
   onLogOut() {
     this.logout.emit();

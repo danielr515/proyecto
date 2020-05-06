@@ -1,8 +1,5 @@
-<!-- !(currentRoute$ | async).includes('/login') && (currentRoute$ | async) != '' -->
-<div>
-  <app-menu [ngClass]="{'displaynone' : router.url.includes('/login')}" (logout)="onLogOut()">
-  </app-menu>
-</div>
+<app-menu [ngClass]="{'displaynone' : router.url.includes('/login')}" (logout)="onLogOut()">
+</app-menu>
 
 
 <div class="page">

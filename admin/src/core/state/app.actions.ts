@@ -26,8 +26,8 @@ export class AppAction {
   }
   @action('deleteSessionToken')
   deleteSessionToken() {
-    sessionStorage.deleteItem('rpg-auth-sessiontoken');
-    sessionStorage.deleteItem('rpg-auth-uname');
+    sessionStorage.removeItem('rpg-auth-sessiontoken');
+    sessionStorage.removeItem('rpg-auth-uname');
     this.store.update({
       sessionToken: '',
       user: { uname: '', passwd: '' }

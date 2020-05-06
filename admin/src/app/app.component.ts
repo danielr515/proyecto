@@ -12,11 +12,13 @@ import { AppService } from 'src/core/state/app.service';
 })
 export class AppComponent implements OnInit {
   currentRoute$ = this.query.selectCurrentRoute();
+  sessionToken = this.query.selectSessionToken();
+  lastPage = '';
   constructor(
     private query: AppQuery,
     public router: Router,
-    private aroute: ActivatedRoute,
     private service: AppService,
+    private aroute: ActivatedRoute,
     private action: AppAction
   ) {
 
@@ -24,15 +26,27 @@ export class AppComponent implements OnInit {
       this.action.updateSessionToken(sessionStorage.getItem('rpg-auth-sessiontoken'));
       this.action.updateUser({ uname: sessionStorage.getItem('rpg-auth-uname'), passwd: '' });
     }
-    // console.log(this.router.url);
-    this.aroute.params.subscribe(elem => {
-      console.log('string elem____________');
-
-      console.log(elem);
-    });
   }
   ngOnInit() {
+    this.aroute.queryParams.subscribe(params => {
+      if (params.lastPage) {
+        this.lastPage = params.lastPage;
+      }
+    });
+
     console.log(this.router.url);
+
+    this.sessionToken.subscribe(token => {
+      if (token !== '') {
+        if (this.lastPage) {
+          this.router.navigate([this.lastPage]);
+        } else {
+          this.router.navigate(['/index']);
+        }
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   onLogOut() {

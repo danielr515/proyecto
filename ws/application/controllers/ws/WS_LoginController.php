@@ -41,22 +41,8 @@ class WS_LoginController extends RestController {
     protected function logoutAdmin_options() {
         $this->setOptions();
     }
-    protected function _parse_post() {
-        if ( $this->request->format === 'json' ) {
-            //Truc per tal que el JSON quedi ben carregat ( parsejat ) a $_POST
-            $_POST = json_decode( file_get_contents( 'php://input' ), true );
-        }
-        parent::_parse_post();
-    }
-
-    protected function setOptions() {
-        $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization, Access-Control-Expose-Headers' );
-        $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
-        $this->output->set_header( 'Access-Control-Allow-Origin: *' );
-        $this->output->set_header( 'Access-Control-Expose-Headers: Authorization' );
-        // $this->output->set_header( 'Authentication: Beared xxx' );
-
-        $this->response( NULL, RestController::HTTP_OK );
+    protected function registerAdmin_options() {
+        $this->setOptions();
     }
 
     protected function logoutAdmin_post() {
@@ -85,8 +71,38 @@ class WS_LoginController extends RestController {
         }
 
         $this->response( $retmsg, $code );
-
     }
+
+    protected function registerAdmin_post() {
+        $passwd =  $this->post( 'email' );
+        $uname =  $this->post( 'uname' );
+        $passwd =  $this->post( 'passwd' );
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( !isset( $token ) || !isset( $uname ) || !isset( $uname ) ) {
+            $retmsg = 'Falta el nombre de usuario, la contraseña o el token de autenticación';
+            $code = RestController::HTTP_BAD_REQUEST;
+        } else {
+            $user = $this->admin->getUserByLogoutData( $uname, $token );
+            if ( $user->getUname() != '' ) {
+                $user ->setLastSessionToken( '', 'offline' );
+                $this->setHeaders();
+                $retmsg = 'Logout correcto';
+                $code = RestController::HTTP_OK;
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = RestController::HTTP_UNAUTHORIZED;
+            }
+        }
+
+        $this->response( $retmsg, $code );
+    }
+
     protected function setHeaders( $token = null ) {
         $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
@@ -96,6 +112,24 @@ class WS_LoginController extends RestController {
             $this->output->set_header( 'Authorization: Bearer ' . $token );
         }
 
+    }
+
+    protected function _parse_post() {
+        if ( $this->request->format === 'json' ) {
+            //Truc per tal que el JSON quedi ben carregat ( parsejat ) a $_POST
+            $_POST = json_decode( file_get_contents( 'php://input' ), true );
+        }
+        parent::_parse_post();
+    }
+
+    protected function setOptions() {
+        $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization, Access-Control-Expose-Headers' );
+        $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
+        $this->output->set_header( 'Access-Control-Allow-Origin: *' );
+        $this->output->set_header( 'Access-Control-Expose-Headers: Authorization' );
+        // $this->output->set_header( 'Authentication: Beared xxx' );
+
+        $this->response( NULL, RestController::HTTP_OK );
     }
 
     private function generateToken() {

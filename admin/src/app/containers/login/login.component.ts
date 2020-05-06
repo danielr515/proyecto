@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/core/state/app.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AppAction } from 'src/core/state/app.actions';
 import { AppQuery } from 'src/core/state/app.query';
 
 @Component({
@@ -17,30 +15,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private service: AppService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private aroute: ActivatedRoute,
-    private action: AppAction,
     private query: AppQuery
   ) { }
 
   ngOnInit() {
-    this.aroute.queryParams.subscribe(params => {
-      if (params.lastPage) {
-        this.lastPage = params.lastPage;
-      }
-    });
     this.initForm();
-    this.action.updateCurrentRoute(this.router.url);
-    this.sessionToken.subscribe(token => {
-      if (token !== '') {
-        if (this.lastPage) {
-          this.router.navigate([this.lastPage]);
-        } else {
-          this.router.navigate(['/register']);
-        }
-
-      }
-    });
   }
 
   initForm() {
