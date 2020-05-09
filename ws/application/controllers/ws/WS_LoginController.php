@@ -79,7 +79,7 @@ class WS_LoginController extends RestController {
             'uname' => $this->post( 'uname' ),
             'passwd' => $this->post( 'passwd' )
         );
-        $admin = $this->get( 'uname' );
+        $adminUname = $this->get( 'uname' );
 
         $authorization = $this->input->get_request_header( 'Authorization' );
         $token = explode( ' ', $authorization );
@@ -88,20 +88,26 @@ class WS_LoginController extends RestController {
         }
         $retmsg = '';
         $code = '';
-        if ( !isset( $token ) || !isset( $uname ) || !isset( $uname ) ) {
-            $retmsg = 'Falta el nombre de usuario, la contraseña o el token de autenticación';
+        if ( !isset( $user.['email'] ) || !isset( $user['uname'] ) || !isset( $user['passwd'] ) ) {
+            $retmsg = 'Faltan los datos de registro';
             $code = RestController::HTTP_BAD_REQUEST;
         } else {
-            $user = $this->admin->getUserByLogoutData( $uname, $token );
-            if ( $user->getUname() != '' ) {
-                $user ->setLastSessionToken( '', 'offline' );
-                $this->setHeaders();
-                $retmsg = 'Logout correcto';
-                $code = RestController::HTTP_OK;
-            } else {
+            if ( !isset( $adminUname ) || !isset( $token ) ) {
                 $retmsg = 'Datos erróneos';
                 $code = RestController::HTTP_UNAUTHORIZED;
+            } else {
+                $admin = $this->admin->getUserByLogoutData( $adminUname, $token );
+                if ( $admin->getUname() != '' ) {
+                    $this->admin->registerNewAdmin( $user );
+                    $this->setHeaders();
+                    $retmsg = 'Registro correcto';
+                    $code = RestController::HTTP_OK;
+                } else {
+                    $retmsg = 'Datos erróneos';
+                    $code = RestController::HTTP_UNAUTHORIZED;
+                }
             }
+
         }
 
         $this->response( $retmsg, $code );

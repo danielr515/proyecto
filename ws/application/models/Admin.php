@@ -96,9 +96,16 @@ class Admin extends CI_Model {
         return $admin;
     }
 
+    public function registerNewAdmin( $user ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "INSERT INTO admins (email, uname, passwd, status) VALUES ( '" . $user['email'] . "', '" . $user['email'] . "', '" . $user['email'] . "', 'offline' )" );
+        var_dump( $query );
+    }
+
     public function setLastSessionToken( $token, $status ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "UPDATE admins SET status='" . $status . "', sessiontoken='" . $token . "' WHERE uname='" . $this->getUname() . "';" );
+        $query = $this->db->query( "UPDATE admins SET status = '" . $status . "', sessiontoken = '" . $token . "' WHERE uname = '" . $this->getUname() . "';
+        " );
 
     }
 }
