@@ -88,7 +88,7 @@ class WS_LoginController extends RestController {
         }
         $retmsg = '';
         $code = '';
-        if ( !isset( $user.['email'] ) || !isset( $user['uname'] ) || !isset( $user['passwd'] ) ) {
+        if ( user.['email'] != '' || $user['uname'] != '' || $user['passwd'] != '' ) {
             $retmsg = 'Faltan los datos de registro';
             $code = RestController::HTTP_BAD_REQUEST;
         } else {
