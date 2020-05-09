@@ -42,7 +42,7 @@ export class AppApi {
     let queryParams = new HttpParams();
     let headers = new HttpHeaders();
 
-    queryParams = this.appendQueryParams(queryParams, { uname: data.uname });
+    queryParams = this.appendQueryParams(queryParams, { admin: data.uname });
     headers = headers.set('Authorization', 'Bearer ' + data.token);
     headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
 

@@ -79,7 +79,7 @@ class WS_LoginController extends RestController {
             'uname' => $this->post( 'uname' ),
             'passwd' => $this->post( 'passwd' )
         );
-        $adminUname = $this->get( 'uname' );
+        $adminUname = $this->get( 'admin' );
 
         $authorization = $this->input->get_request_header( 'Authorization' );
         $token = explode( ' ', $authorization );
@@ -88,6 +88,7 @@ class WS_LoginController extends RestController {
         }
         $retmsg = '';
         $code = '';
+        var_dump( $adminUname );
         if ( $user['email'] == '' || $user['uname'] == '' || $user['passwd'] == '' ) {
             $retmsg = 'Faltan los datos de registro';
             $code = RestController::HTTP_BAD_REQUEST;
