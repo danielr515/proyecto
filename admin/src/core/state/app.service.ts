@@ -35,14 +35,29 @@ export class AppService {
       uname = user.uname;
     });
     this.api.logout(token, uname).subscribe((elem: HttpResponse<any>) => {
-      console.log('ok');
-
-      console.log(elem.ok);
       if (elem.ok) {
         this.action.deleteSessionToken();
       }
     });
+  }
 
+  register(user) {
+    let data = this.getTokenAndUname();
+    this.api.register(user, data).subscribe((elem: HttpResponse<any>) => {
+      if (elem.ok) {
 
+      }
+    });
+  }
+
+  getTokenAndUname() {
+    let data = { token: '', uname: '' };
+    this.query.selectSessionToken().subscribe(tk => {
+      data.token = tk;
+    });
+    this.query.selectUser().subscribe(user => {
+      data.uname = user.uname;
+    });
+    return data;
   }
 }

@@ -30,14 +30,14 @@ export class RegisterAdminComponent implements OnInit {
   initForm() {
     this.form = this.formBuilder.group({
       uname: ['', Validators.required],
-      passwd: ['', Validators.required]
+      passwd: ['', Validators.required],
+      email: ['', Validators.required]
     });
   }
 
   register() {
     if (this.form.valid) {
-      // this.service.updateUser(this.form.value);
-      // this.service.login(this.form.value);
+      this.service.register(this.form.value);
     }
 
   }
