@@ -75,10 +75,10 @@ class WS_LoginController extends RestController {
 
     protected function registerAdmin_post() {
         $user = array(
-            'email' => $this->post( 'email' );
-            'uname' => $this->post( 'uname' );
-            'passwd' => $this->post( 'passwd' );
-        )
+            'email' => $this->post( 'email' ),
+            'uname' => $this->post( 'uname' ),
+            'passwd' => $this->post( 'passwd' )
+        );
         $admin = $this->get( 'uname' );
 
         $authorization = $this->input->get_request_header( 'Authorization' );
