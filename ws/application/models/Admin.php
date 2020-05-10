@@ -89,7 +89,7 @@ class Admin extends CI_Model {
 
     public function registerNewAdmin( $user ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "INSERT INTO admins (email, uname, passwd, status) VALUES ( '" . $user['email'] . "', '" . $user['email'] . "', '" . $user['email'] . "', 'offline' )" );
+        $query = $this->db->query( "INSERT INTO admins (email, uname, passwd, status) VALUES ( '" . $user['email'] . "', '" . $user['uname'] . "', '" . $user['passwd'] . "', 'offline' )" );
         // TRUE si se inserta, FALSE si falla
         return $query;
     }
