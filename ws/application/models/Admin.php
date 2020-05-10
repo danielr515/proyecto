@@ -95,6 +95,7 @@ class Admin extends CI_Model {
     }
 
     public function existsAdmin( $user ) {
+        $this->load->database( 'rpg' );
         $this->db->select( 'email' );
         $this->db->where( array(
             'email' => $user['email'],
@@ -102,7 +103,7 @@ class Admin extends CI_Model {
         ) );
         $query = $this->db->get( 'admins' );
         // TRUE si existen registros, FALSE si no existen
-        var_dump( $query );
+        var_dump( $user );
         return $query->num_rows() >= 1;
     }
 
