@@ -74,12 +74,8 @@ class WS_LoginController extends RestController {
     }
 
     protected function registerAdmin_post() {
-        $user = array(
-            'email' => $this->post( 'email' ),
-            'uname' => $this->post( 'uname' ),
-            'passwd' => $this->post( 'passwd' )
-        );
-        $adminUname = $this->get( 'admin' );
+        $user = $this->post( 'user' );
+        $adminUname = $this->post( 'admin' );
 
         $authorization = $this->input->get_request_header( 'Authorization' );
         $token = explode( ' ', $authorization );

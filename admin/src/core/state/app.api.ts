@@ -39,20 +39,16 @@ export class AppApi {
   }
 
   register(user, data) {
-    let queryParams = new HttpParams();
     let headers = new HttpHeaders();
-
-    queryParams = this.appendQueryParams(queryParams, { admin: data.uname });
     headers = headers.set('Authorization', 'Bearer ' + data.token);
     headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
 
     const options = {
       observe: 'response' as 'body',
-      params: queryParams,
       headers
     };
 
-    return this.http.post(this.API + '/registerAdmin', user, options);
+    return this.http.post(this.API + '/registerAdmin', { user, admin: data.uname }, options);
   }
   appendQueryParams(queryParams, filterParams) {
     for (const [key, value] of Object.entries(filterParams)) {
