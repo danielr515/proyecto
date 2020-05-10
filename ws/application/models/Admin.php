@@ -63,15 +63,6 @@ class Admin extends CI_Model {
         $this->sessiontoken = $sessiontoken;
     }
 
-    public function checkReaderEmail( $email ) {
-        //Mirar si a la nostra BD existeix aquest email
-        $this->db->select( 'email' );
-        $this->db->where( array( 'email' => $email ) );
-        $query = $this->db->get( 'reader' );
-
-        return $query->num_rows() == 1;
-    }
-
     public function getUserByLoginData( $uname, $passwd ) {
         $this->load->database( 'rpg' );
         $query = $this->db->query( "SELECT * FROM admins WHERE uname='" . $uname . "' AND passwd='" . $passwd . "';
@@ -99,7 +90,19 @@ class Admin extends CI_Model {
     public function registerNewAdmin( $user ) {
         $this->load->database( 'rpg' );
         $query = $this->db->query( "INSERT INTO admins (email, uname, passwd, status) VALUES ( '" . $user['email'] . "', '" . $user['email'] . "', '" . $user['email'] . "', 'offline' )" );
-        var_dump( $query );
+        // TRUE si se inserta, FALSE si falla
+        return $query;
+    }
+
+    public function existsAdmin( $user ) {
+        $this->db->select( 'email' );
+        $this->db->where( array(
+            'email' => $user['email'],
+            'uname' => $user['uname']
+        ) );
+        $query = $this->db->get( 'admins' );
+        // TRUE si existen registros, FALSE si no existen
+        return $query->num_rows() >= 1;
     }
 
     public function setLastSessionToken( $token, $status ) {

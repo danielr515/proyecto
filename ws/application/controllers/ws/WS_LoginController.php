@@ -84,7 +84,6 @@ class WS_LoginController extends RestController {
         }
         $retmsg = '';
         $code = '';
-        var_dump( $adminUname );
         if ( $user['email'] == '' || $user['uname'] == '' || $user['passwd'] == '' ) {
             $retmsg = 'Faltan los datos de registro';
             $code = RestController::HTTP_BAD_REQUEST;
@@ -95,10 +94,19 @@ class WS_LoginController extends RestController {
             } else {
                 $admin = $this->admin->getUserByLogoutData( $adminUname, $token );
                 if ( $admin->getUname() != '' ) {
-                    $this->admin->registerNewAdmin( $user );
-                    $this->setHeaders();
-                    $retmsg = 'Registro correcto';
-                    $code = RestController::HTTP_OK;
+                    if ( !$this->admin->existsAdmin( $user ) ) {
+                        $return = $this->admin->registerNewAdmin( $user );
+                        if ( $return ) {
+                            $retmsg = 'Registro correcto';
+                            $code = RestController::HTTP_OK;
+                        } else {
+                            $retmsg = 'Error al insertar';
+                            $code = RestController::HTTP_INTERNAL_ERROR;
+                        }
+                    } else {
+                        $retmsg = 'El nombre de usuario o el email ya está en uso';
+                        $code = RestController::HTTP_OK;
+                    }
                 } else {
                     $retmsg = 'Datos erróneos';
                     $code = RestController::HTTP_UNAUTHORIZED;
