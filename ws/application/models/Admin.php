@@ -102,6 +102,7 @@ class Admin extends CI_Model {
         ) );
         $query = $this->db->get( 'admins' );
         // TRUE si existen registros, FALSE si no existen
+        var_dump( $query );
         return $query->num_rows() >= 1;
     }
 
