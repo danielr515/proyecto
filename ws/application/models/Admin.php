@@ -96,14 +96,14 @@ class Admin extends CI_Model {
 
     public function existsAdmin( $user ) {
         $this->load->database( 'rpg' );
-        $this->db->select( 'email' );
-        $this->db->where( array(
+        $this->db->select( 'email, uname' );
+        $where = array(
             'email' => $user['email'],
             'uname' => $user['uname']
-        ) );
-        $query = $this->db->get( 'admins' );
+        );
+        $query = $this->db->get_where( 'admins', $where );
         // TRUE si existen registros, FALSE si no existen
-        var_dump( $user );
+        var_dump( $query );
         return $query->num_rows() >= 1;
     }
 
