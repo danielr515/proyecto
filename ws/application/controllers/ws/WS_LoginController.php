@@ -105,7 +105,7 @@ class WS_LoginController extends RestController {
                         }
                     } else {
                         $retmsg = 'El nombre de usuario o el email ya está en uso';
-                        $code = RestController::HTTP_OK;
+                        $code = RestController::HTTP_BAD_REQUEST;
                     }
                 } else {
                     $retmsg = 'Datos erróneos';
