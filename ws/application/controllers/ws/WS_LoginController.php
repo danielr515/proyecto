@@ -79,7 +79,7 @@ class WS_LoginController extends RestController {
             'uname' => $this->post( 'uname' ),
             'passwd' => $this->post( 'passwd' )
         );
-        $adminUname = $this->post( 'admin' );
+        $adminUname = $this->get( 'admin' );
 
         $authorization = $this->input->get_request_header( 'Authorization' );
         $token = explode( ' ', $authorization );
