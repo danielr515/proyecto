@@ -2,6 +2,6 @@
 </app-menu>
 
 
-<div class="page">
+<div [ngClass]="{'page' : !router.url.includes('/login'), 'login' : router.url.includes('/login')}">
   <router-outlet></router-outlet>
 </div>
