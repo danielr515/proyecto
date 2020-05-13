@@ -40,6 +40,18 @@ class Typesrelation extends CI_Model {
     public function getRelation() {
         return $this->relation;
     }
+
+    public function getWeakness( $type ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( 'SELECT types.id, types.name FROM typesrelation LEFT JOIN types ON typesrelation.typedef = types.id WHERE typedef = ' . $type . ' AND relation = 2;' );
+        $rows = $query->result_array();
+        var_dump( $rows );
+        $weakness = array();
+        // foreach ( $rows as $row ) {
+
+        // }
+        // return $rows;
+    }
 }
 
 ?>

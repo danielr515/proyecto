@@ -8,6 +8,7 @@ class WS_TypesController extends WS_MainController {
         parent::__construct();
 
         $this->load->model( 'type' );
+        $this->load->model( 'typesrelation' );
 
     }
     protected function types_get() {
@@ -27,6 +28,27 @@ class WS_TypesController extends WS_MainController {
         }
 
         $this->response( $retmsg, $code );
+    }
+
+    protected function typesWithWeakness_get() {
+        $retmsg = '';
+        $code = '';
+        $types = $this->type->getAllTypes();
+        $this->typesrelation->getWeakness( $type['id'] );
+
+        // if ( parent::isTokenValid() ) {
+        //     $types = $this->type->getAllTypes();
+        //     if ( count( $types ) > 0 ) {
+        //         foreach ( $types as $type ) {
+        //             $this->typesrelation->getWeakness( $type['id'] );
+        //         }
+        //     }
+        // } else {
+        //     $retmsg = 'Token de sesión inválido';
+        //     $code = parent::HTTP_UNAUTHORIZED;
+        // }
+
+        // $this->response( $retmsg, $code );
     }
 
 }
