@@ -19,7 +19,7 @@ class WS_MainController extends RestController {
             return false;
         }
         $token = $token[1];
-        if ( !$this->user->isTokenValid( $token ) ) {
+        if ( !$this->user->tokenExists( $token ) ) {
             return false;
         }
         return true;
