@@ -53,5 +53,6 @@ $route['prueba'] = 'ws/WS_PruebaController/getPrueba';
 $route['loginAdmin'] = 'ws/WS_LoginController/loginAdmin';
 $route['logoutAdmin'] = 'ws/WS_LoginController/logoutAdmin';
 $route['registerAdmin'] = 'ws/WS_LoginController/registerAdmin';
+$route['types'] = 'ws/WS_TypesController/types';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
