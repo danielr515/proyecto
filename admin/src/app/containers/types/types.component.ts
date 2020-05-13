@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TypesQuery } from './state/types.query';
+import { TypesService } from './state/types.service';
 
 @Component({
   selector: 'app-types',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TypesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private query: TypesQuery,
+    private service: TypesService
+  ) { }
 
   ngOnInit() {
+    console.log('aaaaaaaaa');
+    this.service.updateAllFullTypes();
   }
 
 }

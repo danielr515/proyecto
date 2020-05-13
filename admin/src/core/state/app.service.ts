@@ -25,7 +25,6 @@ export class AppService {
     });
   }
   logout() {
-    console.log('logout');
     let token = '';
     let uname = '';
     this.query.selectSessionToken().subscribe(tk => {

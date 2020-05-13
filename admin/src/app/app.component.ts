@@ -34,8 +34,6 @@ export class AppComponent implements OnInit {
       }
     });
 
-    console.log(this.router.url);
-
     this.sessionToken.subscribe(token => {
       if (token !== '') {
         if (this.lastPage) {

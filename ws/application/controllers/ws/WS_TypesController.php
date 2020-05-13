@@ -30,6 +30,9 @@ class WS_TypesController extends WS_MainController {
         $this->response( $retmsg, $code );
     }
 
+    protected function typesWithWeakness_options() {
+        parent::setOptions();
+    }
     protected function typesWithWeakness_get() {
         $retmsg = '';
         $code = '';

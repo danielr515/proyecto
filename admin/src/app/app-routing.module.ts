@@ -21,6 +21,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'types',
+    loadChildren: './containers/types/types.module#TypesModule',
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
