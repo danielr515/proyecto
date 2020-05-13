@@ -2,8 +2,7 @@
 
 use chriskacerguis\RestServer\RestController;
 
-require_once( APPPATH . 'libraries/codeigniter-restserver/src/RestController.php' );
-require_once( APPPATH . 'libraries/codeigniter-restserver/src/Format.php' );
+require_once( './WS_MainController' );
 
 class WS_TypesController extends WS_MainController {
 
