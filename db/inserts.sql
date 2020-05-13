@@ -169,8 +169,3 @@ INSERT INTO skills (name, class, mode, cost, damage, type) VALUES ('Fragmento s√
 INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, passive, ultimate, type1, type2) VALUES ('Wawe, el ermita√±o', 380, 200, 80, 60, 50, 60, 105, 5, 13, 14, 15, 5, null );
 
 
-
-
-INSERT INTO skills (name, class, mode, cost, damage, type) VALUES ('', '', '', 1, 1, 1);
-INSERT INTO skills (name, class, mode, cost, damage, type) VALUES ('', '', '', 1, 1, 1);
-INSERT INTO skills (name, class, mode, cost, damage, type) VALUES ('', '', '', 1, 1, 1);
