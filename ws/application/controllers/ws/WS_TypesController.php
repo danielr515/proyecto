@@ -5,7 +5,7 @@ use chriskacerguis\RestServer\RestController;
 require_once( APPPATH . 'libraries/codeigniter-restserver/src/RestController.php' );
 require_once( APPPATH . 'libraries/codeigniter-restserver/src/Format.php' );
 
-class WS_LoginController extends WS_MainController {
+class WS_TypesController extends WS_MainController {
 
     public function __construct() {
         parent::__construct();
