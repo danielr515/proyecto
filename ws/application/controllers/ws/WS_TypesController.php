@@ -1,6 +1,6 @@
 <?php
 
-use WS_MainController;
+require_once( APPPATH . 'controllers/ws/WS_MainController.php' );
 
 class WS_TypesController extends WS_MainController {
 
