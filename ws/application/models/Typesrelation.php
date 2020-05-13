@@ -46,6 +46,8 @@ class Typesrelation extends CI_Model {
         $query = $this->db->query( 'SELECT types.id, types.name FROM typesrelation LEFT JOIN types ON typesrelation.typedef = types.id WHERE typedef = ' . $type . ' AND relation = 2;' );
         $rows = $query->result_array();
         var_dump( $rows );
+        var_dump( '<br/>\r\n' );
+
         $weakness = array();
         // foreach ( $rows as $row ) {
 
