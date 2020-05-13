@@ -47,19 +47,20 @@ class Type extends CI_Model {
         $query = $this->db->query( 'SELECT * FROM types' );
         $rows = $query->result_array();
         $type = new Type();
+        var_dump( $rows );
     }
 
-    public function getUserByLoginData( $uname, $passwd ) {
-        $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT * FROM admins WHERE uname='" . $uname . "' AND passwd='" . $passwd . "';
-        " );
-        $rows = $query->result_array();
-        $admin = new Admin();
-        if ( count( $rows ) > 0 ) {
-            $admin->setAll( $rows[0]['email'], $rows[0]['uname'], $rows[0]['passwd'], $rows[0]['status'], $rows[0]['sessiontoken'] );
-        }
-        return $admin;
-    }
+    // public function getUserByLoginData( $uname, $passwd ) {
+    //     $this->load->database( 'rpg' );
+    //     $query = $this->db->query( "SELECT * FROM admins WHERE uname='" . $uname . "' AND passwd='" . $passwd . "';
+    //     " );
+    //     $rows = $query->result_array();
+    //     $admin = new Admin();
+    //     if ( count( $rows ) > 0 ) {
+    //         $admin->setAll( $rows[0]['email'], $rows[0]['uname'], $rows[0]['passwd'], $rows[0]['status'], $rows[0]['sessiontoken'] );
+    //     }
+    //     return $admin;
+    // }
 }
 
 ?>
