@@ -47,6 +47,13 @@ class Typesrelation extends CI_Model {
         $rows = $query->result_array();
         return $rows;
     }
+
+    public function getResistances( $type ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( 'SELECT types.id, types.name FROM typesrelation LEFT JOIN types ON typesrelation.typeatk = types.id WHERE typedef = ' . $type . ' AND relation = 0.5;' );
+        $rows = $query->result_array();
+        return $rows;
+    }
 }
 
 ?>

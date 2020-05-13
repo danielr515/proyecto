@@ -37,6 +37,8 @@ class WS_TypesController extends WS_MainController {
         for ( $i = 0; $i<count( $types );
         $i++ ) {
             $types[$i]['weakness'] = $this->typesrelation->getWeakness( $types[$i]['id'] );
+            $types[$i]['resistances'] = $this->typesrelation->getResistances( $types[$i]['id'] );
+
         }
         // foreach ( $types as $type, $index = index ) {
         //     $type['weakness'] = $this->typesrelation->getWeakness( $type['id'] );
