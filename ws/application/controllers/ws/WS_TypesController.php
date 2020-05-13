@@ -2,7 +2,7 @@
 
 use chriskacerguis\RestServer\RestController;
 
-require_once( './WS_MainController' );
+require_once( './WS_MainController.php' );
 
 class WS_TypesController extends WS_MainController {
 
