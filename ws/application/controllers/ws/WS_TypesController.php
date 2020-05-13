@@ -48,6 +48,7 @@ class WS_TypesController extends WS_MainController {
                 }
                 $retmsg = $types;
                 $code = parent::HTTP_OK;
+                parent::setHeaders();
             }
         } else {
             $retmsg = 'Token de sesión inválido';
