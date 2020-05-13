@@ -1,8 +1,6 @@
 <?php
 
-use chriskacerguis\RestServer\RestController;
-
-require_once( './WS_MainController.php' );
+use WS_MainController;
 
 class WS_TypesController extends WS_MainController {
 
