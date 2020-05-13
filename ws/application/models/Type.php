@@ -46,8 +46,7 @@ class Type extends CI_Model {
         $this->load->database( 'rpg' );
         $query = $this->db->query( 'SELECT * FROM types' );
         $rows = $query->result_array();
-        $type = new Type();
-        var_dump( $rows );
+        return $rows;
     }
 
     // public function getUserByLoginData( $uname, $passwd ) {

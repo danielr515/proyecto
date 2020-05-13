@@ -9,6 +9,20 @@ class WS_MainController extends RestController {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model( 'user' );
+    }
+
+    protected function isTokenValid() {
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) <= 1 ) {
+            return false;
+        }
+        $token = $token[1];
+        if ( !$this->user->isTokenValid( $token ) ) {
+            return false;
+        }
+        return true;
     }
 
     protected function setHeaders( $token = null ) {

@@ -8,8 +8,25 @@ class WS_TypesController extends WS_MainController {
         parent::__construct();
 
         $this->load->model( 'type' );
+
     }
     protected function types_get() {
-        $this->type->getAllTypes();
+        $retmsg = '';
+        $code = '';
+
+        if ( parent::isTokenValid() ) {
+            $types = $this->type->getAllTypes();
+            if ( count( $types ) > 0 ) {
+                $retmsg = $types;
+                $code = RestController::HTTP_OK;
+                parent::setHeaders();
+            }
+        } else {
+            $retmsg = 'Token de sesión inválido';
+            $code = RestController::HTTP_UNAUTHORIZED;
+        }
+
+        $this->response( $retmsg, $code );
     }
+
 }
