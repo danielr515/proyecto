@@ -18,12 +18,12 @@ class WS_TypesController extends WS_MainController {
             $types = $this->type->getAllTypes();
             if ( count( $types ) > 0 ) {
                 $retmsg = $types;
-                $code = RestController::HTTP_OK;
+                $code = parent::HTTP_OK;
                 parent::setHeaders();
             }
         } else {
             $retmsg = 'Token de sesión inválido';
-            $code = RestController::HTTP_UNAUTHORIZED;
+            $code = parent::HTTP_UNAUTHORIZED;
         }
 
         $this->response( $retmsg, $code );
