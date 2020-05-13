@@ -65,7 +65,7 @@ class User extends CI_Model {
 
     public function tokenExists( $token ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT token FROM users WHERE sessiontoken='" . $token . "';" );
+        $query = $this->db->query( "SELECT sessiontoken FROM users WHERE sessiontoken='" . $token . "';" );
         if ( count( $rows ) > 0 ) {
             return true;
         }
