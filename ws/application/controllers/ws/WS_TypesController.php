@@ -34,9 +34,13 @@ class WS_TypesController extends WS_MainController {
         $retmsg = '';
         $code = '';
         $types = $this->type->getAllTypes();
-        foreach ( $types as $type ) {
-            $type['weakness'] = $this->typesrelation->getWeakness( $type['id'] );
+        for ( $i = 0; $i<count( $types );
+        $i++ ) {
+            $types[$i]['weakness'] = $this->typesrelation->getWeakness( $types[$i]['id'] );
         }
+        // foreach ( $types as $type, $index = index ) {
+        //     $type['weakness'] = $this->typesrelation->getWeakness( $type['id'] );
+        // }
         var_dump( $types );
 
         // if ( parent::isTokenValid() ) {
