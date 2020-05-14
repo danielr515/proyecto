@@ -80,7 +80,7 @@ class WS_TypesController extends WS_MainController {
                 $retmsg = 'Datos erróneos';
                 $code = RestController::HTTP_UNAUTHORIZED;
             } else {
-                $admin = parent::admin->getUserByLogoutData( $adminUname, $token );
+                $admin = $this->admin->getUserByLogoutData( $adminUname, $token );
                 if ( $admin->getUname() != '' ) {
                     if ( !$this->type->existTypeByName( $type ) ) {
                         $return = $this->type->addNewType( $type );
