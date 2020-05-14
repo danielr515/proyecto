@@ -18,13 +18,14 @@ export class TypesService {
   ) { }
 
   updateAllFullTypes() {
-    this.api.getAllFullTypes(this.getToken()).subscribe((types: HttpResponse<any>) => {
-      console.log(types);
-      // this.action.updateTypes(types.body);
+    this.api.getAllFullTypes(this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateTypes(response.body);
+      }
     });
   }
   getTokenAndUname() {
-    let data = { token: '', uname: '' };
+    const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {
       data.token = tk;
     });

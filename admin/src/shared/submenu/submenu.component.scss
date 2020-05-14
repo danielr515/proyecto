@@ -1,0 +1,43 @@
+@import '../../assets/variables';
+.menu {
+  margin-top: 5px;
+  padding: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $color4;
+  margin-bottom: 20px;
+  .tab {
+    background-color: $color1;
+    color: $color5;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid $color4;
+    border-bottom: 0;
+    border-left: 0;
+    padding: 20px;
+    display: inline;
+    cursor: pointer;
+    &:nth-child(1) {
+      border-left: 1px solid $color4;
+    }
+  }
+  .tab:hover {
+    background-color: $color2;
+  }
+  .tab:active {
+    background-color: $color3;
+  }
+  .currentRoute {
+    background-color: $color5;
+    color: $color1;
+    cursor: default;
+  }
+  .currentRoute:hover {
+    background-color: $color5;
+  }
+}
+

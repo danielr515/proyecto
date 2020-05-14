@@ -1,0 +1,4 @@
+<div class="menu">
+  <div class="tab" *ngFor="let tab of tabs" [ngClass]="{'currentRoute': router.url == tab.url}"
+    (click)="changePage(tab.url)">{{ tab.name }}</div>
+</div>

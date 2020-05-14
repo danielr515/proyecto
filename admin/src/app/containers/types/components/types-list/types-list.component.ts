@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FullType } from '../../state/types.model';
 
 @Component({
   selector: 'app-types-list',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./types-list.component.scss']
 })
 export class TypesListComponent implements OnInit {
-
+  @Input() types: FullType[];
   constructor() { }
 
   ngOnInit() {

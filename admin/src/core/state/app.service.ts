@@ -41,7 +41,7 @@ export class AppService {
   }
 
   register(user) {
-    let data = this.getTokenAndUname();
+    const data = this.getTokenAndUname();
     this.api.register(user, data).subscribe((elem: HttpResponse<any>) => {
       if (elem.ok) {
 
@@ -50,7 +50,7 @@ export class AppService {
   }
 
   getTokenAndUname() {
-    let data = { token: '', uname: '' };
+    const data = { token: '', uname: '' };
     this.query.selectSessionToken().subscribe(tk => {
       data.token = tk;
     });

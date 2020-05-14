@@ -1,6 +1,7 @@
 export interface FullType {
   id: number;
   name: string;
+  description: string;
   weakness: Type[];
   resistances: Type[];
 }

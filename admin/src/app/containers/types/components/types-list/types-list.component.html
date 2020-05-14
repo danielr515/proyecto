@@ -1,1 +1,26 @@
-<p>types-list works!</p>
+<div *ngIf="types">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Debilidades</th>
+      <th>Resistencias</th>
+    </tr>
+    <tr *ngFor="let type of types">
+      <td>{{ type.id }}</td>
+      <td>{{ type.name }}</td>
+      <td>{{ type.description }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let weakness of type.weakness">{{ weakness.name }}</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let resistances of type.resistances">{{ resistances.name }}</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
