@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TypesQuery } from './state/types.query';
-import { TypesService } from './state/types.service';
-
+import { TypesQuery } from '../../state/types.query';
+import { TypesService } from '../../state/types.service';
 
 @Component({
-  selector: 'app-types',
-  templateUrl: './types.component.html',
-  styleUrls: ['./types.component.scss']
+  selector: 'app-types-view',
+  templateUrl: './types-view.component.html',
+  styleUrls: ['./types-view.component.scss']
 })
-
-export class TypesComponent implements OnInit {
+export class TypesViewComponent implements OnInit {
   tabs = [
     {
       name: 'Lista de tipos',
@@ -36,5 +34,4 @@ export class TypesComponent implements OnInit {
   ngOnInit() {
     this.service.updateAllFullTypes();
   }
-
 }

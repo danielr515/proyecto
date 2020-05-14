@@ -24,6 +24,18 @@ export class TypesApi {
 
     return this.http.get<HttpResponse<any>>(this.API + '/typesWithWeakness', options);
   }
+  addType(type, admin) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + admin.token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers
+    };
+
+    return this.http.post(this.API + '/addType', { type, admin: admin.uname }, options);
+  }
 
   appendQueryParams(queryParams, filterParams) {
     for (const [key, value] of Object.entries(filterParams)) {

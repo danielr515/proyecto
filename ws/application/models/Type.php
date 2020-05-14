@@ -48,6 +48,24 @@ class Type extends CI_Model {
         $rows = $query->result_array();
         return $rows;
     }
+
+    public function addNewType( $type ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "')" );
+        // TRUE si se inserta, FALSE si falla
+        return $query;
+    }
+
+    public function existTypeByName( $type ) {
+        $this->load->database( 'rpg' );
+        $this->db->select( 'name' );
+        $where = array(
+            'name' => $type['name']
+        );
+        $query = $this->db->get_where( 'types', $where );
+        // TRUE si existen registros, FALSE si no existen
+        return $query->num_rows() >= 1;
+    }
 }
 
 ?>

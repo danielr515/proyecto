@@ -1,4 +1,9 @@
 <div class="menu">
-  <div class="tab" *ngFor="let tab of tabs" [ngClass]="{'currentRoute': router.url == tab.url}"
+  <div class="tab displayLarge" *ngFor="let tab of tabs" [ngClass]="{'currentRoute': router.url == tab.url}"
     (click)="changePage(tab.url)">{{ tab.name }}</div>
+
+  <div class="tab displayMobile" *ngFor="let tab of tabs" [ngClass]="{'currentRoute': router.url == tab.url}"
+    (click)="changePage(tab.url)"><i [ngClass]="tab.icon"></i></div>
+
+
 </div>

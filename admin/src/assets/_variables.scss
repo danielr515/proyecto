@@ -12,3 +12,11 @@ $md: max-width 1200px;
 $lg: min-width 1201px;
 
 
+@mixin space-out($min, $max) {
+  @for $i from $min through $max {
+    &:first-child:nth-last-child(#{$i}),
+    &:first-child:nth-last-child(#{$i}) ~ & {
+      width: 1 / $i * 100%;
+    }
+  }
+}

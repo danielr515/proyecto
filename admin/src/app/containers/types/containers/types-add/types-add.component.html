@@ -1,0 +1,7 @@
+<form [formGroup]="form">
+  <label for="name">Tipo</label>
+  <input type="text" id="name" formControlName="name" max="15">
+  <label for="type">Descripción</label>
+  <textarea id="description" cols="30" rows="10" formControlName="description"></textarea>
+  <button type="submit" (click)="addType()">Entrar</button>
+</form>

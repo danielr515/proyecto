@@ -7,7 +7,21 @@ import { TypesComponent } from './types.component';
 const routes: Routes = [
   {
     path: '',
-    component: TypesComponent
+    component: TypesComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './containers/types-view/types-view.module#TypesViewModule'
+      },
+      {
+        path: 'addtype',
+        loadChildren: './containers/types-add/types-add.module#TypesAddModule'
+      },
+      {
+        path: 'addrelation',
+        loadChildren: './containers/types-relation/types-relation.module#TypesRelationModule'
+      }
+    ]
   },
 ];
 

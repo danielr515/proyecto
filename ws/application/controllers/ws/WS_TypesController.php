@@ -58,4 +58,52 @@ class WS_TypesController extends WS_MainController {
         $this->response( $retmsg, $code );
     }
 
+    protected function addType_options() {
+        parent::setOptions();
+    }
+    protected function addType_post() {
+        $type = $this->post( 'type' );
+        $adminUname = $this->post( 'admin' );
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $type['name'] == '' ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = RestController::HTTP_BAD_REQUEST;
+        } else {
+            if ( !isset( $adminUname ) || !isset( $token ) ) {
+                $retmsg = 'Datos erróneos';
+                $code = RestController::HTTP_UNAUTHORIZED;
+            } else {
+                $admin = parent::admin->getUserByLogoutData( $adminUname, $token );
+                if ( $admin->getUname() != '' ) {
+                    if ( !$this->type->existTypeByName( $type ) ) {
+                        $return = $this->type->addNewType( $type );
+                        if ( $return ) {
+                            $retmsg = 'Adición correcta';
+                            $code = RestController::HTTP_OK;
+                        } else {
+                            $retmsg = 'Error al insertar';
+                            $code = RestController::HTTP_INTERNAL_ERROR;
+                        }
+                    } else {
+                        $retmsg = 'El nombre de usuario o el email ya está en uso';
+                        $code = RestController::HTTP_BAD_REQUEST;
+                    }
+                } else {
+                    $retmsg = 'Datos erróneos';
+                    $code = RestController::HTTP_UNAUTHORIZED;
+                }
+            }
+
+        }
+
+        $this->response( $retmsg, $code );
+    }
+
 }

@@ -24,6 +24,13 @@ export class TypesService {
       }
     });
   }
+
+  addType(type) {
+    this.api.addType(type, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      console.log(response);
+    });
+  }
+
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {
@@ -41,4 +48,5 @@ export class TypesService {
     });
     return token;
   }
+
 }

@@ -55,5 +55,6 @@ $route['logoutAdmin'] = 'ws/WS_LoginController/logoutAdmin';
 $route['registerAdmin'] = 'ws/WS_LoginController/registerAdmin';
 $route['types'] = 'ws/WS_TypesController/types';
 $route['typesWithWeakness'] = 'ws/WS_TypesController/typesWithWeakness';
+$route['addType'] = 'ws/WS_TypesController/addType';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

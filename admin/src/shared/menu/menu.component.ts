@@ -11,7 +11,9 @@ export class MenuComponent implements OnInit, OnChanges {
   @Input() currentRoute: string;
   @Output() logout: EventEmitter<any> = new EventEmitter<any>();
   mobileMenuOpen = false;
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -22,10 +24,13 @@ export class MenuComponent implements OnInit, OnChanges {
   }
   openMobileMenu() {
     this.mobileMenuOpen = true;
+    this.scrollToTop();
+    this.disableScroll();
   }
 
   closeMobileMenu() {
     this.mobileMenuOpen = false;
+    this.enableScroll();
   }
   onNavigate(route) {
     this.router.navigate([route]);
@@ -34,4 +39,21 @@ export class MenuComponent implements OnInit, OnChanges {
   onLogOut() {
     this.logout.emit();
   }
+
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+  disableScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    window.onscroll = () => {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  }
+
+  enableScroll() {
+    window.onscroll = () => { };
+  }
+
 }
