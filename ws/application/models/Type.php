@@ -51,7 +51,7 @@ class Type extends CI_Model {
 
     public function addNewType( $type ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "')" );
+        $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "');" );
         // TRUE si se inserta, FALSE si falla
         return $query;
     }
