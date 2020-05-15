@@ -54,6 +54,12 @@ class Typesrelation extends CI_Model {
         $rows = $query->result_array();
         return $rows;
     }
+
+    public function insertNewRelation( $typeatk, $typedef ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( 'INSERT INTO typesrelation (typeatk, typedef) VALUES ( ' . $typeatk . ', ' . $typedef . ');' );
+        return $query;
+    }
 }
 
 ?>

@@ -57,19 +57,33 @@ class Type extends CI_Model {
         );
         $query = $this->db->get_where( 'types', $where );
         $rows = $query->result_array();
-        var_dump( $rows );
+        return $rows[0]['id'];
     }
 
     public function addNewType( $type ) {
         $this->load->database( 'rpg' );
         $this->load->model( 'typesrelation' );
+        $this->db->query( 'BEGIN;' );
         $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "');" );
-        $this->getIdByName( $type['name'] );
-        // $types = $this->getAllTypes();
-        // foreach ( $variable as $key => $value ) {
-        //     # code...
-        // }
-        // TRUE si se inserta, FALSE si falla
+        if ( !$query ) {
+            $this->db->query( 'ROLLBACK;' );
+            return false;
+        }
+        $id = $this->getIdByName( $type['name'] );
+        $types = $this->getAllTypes();
+        foreach ( $types as $type ) {
+            $ret = $this->typesrelation->insertNewRelation( $type['id'], $id );
+            if ( !$ret ) {
+                $this->db->query( 'ROLLBACK;' );
+                return false;
+            }
+            $ret = $this->typesrelation->insertNewRelation( $id, $type['id'] );
+            if ( !$ret ) {
+                $this->db->query( 'ROLLBACK;' );
+                return false;
+            }
+        }
+        $this->db->query( 'COMMIT;' );
         return $query;
     }
 
@@ -84,5 +98,9 @@ class Type extends CI_Model {
         return $query->num_rows() >= 1;
     }
 }
-
+// $this->db->query( 'BEGIN;' );
+// $this->db->query( 'LOCK TABLE tabla;' );
+// $this->db->query( 'ROLLBACK;' );
+// $this->db->query( 'COMMIT;' );
 ?>
+
