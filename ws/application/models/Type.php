@@ -56,7 +56,8 @@ class Type extends CI_Model {
             'name' => $name
         );
         $query = $this->db->get_where( 'types', $where );
-        var_dump( $query );
+        $rows = $query->result_array();
+        var_dump( $rows );
     }
 
     public function addNewType( $type ) {
