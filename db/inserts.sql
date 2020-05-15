@@ -1,5 +1,5 @@
-INSERT INTO admins VALUES ('admin@test.com', 'admin', '1234', '', '');
-INSERT INTO players VALUES ('player@test.com', 'player', '1234', '', '', 1000, 0);
+INSERT INTO admins VALUES ('admin@test.com', 'admin', '1c3be85355b318d2cd8250bbd8e4d52f', '', '');
+INSERT INTO players VALUES ('player@test.com', 'player', '1c3be85355b318d2cd8250bbd8e4d52f', '', '', 1000, 0);
 
 
 INSERT INTO types (name) VALUES ('Ígneo');
