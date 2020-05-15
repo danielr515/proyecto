@@ -66,6 +66,7 @@ class Type extends CI_Model {
         $this->db->query( 'BEGIN;' );
         $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "');" );
         if ( !$query ) {
+            var_dump( 'rollback' );
             $this->db->query( 'ROLLBACK;' );
             return false;
         }
@@ -74,11 +75,13 @@ class Type extends CI_Model {
         foreach ( $types as $type ) {
             $ret = $this->typesrelation->insertNewRelation( $type['id'], $id );
             if ( !$ret ) {
+                var_dump( 'rollback' );
                 $this->db->query( 'ROLLBACK;' );
                 return false;
             }
             $ret = $this->typesrelation->insertNewRelation( $id, $type['id'] );
             if ( !$ret ) {
+                var_dump( 'rollback' );
                 $this->db->query( 'ROLLBACK;' );
                 return false;
             }
