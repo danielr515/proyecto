@@ -57,7 +57,7 @@ class Typesrelation extends CI_Model {
 
     public function insertNewRelation( $typeatk, $typedef ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( 'INSERT INTO typesrelation (typeatk, typedef) VALUES ( ' . $typeatk . ', ' . $typedef . ');' );
+        $query = $this->db->query( 'INSERT INTO typesrelation VALUES ( ' . $typeatk . ', ' . $typedef . ', 1);' );
         return $query;
     }
 }
