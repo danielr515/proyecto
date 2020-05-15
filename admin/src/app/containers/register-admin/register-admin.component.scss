@@ -14,7 +14,7 @@
   -moz-box-shadow: 0px 7px 23px -9px rgba(0,0,0,0.75);
   box-shadow: 0px 7px 23px -9px rgba(0,0,0,0.75);
   @include breakpoint($xs) {
-    height: calc(100% - 50px);
+    height: 100%;
     width: 100%;
     margin: 0;
     box-shadow: none;
@@ -57,5 +57,6 @@
     height: 75px;
     cursor: pointer;
     color: $color5;
+    border: 0;
   }
 }

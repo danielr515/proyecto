@@ -22,7 +22,7 @@ export class TypesComponent implements OnInit {
       icon: 'fas fa-plus'
     },
     {
-      name: 'Añadir ventaja',
+      name: 'Modificar relación',
       url: '/types/addrelation',
       icon: 'fas fa-people-arrows'
     }

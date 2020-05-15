@@ -1,18 +1,29 @@
 <form [formGroup]="form">
-  <label for="typeatk">Tipo atacante</label>
-  <select formControlName="typeatk" name="typeatk">
-    <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
-  </select>
-  <label for="typedef">Tipo defensor</label>
-  <select formControlName="typedef" name="typedef">
-    <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
-  </select>
-  <label for="relation">Relación</label>
-  <select formControlName="relation" name="relation">
-    <option [value]="0.5">x0.5</option>
-    <option [value]="1">x1</option>
-    <option [value]="2">x2</option>
-
-  </select>
-  <button type="submit" (click)="onSubmitForm()">Añadir</button>
+  <div>
+    <p>
+      <label for="typeatk">Tipo atacante</label>
+    </p>
+    <select formControlName="typeatk" name="typeatk">
+      <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+    </select>
+  </div>
+  <div>
+    <p>
+      <label for="typedef">Tipo defensor</label>
+    </p>
+    <select formControlName="typedef" name="typedef">
+      <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+    </select>
+  </div>
+  <div>
+    <p>
+      <label for="relation">Relación</label>
+    </p>
+    <select formControlName="relation" name="relation">
+      <option [value]="0.5">x0.5</option>
+      <option [value]="1">x1</option>
+      <option [value]="2">x2</option>
+    </select>
+  </div>
+  <button type="submit" (click)="onSubmitForm()">Modificar</button>
 </form>

@@ -1,7 +1,15 @@
 <form [formGroup]="form">
-  <label for="name">Tipo</label>
-  <input type="text" id="name" formControlName="name" max="15">
-  <label for="type">Descripción</label>
-  <textarea id="description" cols="30" rows="10" formControlName="description"></textarea>
+  <div>
+    <p>
+      <label for="name">Tipo</label>
+    </p>
+    <input type="text" id="name" formControlName="name" max="15">
+  </div>
+  <div>
+    <p>
+      <label for="description">Descripción</label>
+    </p>
+    <textarea id="description" rows="10" formControlName="description"></textarea>
+  </div>
   <button type="submit" (click)="addType()">Añadir</button>
 </form>

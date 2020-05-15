@@ -12,8 +12,12 @@
     <tbody>
       <tr *ngFor="let type of types">
         <td>{{ type.id }}</td>
-        <td>{{ type.name }}</td>
-        <td>{{ type.description }}</td>
+        <td>
+          <p>{{ type.name }}</p>
+        </td>
+        <td>
+          <p>{{ type.description }}</p>
+        </td>
         <td>
           <ul>
             <li *ngFor="let weakness of type.weakness">{{ weakness.name }}</li>
