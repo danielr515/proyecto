@@ -74,11 +74,11 @@ class WS_TypesController extends WS_MainController {
         $code = '';
         if ( $type['name'] == '' ) {
             $retmsg = 'Faltan datos obligatorios';
-            $code = RestController::HTTP_BAD_REQUEST;
+            $code = parent::HTTP_BAD_REQUEST;
         } else {
             if ( !isset( $adminUname ) || !isset( $token ) ) {
                 $retmsg = 'Datos erróneos';
-                $code = RestController::HTTP_UNAUTHORIZED;
+                $code = parent::HTTP_UNAUTHORIZED;
             } else {
                 $admin = $this->admin->getUserByLogoutData( $adminUname, $token );
                 if ( $admin->getUname() != '' ) {
@@ -86,18 +86,18 @@ class WS_TypesController extends WS_MainController {
                         $return = $this->type->addNewType( $type );
                         if ( $return ) {
                             $retmsg = 'Adición correcta';
-                            $code = RestController::HTTP_OK;
+                            $code = parent::HTTP_OK;
                         } else {
                             $retmsg = 'Error al insertar';
-                            $code = RestController::HTTP_INTERNAL_ERROR;
+                            $code = parent::HTTP_INTERNAL_ERROR;
                         }
                     } else {
                         $retmsg = 'El nombre de usuario o el email ya está en uso';
-                        $code = RestController::HTTP_BAD_REQUEST;
+                        $code = parent::HTTP_BAD_REQUEST;
                     }
                 } else {
                     $retmsg = 'Datos erróneos';
-                    $code = RestController::HTTP_UNAUTHORIZED;
+                    $code = parent::HTTP_UNAUTHORIZED;
                 }
             }
 
