@@ -79,12 +79,15 @@ class Type extends CI_Model {
                 $this->db->query( 'ROLLBACK;' );
                 return false;
             }
-            $ret = $this->typesrelation->insertNewRelation( $id, $type['id'] );
-            if ( !$ret ) {
-                var_dump( 'rollback' );
-                $this->db->query( 'ROLLBACK;' );
-                return false;
+            if ( $id != $type['id'] ) {
+                $ret = $this->typesrelation->insertNewRelation( $id, $type['id'] );
+                if ( !$ret ) {
+                    var_dump( 'rollback' );
+                    $this->db->query( 'ROLLBACK;' );
+                    return false;
+                }
             }
+
         }
         $this->db->query( 'COMMIT;' );
         return $query;
