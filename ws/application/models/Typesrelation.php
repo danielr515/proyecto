@@ -63,7 +63,7 @@ class Typesrelation extends CI_Model {
 
     public function existsRelation( $typesrelation ) {
         $this->load->database( 'rpg' );
-        $this->db->select( 'id' );
+        $this->db->select( 'typeatk, typedef' );
         $where = array(
             'typeatk' => $typesrelation['typeatk'],
             'typedef' => $typesrelation['typedef']
