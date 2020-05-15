@@ -63,34 +63,25 @@ class Type extends CI_Model {
     public function addNewType( $type ) {
         $this->load->database( 'rpg' );
         $this->load->model( 'typesrelation' );
-        $this->db->query( 'BEGIN;' );
+        $this->db->trans_begin();
         $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "');" );
-        if ( !$query ) {
-            var_dump( 'rollback' );
-            $this->db->query( 'ROLLBACK;' );
-            return false;
-        }
         $id = $this->getIdByName( $type['name'] );
         $types = $this->getAllTypes();
         foreach ( $types as $type ) {
             $ret = $this->typesrelation->insertNewRelation( $type['id'], $id );
-            if ( !$ret ) {
-                var_dump( 'rollback' );
-                $this->db->query( 'ROLLBACK;' );
-                return false;
-            }
             if ( $id != $type['id'] ) {
                 $ret = $this->typesrelation->insertNewRelation( $id, $type['id'] );
-                if ( !$ret ) {
-                    var_dump( 'rollback' );
-                    $this->db->query( 'ROLLBACK;' );
-                    return false;
-                }
             }
 
         }
-        $this->db->query( 'COMMIT;' );
-        return $query;
+        if ( $this->db->trans_status() === FALSE ) {
+            var_dump( 'rollback' );
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
     }
 
     public function existTypeByName( $type ) {
@@ -104,9 +95,14 @@ class Type extends CI_Model {
         return $query->num_rows() >= 1;
     }
 }
-// $this->db->query( 'BEGIN;' );
-// $this->db->query( 'LOCK TABLE tabla;' );
-// $this->db->query( 'ROLLBACK;' );
-// $this->db->query( 'COMMIT;' );
+// $this->db->trans_begin();
+// if ( $this->db->trans_status() === FALSE ) {
+// 	var_dump( 'rollback' );
+// 	$this->db->trans_rollback();
+// 	return false;
+// } else {
+// 	$this->db->trans_commit();
+// 	return true;
+// }
 ?>
 
