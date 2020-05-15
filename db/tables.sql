@@ -5,7 +5,7 @@ CREATE DATABASE rpg;
 CREATE TABLE users(
 	email VARCHAR(50) NOT NULL,
 	uname VARCHAR(20) NOT NULL,
-	passwd VARCHAR(20) NOT NULL,
+	passwd VARCHAR(50) NOT NULL,
 	status VARCHAR(10),
 	sessiontoken VARCHAR(20),
 	PRIMARY KEY(uname),

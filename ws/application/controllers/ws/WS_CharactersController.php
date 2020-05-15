@@ -15,20 +15,19 @@ class WS_CharactersController extends WS_MainController {
     protected function characters_get() {
         $retmsg = '';
         $code = '';
-        $characters = $this->character->getAllCharacters();
-        // if ( parent::isTokenValid() ) {
-        //     $characters = $this->character->getAllCharacters();
-        //     if ( count( $types ) > 0 ) {
-        //         $retmsg = $types;
-        //         $code = parent::HTTP_OK;
-        //         parent::setHeaders();
-        //     }
-        // } else {
-        //     $retmsg = 'Token de sesión inválido';
-        //     $code = parent::HTTP_UNAUTHORIZED;
-        // }
+        if ( parent::isTokenValid() ) {
+            $characters = $this->character->getAllCharacters();
+            if ( count( $types ) > 0 ) {
+                $retmsg = $characters;
+                $code = parent::HTTP_OK;
+                parent::setHeaders();
+            }
+        } else {
+            $retmsg = 'Token de sesión inválido';
+            $code = parent::HTTP_UNAUTHORIZED;
+        }
 
-        // $this->response( $retmsg, $code );
+        $this->response( $retmsg, $code );
     }
 
 }
