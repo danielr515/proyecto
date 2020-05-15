@@ -38,7 +38,7 @@ class Character extends CI_Model {
 
     public function setAll( $id = null, $name = '', $hp = null, $mana = null, $atk = null, $def = null, $spatk = null, $spdef = null, $speed = null, $skill1 = null, $skill2 = null, $passive = null, $ultimate = null, $type1 = null, $type2  = null ) {
         $this->id = $id;
-        $this->name = $name
+        $this->name = $name;
         $this->hp = $hp;
         $this->mana = $mana;
         $this->atk = $atk;
