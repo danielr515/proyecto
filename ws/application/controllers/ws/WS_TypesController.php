@@ -92,7 +92,7 @@ class WS_TypesController extends WS_MainController {
                             $code = parent::HTTP_INTERNAL_ERROR;
                         }
                     } else {
-                        $retmsg = 'El nombre de usuario o el email ya está en uso';
+                        $retmsg = 'Ya existe el tipo que estás intentando insertar';
                         $code = parent::HTTP_BAD_REQUEST;
                     }
                 } else {
@@ -100,7 +100,6 @@ class WS_TypesController extends WS_MainController {
                     $code = parent::HTTP_UNAUTHORIZED;
                 }
             }
-
         }
 
         $this->response( $retmsg, $code );

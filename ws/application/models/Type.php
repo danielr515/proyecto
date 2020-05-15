@@ -49,9 +49,25 @@ class Type extends CI_Model {
         return $rows;
     }
 
+    public function getIdByName( $name ) {
+        $this->load->database( 'rpg' );
+        $this->db->select( 'id' );
+        $where = array(
+            'name' => $name
+        );
+        $query = $this->db->get_where( 'types', $where );
+        var_dump( $query );
+    }
+
     public function addNewType( $type ) {
         $this->load->database( 'rpg' );
+        $this->load->model( 'typesrelation' );
         $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "');" );
+        $this->getIdByName();
+        // $types = $this->getAllTypes();
+        // foreach ( $variable as $key => $value ) {
+        //     # code...
+        // }
         // TRUE si se inserta, FALSE si falla
         return $query;
     }
