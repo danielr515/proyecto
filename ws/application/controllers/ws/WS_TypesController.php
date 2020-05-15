@@ -119,7 +119,7 @@ class WS_TypesController extends WS_MainController {
         }
         $retmsg = '';
         $code = '';
-        if ( $type['typeatk'] == null || $type['typedef'] == null || $type['relation'] == null ) {
+        if ( $typesrelation['typeatk'] == null || $typesrelation['typedef'] == null || $typesrelation['relation'] == null ) {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
