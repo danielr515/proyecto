@@ -177,7 +177,7 @@ class Character extends CI_Model {
 
     public function getAllCharacters() {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( 'SELECT c.id, c.name, c.hp, c.mana, c.atk, c.def, c.spatk, c.spdef, c.speed, s1.name, s2.name, s3.name, s4.name, t1.name, t2.name FROM characters as c LEFT JOIN skills as s1 ON s1.id = c.skill1 LEFT JOIN skills as s2 ON s2.id = skill2 LEFT JOIN skills as s3 ON s3.id = c.passive LEFT JOIN skills as s4 ON s4.id = c.ultimate LEFT JOIN types as t1 ON t1.id = c.type1 LEFT JOIN types as t2 ON t2.id = c.type2;' );
+        $query = $this->db->query( 'SELECT c.id, c.name, c.hp, c.mana, c.atk, c.def, c.spatk, c.spdef, c.speed, s1.name as skill1, s2.name as skill2, s3.name as passive, s4.name as ultimate, t1.name as type1, t2.name as type2 FROM characters as c LEFT JOIN skills as s1 ON s1.id = c.skill1 LEFT JOIN skills as s2 ON s2.id = skill2 LEFT JOIN skills as s3 ON s3.id = c.passive LEFT JOIN skills as s4 ON s4.id = c.ultimate LEFT JOIN types as t1 ON t1.id = c.type1 LEFT JOIN types as t2 ON t2.id = c.type2;' );
         $rows = $query->result_array();
         var_dump( $rows );
         return $rows;
