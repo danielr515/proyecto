@@ -37,12 +37,8 @@ export class RegisterAdminComponent implements OnInit {
   }
 
   register() {
-
-
-    const md5 = new Md5();
-
-    console.log(md5.appendStr('hello').end());
     if (this.form.valid) {
+      const md5 = new Md5();
       const data = this.form.value;
       data.passwd = md5.appendStr(data.passwd).end();
       console.log(data);
