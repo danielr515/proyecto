@@ -31,6 +31,11 @@ export class TypesService {
     });
   }
 
+  editRelation(typesrelation) {
+    this.api.editRelation(typesrelation, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      console.log(response);
+    });
+  }
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {

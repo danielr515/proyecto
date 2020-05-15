@@ -105,4 +105,50 @@ class WS_TypesController extends WS_MainController {
         $this->response( $retmsg, $code );
     }
 
+    protected function editTypesRelation_options() {
+        parent::setOptions();
+    }
+    protected function editTypesRelation_post() {
+        $typesrelation = $this->post( 'typesrelation' );
+        $adminUname = $this->post( 'admin' );
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $type['typeatk'] == null || $type['typedef'] == null || $type['relation'] == null ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = parent::HTTP_BAD_REQUEST;
+        } else {
+            if ( !isset( $adminUname ) || !isset( $token ) ) {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
+            } else {
+                $admin = $this->admin->getUserByLogoutData( $adminUname, $token );
+                if ( $admin->getUname() != '' ) {
+                    //Aqui se hace el update
+                    //Comprobar que existe la relacion antes de hacer el update
+                    if ( $this->typesrelation->existsRelation( $typesrelation ) ) {
+                        $return = $this->typesrelation->editRelation( $typesrelation );
+                        if ( $return ) {
+                            $retmsg = 'Edición correcta';
+                            $code = parent::HTTP_OK;
+                        } else {
+                            $retmsg = 'Error al editar';
+                            $code = parent::HTTP_INTERNAL_ERROR;
+                        }
+                    }
+                } else {
+                    $retmsg = 'Datos erróneos';
+                    $code = parent::HTTP_UNAUTHORIZED;
+                }
+            }
+        }
+
+        $this->response( $retmsg, $code );
+    }
+
 }

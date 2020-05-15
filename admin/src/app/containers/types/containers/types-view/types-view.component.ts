@@ -8,23 +8,6 @@ import { TypesService } from '../../state/types.service';
   styleUrls: ['./types-view.component.scss']
 })
 export class TypesViewComponent implements OnInit {
-  tabs = [
-    {
-      name: 'Lista de tipos',
-      url: '/types',
-      icon: 'fas fa-list-ul'
-    },
-    {
-      name: 'Añadir tipos',
-      url: '/types/addtype',
-      icon: 'fas fa-plus'
-    },
-    {
-      name: 'Añadir ventaja',
-      url: '/types/addrelation',
-      icon: 'fas fa-people-arrows'
-    }
-  ];
   types = this.query.selectTypes();
   constructor(
     private query: TypesQuery,

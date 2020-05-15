@@ -27,14 +27,12 @@ export class TypesComponent implements OnInit {
       icon: 'fas fa-people-arrows'
     }
   ];
-  types = this.query.selectTypes();
   constructor(
     private query: TypesQuery,
     private service: TypesService
   ) { }
 
   ngOnInit() {
-    this.service.updateAllFullTypes();
   }
 
 }

@@ -60,6 +60,36 @@ class Typesrelation extends CI_Model {
         $query = $this->db->query( 'INSERT INTO typesrelation VALUES ( ' . $typeatk . ', ' . $typedef . ', 1);' );
         return $query;
     }
+
+    public function existsRelation( $typesrelation ) {
+        $this->load->database( 'rpg' );
+        $this->db->select( 'id' );
+        $where = array(
+            'typeatk' => $typesrelation['typeatk'],
+            'typedef' => $typesrelation['typedef']
+        );
+        $query = $this->db->get_where( 'typesrelation', $where );
+        return $query->num_rows() >= 1;
+    }
+
+    public function editRelation( $typesrelation ) {
+        $this->load->database( 'rpg' );
+        $this->db->trans_begin();
+        $this->db->set( $typesrelation );
+        $where = array(
+            'typeatk' => $typesrelation['typeatk'],
+            'typedef' => $typesrelation['typedef']
+        );
+        $this->db->update( 'typesrelation', $typesrelation, $where );
+        if ( $this->db->trans_status() === FALSE ) {
+            var_dump( 'rollback' );
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
 }
 
 ?>
