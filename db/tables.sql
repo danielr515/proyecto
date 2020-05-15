@@ -43,8 +43,8 @@ CREATE TABLE typesrelation (
 	typedef INT NOT NULL,
 	relation decimal(2,1) NOT NULL,
 	PRIMARY KEY(typeatk, typedef),
-	FOREIGN KEY(typeatk) REFERENCES types(id),
-	FOREIGN KEY(typedef) REFERENCES types(id)
+	FOREIGN KEY(typeatk) REFERENCES types(id) ON DELETE CASCADE,
+	FOREIGN KEY(typedef) REFERENCES types(id) ON DELETE CASCADE
 );
 CREATE TABLE skills(
 	id SERIAL NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE skills(
 	damage INT,
 	type INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(type) REFERENCES types(id),
+	FOREIGN KEY(type) REFERENCES types(id) ON DELETE CASCADE,
 	UNIQUE(name)
 );
 CREATE TABLE characters(
@@ -75,12 +75,12 @@ CREATE TABLE characters(
 	type1 INT,
 	type2 INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(skill1) REFERENCES skills(id),
-	FOREIGN KEY(skill2) REFERENCES skills(id),
-	FOREIGN KEY(passive) REFERENCES skills(id),
-	FOREIGN KEY(ultimate) REFERENCES skills(id),
-	FOREIGN KEY(type1) REFERENCES types(id),
-	FOREIGN KEY(type2) REFERENCES types(id),
+	FOREIGN KEY(skill1) REFERENCES skills(id) ON DELETE CASCADE,
+	FOREIGN KEY(skill2) REFERENCES skills(id) ON DELETE CASCADE,
+	FOREIGN KEY(passive) REFERENCES skills(id) ON DELETE CASCADE,
+	FOREIGN KEY(ultimate) REFERENCES skills(id) ON DELETE CASCADE,
+	FOREIGN KEY(type1) REFERENCES types(id) ON DELETE CASCADE,
+	FOREIGN KEY(type2) REFERENCES types(id) ON DELETE CASCADE,
 	UNIQUE(name)
 );
 CREATE TABLE teams(
@@ -96,15 +96,15 @@ CREATE TABLE teams(
 	item3 INT,
 	item4 INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(player) REFERENCES players(uname),
-	FOREIGN KEY(char1) REFERENCES characters(id),
-	FOREIGN KEY(char2) REFERENCES characters(id),
-	FOREIGN KEY(char3) REFERENCES characters(id),
-	FOREIGN KEY(char4) REFERENCES characters(id),
-	FOREIGN KEY(item1) REFERENCES items(id),
-	FOREIGN KEY(item2) REFERENCES items(id),
-	FOREIGN KEY(item3) REFERENCES items(id),
-	FOREIGN KEY(item4) REFERENCES items(id)
+	FOREIGN KEY(player) REFERENCES players(uname) ON DELETE CASCADE,
+	FOREIGN KEY(char1) REFERENCES characters(id) ON DELETE CASCADE,
+	FOREIGN KEY(char2) REFERENCES characters(id) ON DELETE CASCADE,
+	FOREIGN KEY(char3) REFERENCES characters(id) ON DELETE CASCADE,
+	FOREIGN KEY(char4) REFERENCES characters(id) ON DELETE CASCADE,
+	FOREIGN KEY(item1) REFERENCES items(id) ON DELETE CASCADE,
+	FOREIGN KEY(item2) REFERENCES items(id) ON DELETE CASCADE,
+	FOREIGN KEY(item3) REFERENCES items(id) ON DELETE CASCADE,
+	FOREIGN KEY(item4) REFERENCES items(id) ON DELETE CASCADE
 );
 CREATE TABLE rooms(
 	id SERIAL NOT NULL,
@@ -120,10 +120,10 @@ CREATE TABLE rooms(
 	p2team INT,
 	turn INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(player1) REFERENCES players(uname),
-	FOREIGN KEY(player2) REFERENCES players(uname),
-	FOREIGN KEY(p1team) REFERENCES teams(id),
-	FOREIGN KEY(p2team) REFERENCES teams(id)
+	FOREIGN KEY(player1) REFERENCES players(uname) ON DELETE CASCADE,
+	FOREIGN KEY(player2) REFERENCES players(uname) ON DELETE CASCADE,
+	FOREIGN KEY(p1team) REFERENCES teams(id) ON DELETE CASCADE,
+	FOREIGN KEY(p2team) REFERENCES teams(id) ON DELETE CASCADE
 );
 CREATE TABLE characterbattlehistory(
 	id SERIAL NOT NULL,
@@ -139,9 +139,9 @@ CREATE TABLE characterbattlehistory(
 	currspdef INT,
 	currspeed INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(player) REFERENCES players(uname),
-	FOREIGN KEY(room) REFERENCES rooms(id),
-	FOREIGN KEY(character) REFERENCES characters(id)
+	FOREIGN KEY(player) REFERENCES players(uname) ON DELETE CASCADE,
+	FOREIGN KEY(room) REFERENCES rooms(id) ON DELETE CASCADE,
+	FOREIGN KEY(character) REFERENCES characters(id) ON DELETE CASCADE
 );
 CREATE TABLE battlehistory(
 	id SERIAL NOT NULL,
@@ -152,16 +152,16 @@ CREATE TABLE battlehistory(
 	p1move INT,
 	p2move INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(p1char) REFERENCES characterbattlehistory(id),
-	FOREIGN KEY(p2char) REFERENCES characterbattlehistory(id),
-	FOREIGN KEY(p1move) REFERENCES skills(id),
-	FOREIGN KEY(p2move) REFERENCES skills(id)
+	FOREIGN KEY(p1char) REFERENCES characterbattlehistory(id) ON DELETE CASCADE,
+	FOREIGN KEY(p2char) REFERENCES characterbattlehistory(id) ON DELETE CASCADE,
+	FOREIGN KEY(p1move) REFERENCES skills(id) ON DELETE CASCADE,
+	FOREIGN KEY(p2move) REFERENCES skills(id) ON DELETE CASCADE
 );
 CREATE TABLE shop(
 	item INT,
 	discount INT,
 	PRIMARY KEY(item),
-	FOREIGN KEY(item) REFERENCES items(id)
+	FOREIGN KEY(item) REFERENCES items(id) ON DELETE CASCADE
 );
 CREATE TABLE inventory(
 	id SERIAL NOT NULL,
@@ -169,7 +169,7 @@ CREATE TABLE inventory(
 	item INT,
 	quantity INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(player) REFERENCES players(uname),
-	FOREIGN KEY(item) REFERENCES items(id)
+	FOREIGN KEY(player) REFERENCES players(uname) ON DELETE CASCADE,
+	FOREIGN KEY(item) REFERENCES items(id) ON DELETE CASCADE
 );
 
