@@ -63,7 +63,7 @@ class Type extends CI_Model {
         $this->load->database( 'rpg' );
         $this->load->model( 'typesrelation' );
         $query = $this->db->query( "INSERT INTO types (name, description) VALUES ( '" . $type['name'] . "', '" . $type['description'] . "');" );
-        $this->getIdByName();
+        $this->getIdByName( $type['name'] );
         // $types = $this->getAllTypes();
         // foreach ( $variable as $key => $value ) {
         //     # code...
