@@ -3,6 +3,7 @@
 class Skill extends CI_Model {
     private $id;
     private $name;
+    private $description;
     private $class;
     private $mode;
     private $cost;
@@ -12,6 +13,7 @@ class Skill extends CI_Model {
     public function __construct() {
         $this->id = null;
         $this->name = '';
+        $this->description = '';
         $this->class = '';
         $this->mode = '';
         $this->cost = null;
@@ -19,9 +21,10 @@ class Skill extends CI_Model {
         $this->type = null;
     }
 
-    public function setAll( $id = null, $name = '', $class = '', $mode = '', $cost = null, $damage = null, $type = null ) {
+    public function setAll( $id = null, $name = '', $description = '', $class = '', $mode = '', $cost = null, $damage = null, $type = null ) {
         $this->id = $id;
         $this->name = $name;
+        $this->description = $description;
         $this->class = $class;
         $this->mode = $mode;
         $this->cost = $cost;
@@ -43,6 +46,14 @@ class Skill extends CI_Model {
 
     public function getName() {
         return $this->name;
+    }
+
+    public function setDescription( $description ) {
+        $this->description = $description;
+    }
+
+    public function getDescription() {
+        return $this->description;
     }
 
     public function setClass( $class ) {
@@ -83,6 +94,13 @@ class Skill extends CI_Model {
 
     public function getType() {
         return $this->type;
+    }
+
+    public function getAllSkills() {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( 'SELECT s.id, s.name, s.description, s.class, s.mode, s.cost, s.damage, types.name AS type FROM skills AS s LEFT JOIN types ON s.type=types.id;' );
+        $rows = $query->result_array();
+        return $rows;
     }
 }
 

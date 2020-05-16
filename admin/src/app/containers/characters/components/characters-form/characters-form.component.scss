@@ -56,17 +56,19 @@ form {
         float: left;
         padding: 7px;
         padding-left: 0;
+        font-size: 14px;
         div {
           &:nth-child(1) {
             float: left;
             width: 40%;
             padding: 0;
-            padding-top: 9px;
+            padding-top: 10.5px;
           }
           &:nth-child(2) {
             width: 60%;
             padding: 0;
-            float: right
+            float: right;
+            text-align: right;
           }
         }
         @include breakpoint($xs) {
