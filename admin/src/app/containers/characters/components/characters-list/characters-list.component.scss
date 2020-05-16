@@ -1,0 +1,109 @@
+@import '../../characters.component.scss';
+
+.char-card {
+  overflow:auto;
+  width: 80%;
+  border: $color4 solid thin;
+  margin-left: 10%;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: $color5;
+  @include breakpoint($xs) {
+    width: calc(100% - 2px);
+    margin: 0;
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    margin-top: 15px;
+
+  }
+  img {
+    width: 100px;
+    float: left;
+  }
+  .title {
+    float: left;
+    padding: 10px;
+    .name {
+      font-size: 1.4em;
+    }
+    .subname {
+      text-transform: capitalize;
+    }
+    .types {
+      margin-top: 15px;
+      padding-left: 4px;
+      padding-bottom: 20px;
+    }
+  }
+  .moves {
+    float: right;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 50px 50px;
+    @include breakpoint($xs) {
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 15px;
+    }
+    div {
+      align-content: center;
+      text-align: center;
+      padding: 4px;
+      border: thin solid $color4;
+
+
+      @include breakpoint($xs) {
+        background-color: $color4;
+        border-color: $color3;
+        &:nth-child(1) {
+        border-top-left-radius: 5px;
+      }
+      &:nth-child(2) {
+        border-top-right-radius: 5px;
+      }
+      &:nth-child(3) {
+        border-bottom-left-radius: 0px;
+      }
+      &:nth-child(4) {
+        border-bottom-right-radius: 0px;
+      }
+      }
+    }
+  }
+  .stats {
+    float: right;
+    @include breakpoint($xs) {
+        background-color: $color4;
+        float: left;
+        width: calc(100% - 0.5px);
+      }
+    ul {
+      margin: 0;
+      margin-right: 10px;
+      padding-left: 10px;
+      display: grid;
+      height: 99px;
+      grid-template-columns: 100px 100px;
+      border-radius: 5px;
+      border: thin solid $color4;
+      @include breakpoint($xs) {
+        width: calc(100% - 1px);
+        grid-template-columns: 1fr 1fr;
+        padding: 0;
+        margin: 0;
+        border-top: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        border-color: $color3;
+      }
+      li {
+        display: inline;
+      }
+    }
+  }
+
+}

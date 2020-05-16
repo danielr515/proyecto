@@ -49,6 +49,7 @@ CREATE TABLE typesrelation (
 CREATE TABLE skills(
 	id SERIAL NOT NULL,
 	name VARCHAR(30) NOT NULL,
+	description TEXT,
 	class VARCHAR(10) NOT NULL,
 	mode VARCHAR(5) NOT NULL,
 	cost INT,

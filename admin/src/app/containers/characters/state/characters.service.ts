@@ -24,7 +24,11 @@ export class CharactersService {
       }
     });
   }
-
+  addCharacter(character) {
+    this.api.addCharacter(character, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      console.log(response);
+    });
+  }
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {

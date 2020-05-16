@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
+import { AppApi } from 'src/core/state/app.api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CharactersApi {
-  // que el resto de api extiendan esta para que puedan pillar el enlace y tal
-  readonly API = 'http://192.168.1.155:1080/ws/index.php';
+export class CharactersApi extends AppApi {
 
-  constructor(private http: HttpClient) { }
+  constructor(private chttp: HttpClient) {
+    super(chttp);
+  }
 
   getAllCharacters(token) {
     let headers = new HttpHeaders();
@@ -24,12 +25,17 @@ export class CharactersApi {
     return this.http.get<HttpResponse<any>>(this.API + '/characters', options);
   }
 
-  appendQueryParams(queryParams, filterParams) {
-    for (const [key, value] of Object.entries(filterParams)) {
-      if (value) {
-        queryParams = queryParams.Charactersend(key, value);
-      }
-    }
-    return queryParams;
+  addCharacter(character, admin) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + admin.token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers
+    };
+
+    return this.http.post(this.API + '/addCharacter', { character, admin: admin.uname }, options);
   }
+
 }

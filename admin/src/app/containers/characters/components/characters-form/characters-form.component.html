@@ -1,0 +1,175 @@
+<form *ngIf="types" [formGroup]="form">
+  <div>
+    <p>
+      <label for="name">Nombre</label>
+    </p>
+    <input type="text" id="name" formControlName="name" placeholder="Nombre">
+  </div>
+  <div>
+    <p>
+      <label for="subname">Sobrenombre</label>
+    </p>
+    <input type="text" id="subname" formControlName="subname" placeholder="Sobrenombre">
+  </div>
+  <div>
+    <div class="half">
+      <p>
+        <label for="type1">Tipo 1</label>
+      </p>
+      <select formControlName="type1" name="type1">
+        <option [value]="null" selected="selected" disabled="disabled">Tipo 1</option>
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+    <div class="half">
+      <p>
+        <label for="typedef">Tipo 2</label>
+      </p>
+      <select formControlName="type2" name="type2">
+        <option [value]="null" selected="selected" disabled="disabled">Tipo 2</option>
+        <option [value]="null">Ninguno</option>
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="half">
+      <p>
+        <label for="skill1">Habilidad 1</label>
+      </p>
+      <select formControlName="skill1" name="skill1">
+        <option [value]="null" selected="selected" disabled="disabled">Habilidad 1</option>
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+    <div class="half">
+      <p>
+        <label for="skill2">Habilidad 2</label>
+      </p>
+      <select formControlName="skill2" name="skill2">
+        <option [value]="null" selected="selected" disabled="disabled">Habilidad 2</option>
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="half">
+      <p>
+        <label for="passive">Pasiva</label>
+      </p>
+      <select formControlName="passive" name="passive">
+        <option [value]="null" selected="selected" disabled="disabled">Pasiva</option>
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+    <div class="half">
+      <p>
+        <label for="ultimate">Definitiva</label>
+      </p>
+      <select formControlName="ultimate" name="ultimate">
+        <option [value]="null" selected="selected" disabled="disabled">Definitiva</option>
+        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+      </select>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>HP: </div>
+        <div>
+          {{ form.value.hp }}
+          <input type="number" min="200" max="600" formControlName="hp" onKeyDown="return false" (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="200" max="600" formControlName="hp" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>MANA: </div>
+        <div>
+          {{ form.value.mana }}
+          <input type="number" min="150" max="250" formControlName="mana" onKeyDown="return false"
+            (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="100" max="300" formControlName="mana" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>ATK: </div>
+        <div>
+          {{ form.value.atk }}
+          <input type="number" min="45" max="150" formControlName="atk" onKeyDown="return false" (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="45" max="150" formControlName="atk" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>DEF: </div>
+        <div>
+          {{ form.value.def }}
+          <input type="number" min="45" max="150" formControlName="def" onKeyDown="return false" (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="45" max="150" formControlName="def" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>SPATK: </div>
+        <div>
+          {{ form.value.spatk }}
+          <input type="number" min="45" max="150" formControlName="spatk" onKeyDown="return false"
+            (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="45" max="150" formControlName="spatk" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>SPDEF: </div>
+        <div>
+          {{ form.value.spdef }}
+          <input type="number" min="45" max="150" formControlName="spdef" onKeyDown="return false"
+            (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="45" max="150" formControlName="spdef" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>SPEED: </div>
+        <div>
+          {{ form.value.speed }}
+          <input type="number" min="45" max="150" formControlName="speed" onKeyDown="return false"
+            (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="45" max="150" formControlName="speed" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <button type="submit" (click)="onSubmitForm()">Añadir</button>
+
+</form>

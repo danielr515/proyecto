@@ -8,9 +8,6 @@
 </div>
 
 <nav class="menu" id="menu" [ngClass]="{'display': !mobileMenuOpen}">
-  <button (click)="onNavigate('/index')">
-    <i class="fas fa-home"></i>
-  </button>
   <button (click)="onNavigate('/register')">
     <i class="fas fa-user-plus"></i>
   </button>
@@ -19,6 +16,9 @@
   </button>
   <button (click)="onNavigate('/characters')">
     <i class="fas fa-dragon"></i>
+  </button>
+  <button (click)="onNavigate('/skills')">
+    <i class="fas fa-meteor"></i>
   </button>
   <button (click)="onNavigate('/items')">
     <i class="fas fa-shield-alt"></i>

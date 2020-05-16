@@ -1,1 +1,1 @@
-<p>characters-add works!</p>
+<app-characters-form [types]="types$ | async" (submitForm)="addCharacter($event)"></app-characters-form>

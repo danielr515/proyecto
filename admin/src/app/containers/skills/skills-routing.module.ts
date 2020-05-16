@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CharactersComponent } from './characters.component';
+import { SkillsComponent } from './skills.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: CharactersComponent,
+    component: SkillsComponent,
     children: [
       {
         path: '',
-        loadChildren: './containers/characters-view/characters-view.module#CharactersViewModule'
+        loadChildren: './containers/skills-view/skills-view.module#SkillsViewModule'
       },
       {
         path: 'add',
-        loadChildren: './containers/characters-add/characters-add.module#CharactersAddModule'
+        loadChildren: './containers/skills-add/skills-add.module#SkillsAddModule'
       }
     ]
   }
@@ -24,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CharactersRoutingModule { }
+export class SkillsRoutingModule { }

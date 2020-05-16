@@ -9,7 +9,7 @@ export class AppApi {
   // que el resto de api extiendan esta para que puedan pillar el enlace y tal
   readonly API = 'http://192.168.1.155:1080/ws/index.php';
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   login(user: User) {
     let queryParams = new HttpParams();

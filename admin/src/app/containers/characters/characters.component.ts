@@ -14,18 +14,8 @@ export class CharactersComponent implements OnInit {
     },
     {
       name: 'Añadir personajes',
-      url: '/characters/addcharacter',
+      url: '/characters/add',
       icon: 'fas fa-plus'
-    },
-    {
-      name: 'Lista de habilidades',
-      url: '/characters/viewskills',
-      icon: 'fas fa-people-arrows'
-    },
-    {
-      name: 'Añadir habilidades',
-      url: '/characters/addskill',
-      icon: 'fas fa-people-arrows'
     }
   ];
   constructor() { }

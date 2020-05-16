@@ -1,5 +1,30 @@
 <div *ngIf="characters">
   <div *ngFor="let char of characters">
-    {{ char.name }}
+    <div class="char-card">
+      <img [src]="'../../../../../assets/chars/' + char.name + '.png'">
+      <div class="title">
+        <span class="name">{{ char.name.split(',')[0] }}</span>
+        <br><span class="subname">{{ char.name.split(',')[1] }}</span>
+        <br>
+        <div class="types">{{ char.type1 }}<span *ngIf="char.type2"> / {{ char.type2 }}</span></div>
+      </div>
+      <div class="moves">
+        <div>{{ char.skill1 }}</div>
+        <div>{{ char.skill2 }}</div>
+        <div>{{ char.passive }}</div>
+        <div>{{ char.ultimate }}</div>
+      </div>
+      <div class="stats">
+        <ul>
+          <li>HP: {{ char.hp }}</li>
+          <li>MANA: {{ char.mana }}</li>
+          <li>ATK: {{ char.atk }}</li>
+          <li>DEF: {{ char.def }}</li>
+          <li>SPATK: {{ char.spatk }}</li>
+          <li>SPDEF: {{ char.spdef }}</li>
+          <li>SPEED: {{ char.speed }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

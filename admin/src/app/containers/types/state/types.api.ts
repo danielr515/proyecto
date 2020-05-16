@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FullType } from './types.model';
+import { AppApi } from 'src/core/state/app.api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TypesApi {
-  // que el resto de api extiendan esta para que puedan pillar el enlace y tal
-  readonly API = 'http://192.168.1.155:1080/ws/index.php';
+export class TypesApi extends AppApi {
 
-  constructor(private http: HttpClient) { }
+  constructor(private chttp: HttpClient) {
+    super(chttp);
+  }
 
   getAllFullTypes(token) {
     let headers = new HttpHeaders();
@@ -47,15 +48,5 @@ export class TypesApi {
     };
 
     return this.http.post(this.API + '/editTypesRelation', { typesrelation, admin: admin.uname }, options);
-  }
-
-
-  appendQueryParams(queryParams, filterParams) {
-    for (const [key, value] of Object.entries(filterParams)) {
-      if (value) {
-        queryParams = queryParams.Typesend(key, value);
-      }
-    }
-    return queryParams;
   }
 }
