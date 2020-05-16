@@ -32,7 +32,7 @@ class WS_TypesController extends WS_MainController {
         $this->response( $retmsg, $code );
     }
 
-    public function skillsByClass_get() {
+    public function skillsByClass_options() {
         parent::setOptions();
     }
     protected function skillsByClass_get() {
@@ -45,7 +45,7 @@ class WS_TypesController extends WS_MainController {
             if ( count( $skills ) > 0 ) {
                 $retmsg = $skills;
                 $code = parent::HTTP_OK;
-                $this->setHeaders();
+                parent::setHeaders();
             }
         } else {
             $retmsg = 'Token de sesión inválido';
@@ -53,16 +53,5 @@ class WS_TypesController extends WS_MainController {
         }
 
         $this->response( $retmsg, $code );
-    }
-
-    protected function setHeaders( $token = null ) {
-        $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
-        $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
-        $this->output->set_header( 'Access-Control-Allow-Origin: *' );
-        if ( isset( $token ) ) {
-            $this->output->set_header( 'Access-Control-Expose-Headers: Authorization' );
-            $this->output->set_header( 'Authorization: Bearer ' . $token );
-        }
-
     }
 }
