@@ -31,4 +31,27 @@ class WS_TypesController extends WS_MainController {
 
         $this->response( $retmsg, $code );
     }
+
+    public function skillsByClass_get() {
+        parent::setOptions();
+    }
+    protected function skillsByClass_get() {
+        $class = $this->get( 'class' );
+        $retmsg = '';
+        $code = '';
+
+        if ( parent::isTokenValid() ) {
+            $skills = $this->skill->skillsByClass( $class );
+            if ( count( $skills ) > 0 ) {
+                $retmsg = $skills;
+                $code = parent::HTTP_OK;
+                parent::setHeaders();
+            }
+        } else {
+            $retmsg = 'Token de sesión inválido';
+            $code = parent::HTTP_UNAUTHORIZED;
+        }
+
+        $this->response( $retmsg, $code );
+    }
 }

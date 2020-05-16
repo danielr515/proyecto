@@ -102,6 +102,13 @@ class Skill extends CI_Model {
         $rows = $query->result_array();
         return $rows;
     }
+
+    public function getSkillsByClass( $class ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "SELECT s.id, s.name, s.description, s.class, s.mode, s.cost, s.damage, types.name AS type FROM skills AS s LEFT JOIN types ON s.type=types.id WHERE class='".$class."' ;" );
+        $rows = $query->result_array();
+        return $rows;
+    }
 }
 
 ?>
