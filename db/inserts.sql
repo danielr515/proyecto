@@ -162,7 +162,7 @@ INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, s
 -- 13 Curación del ermitaño					usuarios: Wawe
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Meditación', 'El usuario alcanza la iluminación y se cura', 'SKILL', 'HEAL', 50, 60, 5);
 -- 14 Pasiva de Wawe, recibe la mitad de daño de ataques físicos
-INSERT INTO skills (name, description, description, class, mode, cost, damage, type) VALUES ('Armadura peluda', 'Los golpes físicos al usuario son mitigados a la mitad', 'PASSIVE', 'RED', 0, 0, 1); -- RED = REDUCTION, ignora los tipos
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Armadura peluda', 'Los golpes físicos al usuario son mitigados a la mitad', 'PASSIVE', 'RED', 0, 0, 1); -- RED = REDUCTION, ignora los tipos
 -- 15 Definitiva de Wawe
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Fragmento sísmico', 'Alza un fragmento de tierra y lo lanza', 'ULTIMATE', 'ATK', 100, 120, 4);
 
