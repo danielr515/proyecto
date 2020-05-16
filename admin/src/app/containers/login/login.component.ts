@@ -34,10 +34,9 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       const md5 = new Md5();
       const data = this.form.value;
-      // data.passwd = md5.appendStr(data.passwd).end();
-      this.service.updateUser(this.form.value);
-      console.log(this.form.value);
-      this.service.login(this.form.value);
+      data.passwd = md5.appendStr(data.passwd).end();
+      this.service.updateUser(data);
+      this.service.login(data);
     }
   }
 }
