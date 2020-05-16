@@ -20,7 +20,7 @@ class WS_CharactersController extends WS_MainController {
         $code = '';
         if ( parent::isTokenValid() ) {
             $characters = $this->character->getAllCharacters();
-            if ( count( $types ) > 0 ) {
+            if ( count( $characters ) > 0 ) {
                 $retmsg = $characters;
                 $code = parent::HTTP_OK;
                 parent::setHeaders();
