@@ -12,6 +12,9 @@ class WS_CharactersController extends WS_MainController {
         $this->load->model( 'skill' );
 
     }
+    protected function characters_options() {
+        parent::setOptions();
+    }
     protected function characters_get() {
         $retmsg = '';
         $code = '';

@@ -8,7 +8,7 @@ import { TypesService } from '../../state/types.service';
   styleUrls: ['./types-view.component.scss']
 })
 export class TypesViewComponent implements OnInit {
-  types = this.query.selectTypes();
+  types$ = this.query.selectTypes();
   constructor(
     private query: TypesQuery,
     private service: TypesService

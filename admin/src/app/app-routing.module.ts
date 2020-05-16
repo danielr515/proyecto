@@ -26,6 +26,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'characters',
+    loadChildren: './containers/characters/characters.module#CharactersModule',
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
