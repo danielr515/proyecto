@@ -144,7 +144,7 @@ INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES (
 -- 7 Pasiva de Rockfen, los ataques de fuego le curan
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Absorción de magma', 'Cura el posibled año recibido´de tipo Ígneo', 'PASSIVE', 'HEAL', 0, 0, 1);
 -- 8 Definitiva de Rockfen
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Apisonadora ardiente', 'Gran golpe que recuerda a un meteorito' 'ULTIMATE', 'ATK', 100, 120, 1);
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Apisonadora ardiente', 'Gran golpe que recuerda a un meteorito', 'ULTIMATE', 'ATK', 100, 120, 1);
 
 INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, passive, ultimate, type1, type2) VALUES ('Rockfen, el golem de magma', 450, 180, 70, 120, 45, 90, 45, 5, 6, 7, 8, 1, 5 );
 
