@@ -1,1 +1,3 @@
-<app-characters-form [types]="types$ | async" (submitForm)="addCharacter($event)"></app-characters-form>
+<app-characters-form [types]="types$ | async" [skills]="skills$ | async" [passives]="passives$ | async"
+  [ultimates]="ultimates$ | async" (submitForm)="addCharacter($event)">
+</app-characters-form>

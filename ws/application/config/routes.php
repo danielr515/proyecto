@@ -58,6 +58,8 @@ $route['typesWithWeakness'] = 'ws/WS_TypesController/typesWithWeakness';
 $route['addType'] = 'ws/WS_TypesController/addType';
 $route['editTypesRelation'] = 'ws/WS_TypesController/editTypesRelation';
 $route['characters'] = 'ws/WS_CharactersController/characters';
+$route['skills'] = 'ws/WS_CharactersController/skills';
+$route['skillsByClass'] = 'ws/WS_CharactersController/skillsByClass';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

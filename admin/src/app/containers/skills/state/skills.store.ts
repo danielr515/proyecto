@@ -7,11 +7,18 @@ import { Store, StoreConfig } from '@datorama/akita';
 
 export interface SkillsState {
   skills: Skill[];
+  classSkills: Skill[];
+  classPassives: Skill[];
+  classUltimates: Skill[];
+
 }
 
 export function createInitialState() {
   return {
-    skills: []
+    skills: [],
+    classSkills: [],
+    classPassives: [],
+    classUltimates: []
   };
 }
 

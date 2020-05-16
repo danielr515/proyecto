@@ -40,7 +40,7 @@
       </p>
       <select formControlName="skill1" name="skill1">
         <option [value]="null" selected="selected" disabled="disabled">Habilidad 1</option>
-        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+        <option *ngFor="let skill of skills" [value]="skill.id">{{ skill.name }}</option>
       </select>
     </div>
     <div class="half">
@@ -49,7 +49,7 @@
       </p>
       <select formControlName="skill2" name="skill2">
         <option [value]="null" selected="selected" disabled="disabled">Habilidad 2</option>
-        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+        <option *ngFor="let skill of skills" [value]="skill.id">{{ skill.name }}</option>
       </select>
     </div>
     <div style="clear:both"></div>
@@ -61,7 +61,7 @@
       </p>
       <select formControlName="passive" name="passive">
         <option [value]="null" selected="selected" disabled="disabled">Pasiva</option>
-        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+        <option *ngFor="let passive of passives" [value]="passive.id">{{ passive.name }}</option>
       </select>
     </div>
     <div class="half">
@@ -70,7 +70,7 @@
       </p>
       <select formControlName="ultimate" name="ultimate">
         <option [value]="null" selected="selected" disabled="disabled">Definitiva</option>
-        <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+        <option *ngFor="let ultimate of ultimates" [value]="ultimate.id">{{ ultimate.name }}</option>
       </select>
     </div>
     <div style="clear:both"></div>

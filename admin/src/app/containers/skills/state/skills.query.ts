@@ -13,4 +13,13 @@ export class SkillsQuery extends Query<SkillsState> {
   selectSkills() {
     return this.select(state => state.skills);
   }
+  selectClassSkills() {
+    return this.select(state => state.classSkills);
+  }
+  selectClassPassives() {
+    return this.select(state => state.classPassives);
+  }
+  selectClassUltimates() {
+    return this.select(state => state.classUltimates);
+  }
 }

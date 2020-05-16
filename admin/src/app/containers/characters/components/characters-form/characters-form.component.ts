@@ -9,6 +9,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CharactersFormComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   @Input() types;
+  @Input() skills;
+  @Input() passives;
+  @Input() ultimates;
   @Output() submitForm: EventEmitter<any> = new EventEmitter<any>();
   constructor(
     private formBuilder: FormBuilder

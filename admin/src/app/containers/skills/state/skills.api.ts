@@ -25,6 +25,22 @@ export class SkillsApi extends AppApi {
     return this.http.get<HttpResponse<any>>(this.API + '/skills', options);
   }
 
+  getSkillsByClass(skillClass, token) {
+    let headers = new HttpHeaders();
+    let queryParams = new HttpParams();
+
+    headers = headers.set('Authorization', 'Bearer ' + token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    queryParams = this.appendQueryParams(queryParams, { class: skillClass });
+    const options = {
+      observe: 'response' as 'body',
+      params: queryParams,
+      headers
+    };
+
+    return this.http.get<HttpResponse<any>>(this.API + '/skillsByClass', options);
+  }
   addSkill(skill, admin) {
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer ' + admin.token);

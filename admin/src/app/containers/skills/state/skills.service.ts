@@ -24,6 +24,44 @@ export class SkillsService {
       }
     });
   }
+  updateAllSkillsByClass() {
+    this.api.getSkillsByClass('SKILL', this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateClassSkills(response.body);
+      }
+    });
+    this.api.getSkillsByClass('PASSIVE', this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateClassPassives(response.body);
+      }
+    });
+    this.api.getSkillsByClass('ULTIMATE', this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateClassUltimates(response.body);
+      }
+    });
+  }
+  updateClassSkills() {
+    this.api.getSkillsByClass('SKILL', this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateClassSkills(response.body);
+      }
+    });
+  }
+  updateClassPassives() {
+    this.api.getSkillsByClass('PASSIVE', this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateClassPassives(response.body);
+      }
+    });
+  }
+  updateClassUltimates() {
+    this.api.getSkillsByClass('ULTIMATE', this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateClassUltimates(response.body);
+      }
+    });
+  }
   addSkill(skill) {
     this.api.addSkill(skill, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       console.log(response);

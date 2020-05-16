@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CharactersListComponent implements OnInit {
   @Input() characters;
+
   constructor() { }
 
   ngOnInit() {
