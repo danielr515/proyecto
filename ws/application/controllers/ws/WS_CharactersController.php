@@ -60,7 +60,7 @@ class WS_CharactersController extends WS_MainController {
                 if ( $admin->getUname() != '' ) {
                     $character['name'] = $character['name'] . ', ' . $character['subname'];
                     if ( !$this->character->existsCharacterByName( $character ) ) {
-                        $return = $this->character->addNewcharacter( $character );
+                        $return = $this->character->addNewCharacter( $character );
                         if ( $return ) {
                             $retmsg = 'Adición correcta';
                             $code = parent::HTTP_OK;
