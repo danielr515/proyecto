@@ -163,7 +163,7 @@ class WS_LoginController extends RestController {
             $code = RestController::HTTP_BAD_REQUEST;
         } else {
             if ( !$this->player->existsUser( $user ) ) {
-                $return = $this->plager->registerPlayer( $user );
+                $return = $this->player->registerPlayer( $user );
                 if ( $return ) {
                     $retmsg = 'Registro correcto';
                     $code = RestController::HTTP_OK;
