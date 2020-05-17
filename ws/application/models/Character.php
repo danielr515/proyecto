@@ -196,7 +196,7 @@ class Character extends CI_Model {
         }
     }
 
-    public function existscCharacterByName( $character ) {
+    public function existsCharacterByName( $character ) {
         $this->load->database( 'rpg' );
         $this->db->select( 'name' );
         $where = array(
