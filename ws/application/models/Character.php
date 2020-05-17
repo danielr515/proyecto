@@ -181,6 +181,31 @@ class Character extends CI_Model {
         $rows = $query->result_array();
         return $rows;
     }
+
+    public function addNewType( $character ) {
+        $this->load->database( 'rpg' );
+        $this->db->trans_begin();
+        $query = $this->db->query( "INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, pasive, ultimate, type1, type2) VALUES ( '" . $character['name'] . "', " . $character['hp'] . ', ' . $character['mana'] . ', ' . $character['atk'] . ', ' . $character['def'] . ', ' . $character['spatk'] . ', ' . $character['spdef'] . ', ' . $character['speed'] . ', ' . $character['skill1'] . ', ' . $character['skill2'] . ', ' . $character['passive'] . ', ' . $character['ultimate'] . ', ' . $character['type1'] . ', ' . $character['type2'] . ');' );
+        if ( $this->db->trans_status() === FALSE ) {
+            var_dump( 'rollback' );
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    public function existscCharacterByName( $character ) {
+        $this->load->database( 'rpg' );
+        $this->db->select( 'name' );
+        $where = array(
+            'name' => $character['name']
+        );
+        $query = $this->db->get_where( 'characters', $where );
+        // TRUE si existen registros, FALSE si no existen
+        return $query->num_rows() >= 1;
+    }
 }
 
 ?>
