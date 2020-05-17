@@ -70,7 +70,7 @@ class WS_SkillsController extends WS_MainController {
         }
         $retmsg = '';
         $code = '';
-        if ( $skill['name'] == '' || $skill['description'] == '' || $skill['class'] == '' || $skill['mode'] == '' || $skill['cost'] == '' || $skill['damage'] == '' || $skill['type'] == '' || ) {
+        if ( $skill['name'] == '' || $skill['description'] == '' || $skill['class'] == '' || $skill['mode'] == '' || $skill['cost'] == '' || $skill['damage'] == '' || $skill['type'] == '' ) {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
