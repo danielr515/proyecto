@@ -40,7 +40,7 @@ export class AppApi {
 
   register(user) {
     const options = {
-      observe: 'response' as 'body'
+      observe: 'response' as 'body',
     };
 
     return this.http.post(this.API + '/registerPlayer', { user }, options);
