@@ -20,9 +20,9 @@ export class AppService {
     this.action.updateUser(user);
   }
   login(user) {
-    this.api.login(user).subscribe((elem: HttpResponse<any>) => {
-      if (elem.ok) {
-        const token = elem.headers.get('Authorization').split(' ')[1];
+    this.api.login(user).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        const token = response.headers.get('Authorization').split(' ')[1];
         this.action.updateSessionToken(token);
         this.action.updateUser(user);
         this.router.navigate(['/tabs']);
@@ -39,16 +39,17 @@ export class AppService {
     this.query.selectUser().subscribe(user => {
       uname = user.uname;
     });
-    this.api.logout(token, uname).subscribe((elem: HttpResponse<any>) => {
-      if (elem.ok) {
+    this.api.logout(token, uname).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
         this.action.deleteSessionToken();
       }
     });
   }
 
   register(user) {
-    this.api.register(user).subscribe((elem: HttpResponse<any>) => {
-      if (elem.ok) {
+    this.api.register(user).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        console.log(response);
         this.login(user);
       }
     });

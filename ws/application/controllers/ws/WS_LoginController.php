@@ -180,7 +180,7 @@ class WS_LoginController extends RestController {
         $this->response( $retmsg, $code );
     }
     protected function setHeaders( $token = null ) {
-        $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
+        $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization, Access-Control-Allow-Origin' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
         $this->output->set_header( 'Access-Control-Allow-Origin: *' );
         if ( isset( $token ) ) {
