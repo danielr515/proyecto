@@ -20,6 +20,14 @@ form {
         width: calc(100% - 40px);
       }
     }
+    select {
+      width: calc(60%+20px);
+      padding: 10px;
+      margin-left: 10px;
+      @include breakpoint($xs) {
+        width: calc(100% - 20px);
+      }
+    }
     .half {
       width: 30%;
       padding: 0;
