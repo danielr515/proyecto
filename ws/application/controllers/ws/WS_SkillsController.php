@@ -41,7 +41,7 @@ class WS_SkillsController extends WS_MainController {
         $code = '';
 
         if ( parent::isTokenValid() ) {
-            $skills = $this->skill->skillsByClass( $class );
+            $skills = $this->skill->getSkillsByClass( $class );
             if ( count( $skills ) > 0 ) {
                 $retmsg = $skills;
                 $code = parent::HTTP_OK;
