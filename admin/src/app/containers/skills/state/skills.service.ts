@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SkillsApi } from './skills.api';
 import { SkillsAction } from './skills.actions';
-import { SkillsQuery } from './Skills.query';
+import { SkillsQuery } from './skills.query';
 import { HttpResponse } from '@angular/common/http';
 import { AppQuery } from 'src/core/state/app.query';
 import { take } from 'rxjs/operators';
