@@ -81,7 +81,7 @@ class WS_SkillsController extends WS_MainController {
                 $admin = $this->admin->getUserByLogoutData( $adminUname, $token );
                 if ( $admin->getUname() != '' ) {
                     if ( !$this->skill->existsSkillByName( $skill ) ) {
-                        $return = $this->character->addNewSkill( $skill );
+                        $return = $this->skill->addNewSkill( $skill );
                         if ( $return ) {
                             $retmsg = 'Adición correcta';
                             $code = parent::HTTP_OK;
