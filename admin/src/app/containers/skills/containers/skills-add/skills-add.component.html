@@ -1,1 +1,1 @@
-<p>skills-add works!</p>
+<app-skills-form [types]="types$ | async" (onSubmitForm)="addSkill($event)"></app-skills-form>

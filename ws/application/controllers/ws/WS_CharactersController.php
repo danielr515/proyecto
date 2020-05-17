@@ -69,7 +69,7 @@ class WS_CharactersController extends WS_MainController {
                             $code = parent::HTTP_INTERNAL_ERROR;
                         }
                     } else {
-                        $retmsg = 'Ya existe el tipo que estás intentando insertar';
+                        $retmsg = 'Ya existe el personaje que estás intentando insertar';
                         $code = parent::HTTP_BAD_REQUEST;
                     }
                 } else {

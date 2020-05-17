@@ -1,0 +1,84 @@
+<form *ngIf="types" [formGroup]="form">
+  <div>
+    <p>
+      <label for="name">Nombre</label>
+    </p>
+    <input type="text" id="name" formControlName="name" placeholder="Nombre">
+  </div>
+  <div>
+    <p>
+      <label for="description">Descripción</label>
+    </p>
+    <textarea id="description" rows="10" formControlName="description"></textarea>
+  </div>
+  <div>
+    <div class="half">
+      <p>
+        <label for="class">Clase</label>
+      </p>
+      <select formControlName="class" name="class">
+        <option [value]="''" selected="selected" disabled="disabled">Clase</option>
+        <option [value]="'SKILL'">{{ 'SKILL' | skillClass }}</option>
+        <option [value]="'PASSIVE'">{{ 'PASSIVE' | skillClass }}</option>
+        <option [value]="'ULTIMATE'">{{ 'ULTIMATE' | skillClass }}</option>
+      </select>
+    </div>
+    <div class="half">
+      <p>
+        <label for="class">Modo</label>
+      </p>
+      <select formControlName="mode" name="mode">
+        <option [value]="''" selected="selected" disabled="disabled">Modo</option>
+        <option [value]="'ATK'">{{ 'ATK' | skillMode }}</option>
+        <option [value]="'DEF'">{{ 'DEF' | skillMode }}</option>
+        <option [value]="'SPATK'">{{ 'SPATK' | skillMode }}</option>
+        <option [value]="'SPDEF'">{{ 'SPDEF' | skillMode }}</option>
+        <option [value]="'SPEED'">{{ 'SPEED' | skillMode }}</option>
+        <option [value]="'HEAL'">{{ 'HEAL' | skillMode }}</option>
+        <option [value]="'WEAK'">{{ 'WEAK' | skillMode }}</option>
+        <option [value]="'RED'">{{ 'RED' | skillMode }}</option>
+      </select>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>Coste: </div>
+        <div>
+          {{ form.value.cost }}
+          <input type="number" min="0" max="150" formControlName="cost" onKeyDown="return false" (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="0" max="150" formControlName="cost" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <div class="stat">
+      <div class="number">
+        <div>Valor: </div>
+        <div>
+          {{ form.value.damage }}
+          <input type="number" min="1" max="200" formControlName="damage" onKeyDown="return false"
+            (change)="patchForm()">
+        </div>
+      </div>
+      <input type="range" min="1" max="200" formControlName="damage" (change)="patchForm()">
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <div>
+    <p>
+      <label for="type">Tipo</label>
+    </p>
+    <select formControlName="type" name="type">
+      <option [value]="null" selected="selected" disabled="disabled">Tipo</option>
+      <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+    </select>
+  </div>
+
+
+  <button type="submit" (click)="onSubmitForm()">Añadir</button>
+
+</form>

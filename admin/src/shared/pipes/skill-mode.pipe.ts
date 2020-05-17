@@ -11,14 +11,20 @@ export class SkillModePipe implements PipeTransform {
       case 'ATK':
         txt = 'Ataque';
         break;
+      case 'DEF':
+        txt = 'Defensa';
+        break;
       case 'SPATK':
         txt = 'Ataque especial';
         break;
-      case 'HEAL':
-        txt = 'Curación';
+      case 'SPDEF':
+        txt = 'Defensa especial';
         break;
       case 'SPEED':
         txt = 'Velocidad';
+        break;
+      case 'HEAL':
+        txt = 'Curación';
         break;
       case 'WEAK':
         txt = 'Debilidad';

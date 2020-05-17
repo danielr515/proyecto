@@ -109,6 +109,31 @@ class Skill extends CI_Model {
         $rows = $query->result_array();
         return $rows;
     }
+
+    public function addNewSkill( $skill ) {
+        $this->load->database( 'rpg' );
+        $this->db->trans_begin();
+        $query = $this->db->query( "INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ( '".$skill['name']."', '".$skill['description']."', '".$skill['class']."', '".$skill['mode']."', ".$skill['cost'].', '.$skill['damage'].', '.$skill['type'].' );' );
+        if ( $this->db->trans_status() === FALSE ) {
+            var_dump( 'rollback' );
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    public function existsSkillByName( $skill ) {
+        $this->load->database( 'rpg' );
+        $this->db->select( 'name' );
+        $where = array(
+            'name' => $skill['name']
+        );
+        $query = $this->db->get_where( 'skills', $where );
+        // TRUE si existen registros, FALSE si no existen
+        return $query->num_rows() >= 1;
+    }
 }
 
 ?>
