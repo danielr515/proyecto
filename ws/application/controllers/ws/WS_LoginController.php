@@ -11,6 +11,8 @@ class WS_LoginController extends RestController {
         parent::__construct();
 
         $this->load->model( 'admin' );
+        $this->load->model( 'player' );
+
     }
 
     protected function loginAdmin_get() {
@@ -115,6 +117,37 @@ class WS_LoginController extends RestController {
 
         }
 
+        $this->response( $retmsg, $code );
+    }
+
+    protected function loginPlayer_options() {
+        $this->setOptions();
+    }
+    protected function loginPlayer_get() {
+        $uname =  $this->get( 'uname' );
+        $passwd = $this->get( 'passwd' );
+        $retmsg = '';
+        $code = '';
+        if ( !isset( $uname ) || !isset( $passwd ) ) {
+            $retmsg = 'Falta nombre de usuario o contraseña.';
+            $code = RestController::HTTP_BAD_REQUEST;
+        } else {
+            if ( $this->player->login( $uname, $passwd ) ) {
+                $token = $this->generateToken();
+                $result = $this->player->addToken( $uname, $token );
+                if ( $result ) {
+                    $this->setHeaders( $token );
+                    $retmsg = 'Login correcto';
+                    $code = RestController::HTTP_OK;
+                } else {
+                    $retmsg = 'Error de servidor';
+                    $code = RestController::HTTP_INTERNAL_ERROR;
+                }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = RestController::HTTP_UNAUTHORIZED;
+            }
+        }
         $this->response( $retmsg, $code );
     }
 
