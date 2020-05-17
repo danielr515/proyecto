@@ -151,11 +151,11 @@ INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, s
 -- 9 Un ataque eléctrico						usuarios: Ynax
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Trueno', 'Ataque eléctrico desde los cielos', 'SKILL', 'SPATK', 25, 75, 4);
 -- 10 Zona de fuego causada por un rayo			usuarios: Ynax
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Incendio eléctrico', 'Prende en llamas la zona utilizando su electricidad', 'SKILL', 'ATK', 15, 55, 1);
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Incendio eléctrico', 'Prende en llamas la zona utilizando su electricidad', 'SKILL', 'SPATK', 15, 55, 1);
 -- 11 Pasiva de Ynax, recibe daño supereficaz de ataques de fuego
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Cuerpo de acero', 'La composicion del usuario lo hace débil al tipo Ígneo', 'PASSIVE', 'WEAK', 0, 0, 1); -- WEAK, lo hace débil al tipo
 -- 12 Definitiva de Ynax
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Ruptura relámpago', 'Concentra la energia del usuario en un cañonazo eléctrico', 'ULTIMATE', 'ATK', 100, 120, 4);
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Ruptura relámpago', 'Concentra la energia del usuario en un cañonazo eléctrico', 'ULTIMATE', 'SPATK', 100, 120, 4);
 
 INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, passive, ultimate, type1, type2) VALUES ('Ynax, el centinela', 420, 250, 50, 70, 130, 70, 95, 9, 10, 11, 12, 4, null );
 

@@ -8,7 +8,7 @@ import { SkillsService } from '../../state/skills.service';
   styleUrls: ['./skills-view.component.scss']
 })
 export class SkillsViewComponent implements OnInit {
-  skills = this.query.selectSkills();
+  skills$ = this.query.selectSkills();
   constructor(
     private query: SkillsQuery,
     private service: SkillsService
