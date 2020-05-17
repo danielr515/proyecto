@@ -131,7 +131,7 @@ INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES (
 -- 2 Curación de lagartos					usuarios: Noy
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Regeneración de reptil', 'Cura una cantidad fija de vida', 'SKILL', 'HEAL', 50, 60, 2);
 -- 3 Pasiva de Noy, x2 de velocidad a ataques tipo agua
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Afinidad acuática', 'Duplica la velocidad al usar movimientos de tipo Oceánico', 'PASSIVE', 'SPEED', 0, 0, 3);
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Afinidad acuática', 'Duplica la velocidad al usar movimientos de tipo Oceánico', 'PASSIVE', 'SPEED', 0, 2, 3);
 -- 4 Definitiva de Noy
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Empujón hidráulico', 'Poderoso ataque propio de los soldado de Atlantis', 'ULTIMATE', 'ATK', 100, 120, 3);
 
@@ -153,7 +153,7 @@ INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES (
 -- 10 Zona de fuego causada por un rayo			usuarios: Ynax
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Incendio eléctrico', 'Prende en llamas la zona utilizando su electricidad', 'SKILL', 'SPATK', 15, 55, 1);
 -- 11 Pasiva de Ynax, recibe daño supereficaz de ataques de fuego
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Cuerpo de acero', 'La composicion del usuario lo hace débil al tipo Ígneo', 'PASSIVE', 'WEAK', 0, 0, 1); -- WEAK, lo hace débil al tipo
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Cuerpo de acero', 'La composicion del usuario lo hace débil al tipo Ígneo', 'PASSIVE', 'WEAK', 0, 2, 1); -- WEAK, lo hace débil al tipo
 -- 12 Definitiva de Ynax
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Ruptura relámpago', 'Concentra la energia del usuario en un cañonazo eléctrico', 'ULTIMATE', 'SPATK', 100, 120, 4);
 
@@ -162,7 +162,7 @@ INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, s
 -- 13 Curación del ermitaño					usuarios: Wawe
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Meditación', 'El usuario alcanza la iluminación y se cura', 'SKILL', 'HEAL', 50, 60, 5);
 -- 14 Pasiva de Wawe, recibe la mitad de daño de ataques físicos
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Armadura peluda', 'Los golpes físicos al usuario son mitigados a la mitad', 'PASSIVE', 'RED', 0, 0, 1); -- RED = REDUCTION, ignora los tipos
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Armadura peluda', 'Los golpes físicos al usuario son mitigados a la mitad', 'PASSIVE', 'RED', 0, 2, 1); -- RED = REDUCTION, ignora los tipos
 -- 15 Definitiva de Wawe
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Fragmento sísmico', 'Alza un fragmento de tierra y lo lanza', 'ULTIMATE', 'ATK', 100, 120, 4);
 

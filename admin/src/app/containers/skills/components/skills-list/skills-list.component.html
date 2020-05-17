@@ -1,3 +1,47 @@
 <div *ngFor="let skill of skills">
   {{skill.mode | skillMode}}
 </div>
+<div *ngIf="skills">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Clase</th>
+        <th>Modo</th>
+        <th>Coste</th>
+        <th>Valor</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let skill of skills">
+        <td>
+          {{ skill.id }}
+        </td>
+        <td>
+          <p>{{ skill.name }}</p>
+        </td>
+        <td>
+          <p>{{ skill.description }}</p>
+        </td>
+        <td>
+          <p>{{ skill.class | skillClass }}</p>
+        </td>
+        <td>
+          <p>{{ skill.mode | skillMode }}</p>
+        </td>
+        <td>
+          <p>{{ skill.cost }}</p>
+        </td>
+        <td>
+          <p>{{ skill.damage }}</p>
+        </td>
+        <td>
+          <p>{{ skill.type }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
