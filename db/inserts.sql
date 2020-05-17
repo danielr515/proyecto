@@ -164,7 +164,7 @@ INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES (
 -- 14 Pasiva de Wawe, recibe la mitad de daño de ataques físicos
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Armadura peluda', 'Los golpes físicos al usuario son mitigados a la mitad', 'PASSIVE', 'RED', 0, 2, 1); -- RED = REDUCTION, ignora los tipos
 -- 15 Definitiva de Wawe
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Fragmento sísmico', 'Alza un fragmento de tierra y lo lanza', 'ULTIMATE', 'ATK', 100, 120, 4);
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Fragmento sísmico', 'Alza un fragmento de tierra y lo lanza', 'ULTIMATE', 'ATK', 100, 120, 5);
 
 INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, passive, ultimate, type1, type2) VALUES ('Wawe, el ermitaño', 380, 200, 80, 60, 50, 60, 105, 5, 13, 14, 15, 5, null );
 
