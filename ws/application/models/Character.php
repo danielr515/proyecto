@@ -185,7 +185,7 @@ class Character extends CI_Model {
     public function addNewCharacter( $character ) {
         $this->load->database( 'rpg' );
         $this->db->trans_begin();
-        $query = $this->db->query( "INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, pasive, ultimate, type1, type2) VALUES ( '" . $character['name'] . "', " . $character['hp'] . ', ' . $character['mana'] . ', ' . $character['atk'] . ', ' . $character['def'] . ', ' . $character['spatk'] . ', ' . $character['spdef'] . ', ' . $character['speed'] . ', ' . $character['skill1'] . ', ' . $character['skill2'] . ', ' . $character['passive'] . ', ' . $character['ultimate'] . ', ' . $character['type1'] . ', ' . $character['type2'] . ');' );
+        $query = $this->db->query( "INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, passive, ultimate, type1, type2) VALUES ( '" . $character['name'] . "', " . $character['hp'] . ', ' . $character['mana'] . ', ' . $character['atk'] . ', ' . $character['def'] . ', ' . $character['spatk'] . ', ' . $character['spdef'] . ', ' . $character['speed'] . ', ' . $character['skill1'] . ', ' . $character['skill2'] . ', ' . $character['passive'] . ', ' . $character['ultimate'] . ', ' . $character['type1'] . ', ' . $character['type2'] . ');' );
         if ( $this->db->trans_status() === FALSE ) {
             var_dump( 'rollback' );
             $this->db->trans_rollback();
