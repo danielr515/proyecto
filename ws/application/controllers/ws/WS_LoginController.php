@@ -150,7 +150,35 @@ class WS_LoginController extends RestController {
         }
         $this->response( $retmsg, $code );
     }
+    protected function registerPlayer_options() {
+        $this->setOptions();
+    }
+    protected function registerPlayer_post() {
+        $user = $this->post( 'user' );
 
+        $retmsg = '';
+        $code = '';
+        if ( $user['email'] == '' || $user['uname'] == '' || $user['passwd'] == '' ) {
+            $retmsg = 'Faltan los datos de registro';
+            $code = RestController::HTTP_BAD_REQUEST;
+        } else {
+            if ( !$this->player->existsUser( $user ) ) {
+                $return = $this->plager->registerPlayer( $user );
+                if ( $return ) {
+                    $retmsg = 'Registro correcto';
+                    $code = RestController::HTTP_OK;
+                } else {
+                    $retmsg = 'Error al registrar';
+                    $code = RestController::HTTP_INTERNAL_ERROR;
+                }
+            } else {
+                $retmsg = 'El nombre de usuario o el email ya está en uso';
+                $code = RestController::HTTP_BAD_REQUEST;
+            }
+        }
+
+        $this->response( $retmsg, $code );
+    }
     protected function setHeaders( $token = null ) {
         $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );

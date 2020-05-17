@@ -13,7 +13,7 @@ export class NoAuthGuard implements CanActivate {
     if (!sessionStorage.getItem('rpg-auth-sessiontoken')) {
       return true;
     } else {
-      this.router.navigate(['/register']);
+      this.router.navigate(['/tabs']);
       return false;
     }
 

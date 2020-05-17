@@ -15,10 +15,16 @@ const routes: Routes = [
     canActivate: [NoAuthGuard]
   },
   {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule),
+    canActivate: [NoAuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }
+
 ];
 @NgModule({
   imports: [

@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppService } from 'src/core/state/app.service';
 import { AppQuery } from 'src/core/state/app.query';
-import { Md5 } from 'ts-md5/dist/md5';
-import { Router } from '@angular/router';
+import { Md5 } from 'ts-md5';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
   form: FormGroup = new FormGroup({});
-  sessionToken = this.query.selectSessionToken();
+
   user = null;
   constructor(
     private service: AppService,
@@ -30,20 +29,19 @@ export class LoginPage implements OnInit {
 
   initForm() {
     this.form = this.formBuilder.group({
+      email: ['', Validators.required],
       uname: ['', Validators.required],
       passwd: ['', Validators.required]
     });
   }
 
-  login() {
+  register() {
     if (this.form.valid) {
       const md5 = new Md5();
       const data = this.form.value;
       data.passwd = md5.appendStr(data.passwd).end();
-      this.service.login(data);
+      this.service.register(data);
       this.initForm();
     }
   }
 }
-
-

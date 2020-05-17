@@ -15,11 +15,7 @@ export class AuthGuard implements CanActivate {
     if (sessionStorage.getItem('rpg-auth-sessiontoken')) {
       return true;
     } else {
-      this.router.navigate(['/login'], {
-        queryParams: {
-          lastPage: state.url
-        }
-      });
+      this.router.navigate(['/login']);
       return false;
     }
 

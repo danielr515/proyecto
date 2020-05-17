@@ -102,7 +102,19 @@ class Player extends CI_Model {
 
     public function addToken( $uname, $token ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "UPDATE players SET sessiontoken='" . $token . "' WHERE uname='" . $uname . "'" );
+        $query = $this->db->query( "UPDATE players SET status='online', sessiontoken='" . $token . "'  WHERE uname='" . $uname . "'" );
+        return $query;
+    }
+
+    public function existsUser( $user ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "SELECT uname FROM players WHERE email='" . $user['email'] . "' OR uname='". $user['uname'] ."';" );
+        return $query->num_rows() > 0;
+    }
+
+    public function registerPlayer( $user ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "INSERT INTO players VALUES ('" . $user['email'] . "', '" . $user['uname'] . "', '" . $user['passwd'] . "', 'offline', '', 500, 0);" );
         return $query;
     }
 

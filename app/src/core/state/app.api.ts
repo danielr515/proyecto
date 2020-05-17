@@ -21,7 +21,7 @@ export class AppApi {
       params: queryParams
     };
 
-    return this.http.get<HttpResponse<any>>(this.API + '/loginAdmin', options);
+    return this.http.get<HttpResponse<any>>(this.API + '/loginPlayer', options);
   }
 
   logout(token: string, uname: string) {
@@ -35,20 +35,15 @@ export class AppApi {
       headers
     };
 
-    return this.http.post(this.API + '/logoutAdmin', { uname }, options);
+    return this.http.post(this.API + '/logoutPlayer', { uname }, options);
   }
 
-  register(user, data) {
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ' + data.token);
-    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
-
+  register(user) {
     const options = {
-      observe: 'response' as 'body',
-      headers
+      observe: 'response' as 'body'
     };
 
-    return this.http.post(this.API + '/registerAdmin', { user, admin: data.uname }, options);
+    return this.http.post(this.API + '/registerPlayer', { user }, options);
   }
   appendQueryParams(queryParams, filterParams) {
     for (const [key, value] of Object.entries(filterParams)) {

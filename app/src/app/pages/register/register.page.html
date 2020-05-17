@@ -1,15 +1,19 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="secondary">
-      <ion-button routerLink="/register">
-        <ion-icon name="person-add-outline"></ion-icon>&nbsp;Registrar
+      <ion-button routerLink="/login">
+        <ion-icon name="log-in-outline"></ion-icon>&nbsp;Iniciar sesión
       </ion-button>
     </ion-buttons>
-    <ion-title>Iniciar sesión</ion-title>
+    <ion-title>Registrar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [formGroup]="form">
+  <ion-item>
+    <ion-label position="floating">Correo electrónico</ion-label>
+    <ion-input formControlName="email"></ion-input>
+  </ion-item>
   <ion-item>
     <ion-label position="floating">Nombre de usuario</ion-label>
     <ion-input formControlName="uname"></ion-input>
@@ -21,7 +25,7 @@
 </ion-content>
 
 <ion-footer class="ion-no-border">
-  <ion-button color="dark" expand="block" size="large" (click)="login()">
-    <ion-icon name="log-in-outline"></ion-icon>&nbsp;Iniciar sesión
+  <ion-button color="dark" expand="block" size="large" (click)="register()">
+    <ion-icon name="person-add-outline"></ion-icon>&nbsp;Registrar
   </ion-button>
 </ion-footer>
