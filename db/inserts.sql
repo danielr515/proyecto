@@ -142,7 +142,7 @@ INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES (
 -- 6 Cornada ígnea								usuarios: Rockfen
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Cornada ígnea', 'Una cornada envuelta en llamas', 'SKILL', 'ATK', 15, 60, 1);
 -- 7 Pasiva de Rockfen, los ataques de fuego le curan
-INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Absorción de magma', 'Cura el posibled año recibido´de tipo Ígneo', 'PASSIVE', 'HEAL', 0, 0, 1);
+INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Absorción de magma', 'Cura el posibled año recibido´de tipo Ígneo', 'PASSIVE', 'HEAL', 0, 1, 1);
 -- 8 Definitiva de Rockfen
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Apisonadora ardiente', 'Gran golpe que recuerda a un meteorito', 'ULTIMATE', 'ATK', 100, 120, 1);
 
