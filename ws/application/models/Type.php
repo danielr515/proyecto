@@ -44,7 +44,7 @@ class Type extends CI_Model {
 
     public function getAllTypes() {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( 'SELECT * FROM types' );
+        $query = $this->db->query( 'SELECT * FROM types ORDER BY class' );
         $rows = $query->result_array();
         return $rows;
     }
