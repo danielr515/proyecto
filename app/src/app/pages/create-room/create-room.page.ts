@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AppService } from 'src/core/state/app.service';
-import { AppQuery } from 'src/core/state/app.query';
-import { Md5 } from 'ts-md5';
+import { RoomsService } from '../rooms/state/rooms.service';
+import { RoomsQuery } from '../rooms/state/rooms.query';
 
 @Component({
   selector: 'app-create-room',
@@ -13,9 +12,9 @@ export class CreateRoomPageComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
   constructor(
-    private service: AppService,
+    private service: RoomsService,
     private formBuilder: FormBuilder,
-    private query: AppQuery
+    private query: RoomsQuery
   ) { }
 
   ngOnInit() {
@@ -34,10 +33,10 @@ export class CreateRoomPageComponent implements OnInit {
   createRoom() {
     if (this.form.valid) {
       if (this.form.value.type === 'PRIVATE' && this.form.value.passwd !== '') {
-        console.log('valid');
+        this.service.createRoom(this.form.value);
       } else if (this.form.value.type === 'PUBLIC') {
-        console.log('valid');
         this.form.patchValue({ passwd: '' });
+        this.service.createRoom(this.form.value);
       }
     }
     console.log(this.form.value);
