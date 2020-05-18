@@ -85,7 +85,7 @@ class Player extends CI_Model {
 
     public function userAndTokenValid( $uname, $token ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT sessiontoken FROM players WHERE uname='". $uname ." AND 'sessiontoken='" . $token . "'  ;" );
+        $query = $this->db->query( "SELECT sessiontoken FROM players WHERE uname='". $uname ."' AND sessiontoken='" . $token . "'  ;" );
         return $query->num_rows() > 0;
     }
 
