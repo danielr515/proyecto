@@ -19,6 +19,10 @@ export class AppService {
   updateUser(user) {
     this.action.updateUser(user);
   }
+
+  updateSessionToken(token) {
+    this.action.updateSessionToken(token);
+  }
   login(user) {
     this.api.login(user).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
