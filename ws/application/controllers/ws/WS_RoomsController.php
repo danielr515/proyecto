@@ -31,10 +31,6 @@ class WS_RoomsController extends WS_MainController {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
-            // if ( $player == '' || !isset( $token ) ) {
-            //     $retmsg = 'Datos erróneos';
-            //     $code = parent::HTTP_UNAUTHORIZED;
-            // } else {
             if ( $this->player->userAndTokenValid( $player, $token ) ) {
                 if ( !$this->room->playedAlreadyInRoom( $player ) ) {
                     $return = $this->room->createRoom( $room, $player );
@@ -53,7 +49,6 @@ class WS_RoomsController extends WS_MainController {
                 $retmsg = 'Datos erróneos';
                 $code = parent::HTTP_UNAUTHORIZED;
             }
-            // }
         }
 
         $this->response( $retmsg, $code );
