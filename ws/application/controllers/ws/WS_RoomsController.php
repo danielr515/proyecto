@@ -43,7 +43,7 @@ class WS_RoomsController extends WS_MainController {
                     }
                 } else {
                     $retmsg = 'Este jugador ya se encuentra en una sala en curso';
-                    $code = parent::HTTP_BAD_REQUEST;
+                    $code = parent::HTTP_UNAUTHORIZED;
                 }
             } else {
                 $retmsg = 'Datos erróneos';
