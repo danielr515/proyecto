@@ -11,9 +11,9 @@ export class AppAction {
 
   @action('updateUser')
   updateUser(user: User) {
-    localStorage.setItem('rpg-auth-user', JSON.stringify(user));
+    localStorage.setItem('rpg-auth-user', JSON.stringify({ uname: user.uname, passwd: user.passwd }));
     this.store.update({
-      user
+      user: { uname: user.uname, passwd: user.passwd }
     });
   }
 
