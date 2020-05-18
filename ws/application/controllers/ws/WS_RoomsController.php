@@ -37,7 +37,7 @@ class WS_RoomsController extends WS_MainController {
             } else {
                 if ( $this->player->userAndTokenValid( $player, $token ) ) {
                     if ( !$this->room->playedAlreadyInRoom( $player ) ) {
-                        $return = $this->type->createRoom( $room, $player );
+                        $return = $this->room->createRoom( $room, $player );
                         if ( $return ) {
                             $retmsg = 'Adición correcta';
                             $code = parent::HTTP_OK;
