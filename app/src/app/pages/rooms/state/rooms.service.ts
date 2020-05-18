@@ -17,7 +17,7 @@ export class RoomsService {
     private appQuery: AppQuery
   ) { }
 
-  updateWaitingRooms(token) {
+  updateWaitingRooms() {
     this.api.getWaitingRooms(this.getToken()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
         this.action.updateWaitingRooms(response.body);

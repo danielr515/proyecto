@@ -65,6 +65,7 @@ $route['addCharacter'] = 'ws/WS_CharactersController/addCharacter';
 $route['skills'] = 'ws/WS_SkillsController/skills';
 $route['skillsByClass'] = 'ws/WS_SkillsController/skillsByClass';
 $route['addSkill'] = 'ws/WS_SkillsController/addSkill';
+$route['waitingRooms'] = 'ws/WS_RoomsController/waitingRooms';
 $route['createRoom'] = 'ws/WS_RoomsController/createRoom';
 
 $route['404_override'] = '';
