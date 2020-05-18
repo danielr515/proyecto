@@ -20,10 +20,16 @@ const routes: Routes = [
     canActivate: [NoAuthGuard]
   },
   {
+    path: 'create-room',
+    loadChildren: () => import('./pages/create-room/create-room.module').then(m => m.CreateRoomPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }
+
 
 ];
 @NgModule({

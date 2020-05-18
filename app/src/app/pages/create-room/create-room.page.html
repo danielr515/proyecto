@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear sala</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [formGroup]="form">
+  <ion-item>
+    <ion-label position="floating">Nombre de sala</ion-label>
+    <ion-input formControlName="name"></ion-input>
+  </ion-item>
+  <ion-radio-group formControlName="type">
+    <ion-list-header>
+      <ion-label>
+        Tipo de sala
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Pública</ion-label>
+      <ion-radio value="PUBLIC"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Privada</ion-label>
+      <ion-radio value="PRIVATE"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  <ion-item *ngIf="form.value.type == 'PRIVATE'">
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" formControlName="passwd"></ion-input>
+  </ion-item>
+
+
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-button color="dark" expand="block" size="large" (click)="createRoom()">
+    <ion-icon name="add-circle-outline"></ion-icon>&nbsp;Crear sala
+  </ion-button>
+</ion-footer>

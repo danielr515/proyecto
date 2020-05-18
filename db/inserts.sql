@@ -1,5 +1,7 @@
 INSERT INTO admins VALUES ('admin@test.com', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', '', '');
 INSERT INTO players VALUES ('player@test.com', 'player', '81dc9bdb52d04dc20036dbd8313ed055', '', '', 1000, 0);
+INSERT INTO players VALUES ('player2@test.com', 'player2', '81dc9bdb52d04dc20036dbd8313ed055', '', '', 1000, 0);
+
 
 
 INSERT INTO types (name) VALUES ('Ígneo');
@@ -123,9 +125,6 @@ INSERT INTO typesrelation VALUES (9, 9, 2);
 -- 	FOREIGN KEY(type) REFERENCES types(id),
 -- 	UNIQUE(name)
 
---Tex_lizardman      Tipo Océano       ATK>ATKSP     DEF>SPDEF   
-
-
 -- 1 Ataque acuático con lanza				usuarios: Noy
 INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES ('Perforador oceánico', 'Ataque acuático con lanza', 'SKILL', 'ATK', 25, 70, 3);
 -- 2 Curación de lagartos					usuarios: Noy
@@ -169,3 +168,5 @@ INSERT INTO skills (name, description, class, mode, cost, damage, type) VALUES (
 INSERT INTO characters (name, hp, mana, atk, def, spatk, spdef, speed, skill1, skill2, passive, ultimate, type1, type2) VALUES ('Wawe, el ermitaño', 380, 200, 80, 60, 50, 60, 105, 5, 13, 14, 15, 5, null );
 
 
+INSERT INTO teams (name, player, char1, char2, char3, char4) VALUES ('Equipo por defecto', 'player', 1, 2, 3, 4);
+INSERT INTO teams (name, player, char1, char2, char3, char4) VALUES ('Equipo por defecto', 'player2', 1, 2, 3, 4);
