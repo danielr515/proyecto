@@ -13,6 +13,25 @@ class WS_RoomsController extends WS_MainController {
 
     }
 
+    public function waitingRooms_options() {
+        parent::setOptions();
+    }
+    protected function waitingRooms_get() {
+        $retmsg = '';
+        $code = '';
+
+        if ( parent::isTokenValid() ) {
+            $retmsg = $this->rooms->getWaitingRooms();
+            $code = parent::HTTP_OK;
+            parent::setHeaders();
+        } else {
+            $retmsg = 'Token de sesión inválido';
+            $code = parent::HTTP_UNAUTHORIZED;
+        }
+
+        $this->response( $retmsg, $code );
+    }
+
     protected function createRoom_options() {
         parent::setOptions();
     }

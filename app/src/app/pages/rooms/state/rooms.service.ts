@@ -17,6 +17,14 @@ export class RoomsService {
     private appQuery: AppQuery
   ) { }
 
+  updateWaitingRooms(token) {
+    this.api.getWaitingRooms(this.getToken()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateWaitingRooms(response.body);
+      }
+    });
+  }
+
   createRoom(room) {
     this.api.createRoom(room, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {

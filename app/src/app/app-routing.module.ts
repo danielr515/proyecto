@@ -28,6 +28,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
+  },
+  {
+    path: 'select-team',
+    loadChildren: () => import('./pages/select-team/select-team.module').then( m => m.SelectTeamPageModule)
   }
 
 

@@ -1,15 +1,17 @@
 
 import { Injectable } from '@angular/core';
-// import { } from './rooms.model';
 import { Store, StoreConfig } from '@datorama/akita';
+import { Room } from './rooms.model';
 
 
 
 export interface RoomsState {
+  rooms: Room[];
 }
 
 export function createInitialState() {
   return {
+    rooms: []
   };
 }
 

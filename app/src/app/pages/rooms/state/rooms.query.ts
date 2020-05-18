@@ -9,6 +9,8 @@ export class RoomsQuery extends Query<RoomsState> {
   constructor(protected store: RoomsStore) {
     super(store);
   }
-
+  selectRooms() {
+    return this.select(state => state.rooms);
+  }
 
 }

@@ -151,6 +151,12 @@ class Room extends CI_Model {
 
     }
 
+    public function getWaitingRooms() {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "SELECT *, '' AS passwd FROM rooms WHERE status='WAITING'" );
+        return $query->result_array();
+    }
+
     public function createRoom( $room, $player ) {
         $this->load->database( 'rpg' );
         $this->db->trans_begin();
@@ -171,6 +177,7 @@ class Room extends CI_Model {
         // TRUE si existen registros, FALSE si no existen
         return $query->num_rows() >= 1;
     }
+
 }
 ?>
 

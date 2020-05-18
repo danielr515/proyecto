@@ -12,6 +12,19 @@ export class RoomsApi extends AppApi {
     super(chttp);
   }
 
+  getWaitingRooms(token) {
+    let headers = new HttpHeaders();
+
+    headers = headers.set('Authorization', 'Bearer ' + token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers
+    };
+
+    return this.http.get<HttpResponse<any>>(this.API + '/waitingRooms', options);
+  }
   createRoom(room, player) {
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer ' + player.token);
