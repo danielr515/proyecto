@@ -9,7 +9,7 @@ class WS_RoomsController extends WS_MainController {
 
         $this->load->model( 'room' );
 
-        $this->load->model( 'room' );
+        $this->load->model( 'player' );
 
     }
 

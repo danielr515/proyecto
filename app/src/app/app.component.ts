@@ -31,11 +31,10 @@ export class AppComponent {
   loadTokenAndUser() {
     const token = sessionStorage.getItem('rpg-auth-sessiontoken');
     const user = JSON.parse(localStorage.getItem('rpg-auth-user'));
-    console.log(token);
     if (token != null) {
       this.service.updateSessionToken(token);
     }
-    if (user.length > 0) {
+    if (user != null) {
       this.service.updateUser(user);
     }
   }
