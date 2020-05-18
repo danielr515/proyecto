@@ -31,7 +31,7 @@ class WS_RoomsController extends WS_MainController {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
-            if ( $player != '' || !isset( $token ) ) {
+            if ( $player == '' || !isset( $token ) ) {
                 $retmsg = 'Datos erróneos';
                 $code = parent::HTTP_UNAUTHORIZED;
             } else {
