@@ -179,6 +179,33 @@ class WS_LoginController extends RestController {
         $this->setHeaders();
         $this->response( $retmsg, $code );
     }
+
+    protected function logoutPlayer_options() {
+        $this->setOptions();
+    }
+
+    protected function logoutPlayer_post() {
+        $uname =  $this->post( 'uname' );
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $this->player->userAndTokenValid( $uname, $token ) ) {
+            $this->player->logout( $uname );
+            $this->setHeaders();
+            $retmsg = 'Logout correcto';
+            $code = RestController::HTTP_OK;
+        } else {
+            $retmsg = 'Datos erróneos';
+            $code = RestController::HTTP_UNAUTHORIZED;
+        }
+
+        $this->response( $retmsg, $code );
+    }
+
     protected function setHeaders( $token = null ) {
         $this->output->set_header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-type, Accept, Authorization' );
         $this->output->set_header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );

@@ -37,4 +37,17 @@ export class RoomsApi extends AppApi {
 
     return this.http.post(this.API + '/createRoom', { room, player: player.uname }, options);
   }
+
+  enterRoom(id, passwd, player) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + player.token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers
+    };
+
+    return this.http.post(this.API + '/enterRoom', { id, passwd, player: player.uname }, options);
+  }
 }

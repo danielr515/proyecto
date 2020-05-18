@@ -5,6 +5,7 @@ import { RoomsQuery } from './rooms.query';
 import { HttpResponse } from '@angular/common/http';
 import { AppQuery } from 'src/core/state/app.query';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class RoomsService {
     private api: RoomsApi,
     private action: RoomsAction,
     private query: RoomsQuery,
-    private appQuery: AppQuery
+    private appQuery: AppQuery,
+    private router: Router
   ) { }
 
   updateWaitingRooms() {
@@ -28,11 +30,17 @@ export class RoomsService {
   createRoom(room) {
     this.api.createRoom(room, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        console.log(response);
+        this.router.navigate(['/tabs']);
       }
     });
   }
-
+  enterRoom(id, passwd = '') {
+    this.api.enterRoom(id, passwd, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.router.navigate(['/rooms', id]);
+      }
+    });
+  }
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {

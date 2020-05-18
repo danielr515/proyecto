@@ -35,15 +35,7 @@ export class AppService {
   }
 
   logout() {
-    let token = '';
-    let uname = '';
-    this.query.selectSessionToken().subscribe(tk => {
-      token = tk;
-    });
-    this.query.selectUser().subscribe(user => {
-      uname = user.uname;
-    });
-    this.api.logout(token, uname).subscribe((response: HttpResponse<any>) => {
+    this.api.logout(this.getTokenAndUname).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
         this.action.deleteSessionToken();
       }
@@ -57,5 +49,16 @@ export class AppService {
         this.login(user);
       }
     });
+  }
+
+  getTokenAndUname() {
+    const data = { token: '', uname: '' };
+    this.query.selectSessionToken().subscribe(tk => {
+      data.token = tk;
+    });
+    this.query.selectUname().subscribe(uname => {
+      data.uname = uname;
+    });
+    return data;
   }
 }

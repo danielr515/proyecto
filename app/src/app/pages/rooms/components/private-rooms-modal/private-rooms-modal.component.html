@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [formGroup]="form">
+  <ion-item>
+    Introduce la clave de esta sala privada para acceder
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Clave</ion-label>
+    <ion-input type="password" formControlName="passwd"></ion-input>
+  </ion-item>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark" (click)="enterPasswd()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -24,10 +24,10 @@ export class AppApi {
     return this.http.get<HttpResponse<any>>(this.API + '/loginPlayer', options);
   }
 
-  logout(token: string, uname: string) {
+  logout(player) {
     let headers = new HttpHeaders();
 
-    headers = headers.set('Authorization', 'Bearer ' + token);
+    headers = headers.set('Authorization', 'Bearer ' + player.token);
     headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
 
     const options = {
@@ -35,7 +35,7 @@ export class AppApi {
       headers
     };
 
-    return this.http.post(this.API + '/logoutPlayer', { uname }, options);
+    return this.http.post(this.API + '/logoutPlayer', { uname: player.uname }, options);
   }
 
   register(user) {

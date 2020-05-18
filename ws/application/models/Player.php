@@ -100,6 +100,12 @@ class Player extends CI_Model {
         return $query->num_rows() > 0;
     }
 
+    public function logout( $uname ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "UPDATE players SET status='offline', sessiontoken=''  WHERE uname='" . $uname . "'" );
+        return $query;
+    }
+
     public function addToken( $uname, $token ) {
         $this->load->database( 'rpg' );
         $query = $this->db->query( "UPDATE players SET status='online', sessiontoken='" . $token . "'  WHERE uname='" . $uname . "'" );
