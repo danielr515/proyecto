@@ -21,7 +21,7 @@ class WS_RoomsController extends WS_MainController {
         $code = '';
 
         if ( parent::isTokenValid() ) {
-            $retmsg = $this->rooms->getWaitingRooms();
+            $retmsg = $this->room->getWaitingRooms();
             $code = parent::HTTP_OK;
             parent::setHeaders();
         } else {
