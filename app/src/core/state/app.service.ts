@@ -35,9 +35,10 @@ export class AppService {
   }
 
   logout() {
-    this.api.logout(this.getTokenAndUname).subscribe((response: HttpResponse<any>) => {
+    this.api.logout(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
         this.action.deleteSessionToken();
+        this.router.navigate(['login']);
       }
     });
   }
