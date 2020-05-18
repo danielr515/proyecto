@@ -31,29 +31,29 @@ class WS_RoomsController extends WS_MainController {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
-            if ( $player == '' || !isset( $token ) ) {
-                $retmsg = 'Datos erróneos';
-                $code = parent::HTTP_UNAUTHORIZED;
-            } else {
-                if ( $this->player->userAndTokenValid( $player, $token ) ) {
-                    if ( !$this->room->playedAlreadyInRoom( $player ) ) {
-                        $return = $this->room->createRoom( $room, $player );
-                        if ( $return ) {
-                            $retmsg = 'Adición correcta';
-                            $code = parent::HTTP_OK;
-                        } else {
-                            $retmsg = 'Error al insertar';
-                            $code = parent::HTTP_INTERNAL_ERROR;
-                        }
+            // if ( $player == '' || !isset( $token ) ) {
+            //     $retmsg = 'Datos erróneos';
+            //     $code = parent::HTTP_UNAUTHORIZED;
+            // } else {
+            if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                if ( !$this->room->playedAlreadyInRoom( $player ) ) {
+                    $return = $this->room->createRoom( $room, $player );
+                    if ( $return ) {
+                        $retmsg = 'Adición correcta';
+                        $code = parent::HTTP_OK;
                     } else {
-                        $retmsg = 'Ya existe el tipo que estás intentando insertar';
-                        $code = parent::HTTP_BAD_REQUEST;
+                        $retmsg = 'Error al insertar';
+                        $code = parent::HTTP_INTERNAL_ERROR;
                     }
                 } else {
-                    $retmsg = 'Datos erróneos';
-                    $code = parent::HTTP_UNAUTHORIZED;
+                    $retmsg = 'Este jugador ya se encuentra en una sala en curso';
+                    $code = parent::HTTP_BAD_REQUEST;
                 }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
             }
+            // }
         }
 
         $this->response( $retmsg, $code );
