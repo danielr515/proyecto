@@ -163,7 +163,7 @@ class Room extends CI_Model {
     public function createRoom( $room, $player ) {
         $this->load->database( 'rpg' );
         $this->db->trans_begin();
-        $query = $this->db->query( 'INSERT INTO rooms (name, type, passwd, player1, status) VALUES ('" . $room['name'] . "', '" . $room['type'] . "', '" . $room['passwd'] . "', '" . $player . "', 'WAITING')' );
+        $query = $this->db->query( "INSERT INTO rooms (name, type, passwd, player1, status) VALUES ('" . $room['name'] . "', '" . $room['type'] . "', '" . $room['passwd'] . "', '" . $player . "', 'WAITING');" );
         if ( $this->db->trans_status() === FALSE ) {
             var_dump( 'rollback' );
             $this->db->trans_rollback();
