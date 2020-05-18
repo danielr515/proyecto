@@ -80,15 +80,6 @@ class Room extends CI_Model {
 
     }
 
-    public function getPasswd() {
-        return $this->passwd;
-    }
-
-    public function setPasswd( $passwd ) {
-        $this->passwd = $passwd;
-
-    }
-
     public function getPlayer1() {
         return $this->player1;
     }
