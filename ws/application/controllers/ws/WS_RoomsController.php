@@ -2,7 +2,7 @@
 
 require_once( APPPATH . 'controllers/ws/WS_MainController.php' );
 
-class WS_TypesController extends WS_MainController {
+class WS_RoomsController extends WS_MainController {
 
     public function __construct() {
         parent::__construct();
