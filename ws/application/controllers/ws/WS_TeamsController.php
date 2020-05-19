@@ -10,10 +10,10 @@ class WS_TeamsController extends WS_MainController {
         $this->load->model( 'team' );
     }
 
-    public function skillsByClass_options() {
+    public function teamsByPlayer_options() {
         parent::setOptions();
     }
-    protected function skillsByClass_get() {
+    protected function teamsByPlayer_get() {
         $player = $this->get( 'player' );
         $retmsg = '';
         $code = '';

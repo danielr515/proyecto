@@ -12,6 +12,22 @@ export class TeamsApi extends AppApi {
     super(chttp);
   }
 
+  getTeams(player) {
+    let headers = new HttpHeaders();
+    let queryParams = new HttpParams();
 
+    queryParams = this.appendQueryParams(queryParams, { player: player.uname });
+
+    headers = headers.set('Authorization', 'Bearer ' + player.token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers,
+      params: queryParams
+    };
+
+    return this.http.get<HttpResponse<any>>(this.API + '/waitingRooms', options);
+  }
 
 }

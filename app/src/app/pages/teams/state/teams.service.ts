@@ -19,6 +19,13 @@ export class TeamsService {
     private router: Router
   ) { }
 
+  updateTeams() {
+    this.api.getTeams(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateTeams(response.body);
+      }
+    });
+  }
 
   getTokenAndUname() {
     const data = { token: '', uname: '' };

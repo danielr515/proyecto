@@ -68,6 +68,8 @@ $route['addSkill'] = 'ws/WS_SkillsController/addSkill';
 $route['waitingRooms'] = 'ws/WS_RoomsController/waitingRooms';
 $route['createRoom'] = 'ws/WS_RoomsController/createRoom';
 $route['enterRoom'] = 'ws/WS_RoomsController/enterRoom';
+$route['teamsByPlayer'] = 'ws/WS_TeamsController/teamsByPlayer';
+
 
 
 $route['404_override'] = '';
