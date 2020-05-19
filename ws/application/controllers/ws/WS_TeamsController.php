@@ -7,6 +7,7 @@ class WS_TeamsController extends WS_MainController {
     public function __construct() {
         parent::__construct();
 
+        $this->load->model( 'player' );
         $this->load->model( 'team' );
     }
 
