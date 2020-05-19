@@ -89,7 +89,7 @@ class WS_RoomsController extends WS_MainController {
         }
         $retmsg = '';
         $code = '';
-        if ( $roomid == '' ) ) {
+        if ( $roomid == '' ) {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
