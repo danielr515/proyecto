@@ -30,7 +30,7 @@ export class RoomsService {
   createRoom(room) {
     this.api.createRoom(room, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        this.router.navigate(['/tabs']);
+        this.router.navigate(['/rooms', response.id]);
       }
     });
   }

@@ -196,6 +196,12 @@ class Room extends CI_Model {
         return $query;
     }
 
+    public function getThisRoomId( $room ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "SELECT max(id) FROM rooms WHERE player1='" . $room['player'] . "' AND name='" . $room['name'] . "'" );
+        return $query->result_array()[0]['id'];
+    }
+
 }
 ?>
 
