@@ -25,14 +25,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'select-team',
+    loadChildren: () => import('./pages/select-team/select-team.module').then(m => m.SelectTeamPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   },
-  {
-    path: 'select-team',
-    loadChildren: () => import('./pages/select-team/select-team.module').then( m => m.SelectTeamPageModule)
-  }
+
 
 
 ];

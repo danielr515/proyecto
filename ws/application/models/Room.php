@@ -198,8 +198,19 @@ class Room extends CI_Model {
 
     public function getThisRoomId( $room, $player ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT max(id) FROM rooms WHERE player1='" . $player . "' AND name='" . $room['name'] . "'" );
+        $query = $this->db->query( "SELECT max(id) FROM rooms WHERE player1='" . $player . "' AND name='" . $room['name'] . "';" );
         return $query->result_array()[0]['max'];
+    }
+
+    public function setTeam( $player, $team ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "SELECT * FROM rooms WHERE player1='" . $player . "';" );
+        if ( $query->num_rows() > 0 ) {
+            $query = $this->db->query( "UPDATE rooms SET p1team='" . $team['id'] . "' WHERE player1='" . $player . "';" );
+        } else {
+            $query = $this->db->query( "UPDATE rooms SET p2team='" . $team['id'] . "' WHERE player2='" . $player . "';" );
+        }
+        return $query;
     }
 
 }

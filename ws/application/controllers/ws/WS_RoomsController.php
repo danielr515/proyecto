@@ -108,7 +108,7 @@ class WS_RoomsController extends WS_MainController {
                             $code = parent::HTTP_INTERNAL_ERROR;
                         }
                     } else {
-                        $retmsg = 'Este jugador ya se encuentra en una sala en curso';
+                        $retmsg = 'La sala no es válida o ya ha sido ocupada';
                         $code = parent::HTTP_UNAUTHORIZED;
                     }
                 } else {
@@ -120,7 +120,49 @@ class WS_RoomsController extends WS_MainController {
                 $code = parent::HTTP_UNAUTHORIZED;
             }
         }
+        parent::setHeaders();
+        $this->response( $retmsg, $code );
+    }
 
+    protected function setTeam_options() {
+        parent::setOptions();
+    }
+
+    protected function setTeam_post() {
+        $team = $this->post( 'team' );
+        $player = $this->post( 'player' );
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $team == '' ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = parent::HTTP_BAD_REQUEST;
+        } else {
+            if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                if ( $this->room->playedAlreadyInRoom( $player ) ) {
+                    $return = $this->room->setTeam( $player, $team );
+                    if ( $return ) {
+                        $retmsg = 'Entrada correcta';
+                        $code = parent::HTTP_OK;
+                    } else {
+                        $retmsg = 'Error al entrar';
+                        $code = parent::HTTP_INTERNAL_ERROR;
+                    }
+                } else {
+                    $retmsg = 'Este jugador no se encuentra en una sala en curso';
+                    $code = parent::HTTP_UNAUTHORIZED;
+                }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
+            }
+        }
+        parent::setHeaders();
         $this->response( $retmsg, $code );
     }
 

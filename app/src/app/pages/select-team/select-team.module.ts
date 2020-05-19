@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SelectTeamPageRoutingModule } from './select-team-routing.module';
 
 import { SelectTeamPage } from './select-team.page';
+import { SelectTeamListComponent } from './components/select-team-list/select-team-list.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { SelectTeamPage } from './select-team.page';
     IonicModule,
     SelectTeamPageRoutingModule
   ],
-  declarations: [SelectTeamPage]
+  declarations: [SelectTeamPage, SelectTeamListComponent]
 })
-export class SelectTeamPageModule {}
+export class SelectTeamPageModule { }

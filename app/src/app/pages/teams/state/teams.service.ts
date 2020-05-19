@@ -27,6 +27,13 @@ export class TeamsService {
     });
   }
 
+  setTeam(team) {
+    this.api.setTeam(team, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.router.navigate(['game']);
+      }
+    });
+  }
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {

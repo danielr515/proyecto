@@ -30,14 +30,14 @@ export class RoomsService {
   createRoom(room) {
     this.api.createRoom(room, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        this.router.navigate(['/rooms', response.id]);
+        this.router.navigate(['/select-team']);
       }
     });
   }
   enterRoom(id, passwd = '') {
     this.api.enterRoom(id, passwd, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-
+        this.router.navigate(['/select-team']);
       }
     });
   }

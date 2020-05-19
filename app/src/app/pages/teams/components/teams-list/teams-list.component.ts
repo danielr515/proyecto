@@ -11,4 +11,8 @@ export class TeamsListComponent implements OnInit {
 
   ngOnInit() { }
 
+  deleteTeam(team) {
+    console.log('delete team: ' + team.id);
+  }
+
 }
