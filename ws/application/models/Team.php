@@ -145,7 +145,9 @@ class Team extends CI_Model {
         );
         $query = $this->db->get_where( 'teams', $where );
         $rows = $query->result_array();
+        var_dump( $rows );
         foreach ( $rows as $index => $row ) {
+            var_dump( $row );
             $rows[$index]['char1'] = $this->character->getCharById( $row['char1'] );
             $rows[$index]['char2'] = $this->character->getCharById( $row['char2'] );
             $rows[$index]['char3'] = $this->character->getCharById( $row['char3'] );
