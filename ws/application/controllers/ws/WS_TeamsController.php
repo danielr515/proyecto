@@ -38,7 +38,7 @@ class WS_TeamsController extends WS_MainController {
                 $code = parent::HTTP_UNAUTHORIZED;
             }
         }
-
+        parent::setHeaders();
         $this->response( $retmsg, $code );
     }
 }

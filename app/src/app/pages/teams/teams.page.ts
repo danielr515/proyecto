@@ -8,7 +8,7 @@ import { TeamsQuery } from './state/teams.query';
   styleUrls: ['teams.page.scss']
 })
 export class TeamsPageComponent implements OnInit {
-  teams = this.query.selectTeams();
+  teams$ = this.query.selectTeams();
 
   constructor(
     private service: TeamsService,

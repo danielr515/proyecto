@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TeamsPageComponent } from './teams.page';
 
 import { TeamsPageRoutingModule } from './teams-routing.module';
+import { TeamsListComponent } from './components/teams-list/teams-list.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { TeamsPageRoutingModule } from './teams-routing.module';
     FormsModule,
     TeamsPageRoutingModule
   ],
-  declarations: [TeamsPageComponent]
+  declarations: [TeamsPageComponent, TeamsListComponent]
 })
 export class TeamsPageModule { }

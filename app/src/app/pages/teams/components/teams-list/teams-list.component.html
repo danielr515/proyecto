@@ -1,0 +1,13 @@
+<ion-card *ngFor="let team of teams">
+  <ion-item color="light">
+    <ion-label>{{ team.name }}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>{{ team.char1.name }}</ion-label>
+    <ion-label>{{ team.char2.name }}</ion-label>
+    <ion-label>{{ team.char3.name }}</ion-label>
+    <ion-label>{{ team.char4.name }}</ion-label>
+
+  </ion-item>
+</ion-card>
