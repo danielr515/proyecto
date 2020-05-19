@@ -7,6 +7,7 @@ import { RoomsPageComponent } from './rooms.page';
 import { RoomsPageRoutingModule } from './rooms-routing.module';
 import { RoomsListComponent } from './components/rooms-list/rooms-list.component';
 import { PrivateRoomsModalComponent } from './components/private-rooms-modal/private-rooms-modal.component';
+import { SelectTeamComponent } from './components/select-team/select-team.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { PrivateRoomsModalComponent } from './components/private-rooms-modal/pri
     RoomsPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [RoomsPageComponent, RoomsListComponent, PrivateRoomsModalComponent]
+  declarations: [RoomsPageComponent, RoomsListComponent, PrivateRoomsModalComponent, SelectTeamComponent]
 })
 export class RoomsPageModule { }

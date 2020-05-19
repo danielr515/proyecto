@@ -33,7 +33,6 @@ export class RoomsListComponent implements OnInit, OnChanges {
     }
   }
   enterRoom(room) {
-    console.log(room);
     switch (room.type) {
       case 'PUBLIC':
         this.enterPublic.emit(room.id);

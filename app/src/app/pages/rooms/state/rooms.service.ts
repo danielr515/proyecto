@@ -37,7 +37,7 @@ export class RoomsService {
   enterRoom(id, passwd = '') {
     this.api.enterRoom(id, passwd, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        this.router.navigate(['/rooms', id]);
+
       }
     });
   }

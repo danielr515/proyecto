@@ -2,12 +2,25 @@
   <ion-item color="light">
     <ion-label>{{ team.name }}</ion-label>
   </ion-item>
-
   <ion-item>
-    <ion-label>{{ team.char1.name }}</ion-label>
-    <ion-label>{{ team.char2.name }}</ion-label>
-    <ion-label>{{ team.char3.name }}</ion-label>
-    <ion-label>{{ team.char4.name }}</ion-label>
+    <ion-label>
+      <ion-img [src]="'../../../../../assets/chars/' + team.char1.name + '.png'"></ion-img>
+    </ion-label>
+    <ion-label>
+      <ion-img [src]="'../../../../../assets/chars/' + team.char2.name + '.png'"></ion-img>
+    </ion-label>
+    <ion-label>
+      <ion-img [src]="'../../../../../assets/chars/' + team.char3.name + '.png'"></ion-img>
+    </ion-label>
+    <ion-label>
+      <ion-img [src]="'../../../../../assets/chars/' + team.char4.name + '.png'"></ion-img>
+    </ion-label>
 
+  </ion-item>
+  <ion-item>
+    <ion-label class="ion-text-center">{{ team.char1.name.split(',')[0] }}</ion-label>
+    <ion-label class="ion-text-center">{{ team.char2.name.split(',')[0] }}</ion-label>
+    <ion-label class="ion-text-center">{{ team.char3.name.split(',')[0] }}</ion-label>
+    <ion-label class="ion-text-center">{{ team.char4.name.split(',')[0] }}</ion-label>
   </ion-item>
 </ion-card>

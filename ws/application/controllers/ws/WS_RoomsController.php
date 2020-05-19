@@ -23,12 +23,11 @@ class WS_RoomsController extends WS_MainController {
         if ( parent::isTokenValid() ) {
             $retmsg = $this->room->getWaitingRooms();
             $code = parent::HTTP_OK;
-            parent::setHeaders();
         } else {
             $retmsg = 'Token de sesión inválido';
             $code = parent::HTTP_UNAUTHORIZED;
         }
-
+        parent::setHeaders();
         $this->response( $retmsg, $code );
     }
 
