@@ -73,4 +73,52 @@ class WS_RoomsController extends WS_MainController {
         $this->response( $retmsg, $code );
     }
 
+    protected function enterRoom_options() {
+        parent::setOptions();
+    }
+
+    protected function enterRoom_post() {
+        $roomid = $this->post( 'id' );
+        $roompasswd = $this->post( 'passwd' );
+        $player = $this->post( 'player' );
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $roomid == '' ) ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = parent::HTTP_BAD_REQUEST;
+        } else {
+            if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                if ( !$this->room->playedAlreadyInRoom( $player ) ) {
+                    if ( $this->room->validRoom( $roomid, $roompasswd ) ) {
+                        $return = $this->room->enter( $roomid, $roompasswd, $player );
+                        if ( $return ) {
+                            $retmsg = 'Entrada correcta';
+                            $code = parent::HTTP_OK;
+                        } else {
+                            $retmsg = 'Error al entrar';
+                            $code = parent::HTTP_INTERNAL_ERROR;
+                        }
+                    } else {
+                        $retmsg = 'Este jugador ya se encuentra en una sala en curso';
+                        $code = parent::HTTP_UNAUTHORIZED;
+                    }
+                } else {
+                    $retmsg = 'Este jugador ya se encuentra en una sala en curso';
+                    $code = parent::HTTP_UNAUTHORIZED;
+                }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
+            }
+        }
+
+        $this->response( $retmsg, $code );
+    }
+
 }

@@ -178,6 +178,24 @@ class Room extends CI_Model {
         return $query->num_rows() >= 1;
     }
 
+    public function validRoom( $roomid, $roompasswd ) {
+        $this->load->database( 'rpg' );
+        $this->db->select( 'id' );
+        $where = array(
+            'id' => $roomid,
+            'passwd' => $roompasswd,
+            'player2' => ''
+        );
+        $query = $this->db->get_where( 'rooms', $where );
+        return $query->num_rows() > 0;
+    }
+
+    public function enter( $roomid, $roompasswd, $player ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( " UPDATE rooms SET player2='" . $player . "' 	WHERE id=" . $roomid . ';' );
+        return $query;
+    }
+
 }
 ?>
 
