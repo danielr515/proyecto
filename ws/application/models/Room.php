@@ -174,6 +174,7 @@ class Room extends CI_Model {
     public function playedAlreadyInRoom( $player ) {
         $this->load->database( 'rpg' );
         $query = $this->db->query( "SELECT id FROM rooms WHERE (player1 ='" . $player . "' OR player2='" . $player . "') AND status!='FINISHED';" );
+        var_dump( $query );
         // TRUE si existen registros, FALSE si no existen
         return $query->num_rows() >= 1;
     }
