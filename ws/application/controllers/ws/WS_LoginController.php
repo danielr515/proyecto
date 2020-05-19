@@ -195,14 +195,13 @@ class WS_LoginController extends RestController {
         $code = '';
         if ( $this->player->userAndTokenValid( $uname, $token ) ) {
             $this->player->logout( $uname );
-            $this->setHeaders();
             $retmsg = 'Logout correcto';
             $code = RestController::HTTP_OK;
         } else {
             $retmsg = 'Datos erróneos';
             $code = RestController::HTTP_UNAUTHORIZED;
         }
-
+        $this->setHeaders();
         $this->response( $retmsg, $code );
     }
 

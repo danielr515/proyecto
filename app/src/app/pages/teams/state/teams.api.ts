@@ -27,7 +27,7 @@ export class TeamsApi extends AppApi {
       params: queryParams
     };
 
-    return this.http.get<HttpResponse<any>>(this.API + '/waitingRooms', options);
+    return this.http.get<HttpResponse<any>>(this.API + '/teamsByPlayer', options);
   }
 
 }

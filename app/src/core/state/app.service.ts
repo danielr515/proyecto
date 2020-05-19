@@ -5,6 +5,7 @@ import { AppQuery } from './app.query';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+const HTTP_UNAUTHORITHED = 401;
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +37,8 @@ export class AppService {
 
   logout() {
     this.api.logout(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
-      if (response.ok) {
+      console.log(response.status);
+      if (response.ok || response.status === HTTP_UNAUTHORITHED) {
         this.action.deleteSessionToken();
         this.router.navigate(['login']);
       }
