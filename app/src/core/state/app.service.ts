@@ -4,8 +4,10 @@ import { AppAction } from './app.actions';
 import { AppQuery } from './app.query';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { tap, catchError } from 'rxjs/operators';
 
-const HTTP_UNAUTHORITHED = 401;
+
+const HTTP_UNAUTHORIZED = 401;
 @Injectable({
   providedIn: 'root'
 })
@@ -36,13 +38,20 @@ export class AppService {
   }
 
   logout() {
-    this.api.logout(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
-      console.log(response.status);
-      if (response.ok || response.status === HTTP_UNAUTHORITHED) {
-        this.action.deleteSessionToken();
-        this.router.navigate(['login']);
-      }
-    });
+    this.api.logout(this.getTokenAndUname()).pipe(
+      tap((response: HttpResponse<any>) => {
+        if (response.ok) {
+          this.action.deleteSessionToken();
+          this.router.navigate(['login']);
+        }
+      }),
+      catchError(error => {
+        if (error.status === HTTP_UNAUTHORIZED) {
+          this.action.deleteSessionToken();
+          this.router.navigate(['login']);
+        }
+        throw { status: error.status, statusText: error.statusText };
+      })).subscribe();
   }
 
   register(user) {
