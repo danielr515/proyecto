@@ -206,6 +206,16 @@ class Character extends CI_Model {
         // TRUE si existen registros, FALSE si no existen
         return $query->num_rows() >= 1;
     }
+
+    public function getCharById( $id ) {
+        $this->load->database( 'rpg' );
+        $this->db->select( 'id, name' );
+        $where = array(
+            'id' => $character['id']
+        );
+        $query = $this->db->get_where( 'characters', $where );
+        return $query->result_array()[0];
+    }
 }
 
 ?>
