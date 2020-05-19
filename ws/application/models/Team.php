@@ -137,17 +137,14 @@ class Team extends CI_Model {
     }
 
     public function getTeamsByPlayer( $player ) {
-        var_dump( 'aqui entra 4' );
-
         $this->load->database( 'rpg' );
-        $this->laod->model( 'character' );
+        $this->load->model( 'character' );
         $this->db->select( '*' );
         $where = array(
             'player' => $player
         );
         $query = $this->db->get_where( 'teams', $where );
         $rows = $query->result_array();
-        var_dump( 'aqui entra 5' );
         foreach ( $rows as $index=>$index ) {
             $rows[$index]['char1'] = $this->character->getCharById( $row['char1'] );
             $rows[$index]['char2'] = $this->character->getCharById( $row['char2'] );
