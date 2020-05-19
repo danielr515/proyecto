@@ -55,8 +55,8 @@ class WS_RoomsController extends WS_MainController {
                     if ( $return ) {
                         $roomid = $this->room->getThisRoomId( $room );
                         $retmsg = array(
-                            'retmsg': 'Adición correcta',
-                            'roomid': $roomid
+                            'retmsg' => 'Adición correcta',
+                            'roomid' => $roomid
                         );
                         $code = parent::HTTP_OK;
                     } else {
