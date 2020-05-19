@@ -53,7 +53,7 @@ class WS_RoomsController extends WS_MainController {
                 if ( !$this->room->playedAlreadyInRoom( $player ) ) {
                     $return = $this->room->createRoom( $room, $player );
                     if ( $return ) {
-                        $roomid = $this->room->getThisRoomId( $room );
+                        $roomid = $this->room->getThisRoomId( $room, $player );
                         $retmsg = array(
                             'retmsg' => 'Adición correcta',
                             'roomid' => $roomid
