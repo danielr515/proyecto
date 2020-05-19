@@ -187,7 +187,6 @@ class Room extends CI_Model {
             'player2' => null
         );
         $query = $this->db->get_where( 'rooms', $where );
-        var_dump( $query );
         return $query->num_rows() > 0;
     }
 
