@@ -15,6 +15,7 @@ class WS_TeamsController extends WS_MainController {
         parent::setOptions();
     }
     protected function teamsByPlayer_get() {
+        var_dump( 'aqui entra 1' );
         $player = $this->get( 'player' );
         $retmsg = '';
         $code = '';
@@ -30,7 +31,9 @@ class WS_TeamsController extends WS_MainController {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
+            var_dump( 'aqui entra 2' );
             if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                var_dump( 'aqui entra 3' );
                 $retmsg = $this->team->getTeamsByPlayer( $player );
                 $code = parent::HTTP_OK;
             } else {
