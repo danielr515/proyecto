@@ -204,11 +204,11 @@ class Room extends CI_Model {
 
     public function setTeam( $player, $team ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT * FROM rooms WHERE player1='" . $player . "';" );
+        $query = $this->db->query( "SELECT * FROM rooms WHERE player1='" . $player . "' AND status='FINISHED';" );
         if ( $query->num_rows() > 0 ) {
-            $query = $this->db->query( "UPDATE rooms SET p1team='" . $team['id'] . "' WHERE player1='" . $player . "';" );
+            $query = $this->db->query( "UPDATE rooms SET p1team='" . $team['id'] . "' WHERE player1='" . $player . "' AND status='FINISHED';" );
         } else {
-            $query = $this->db->query( "UPDATE rooms SET p2team='" . $team['id'] . "' WHERE player2='" . $player . "';" );
+            $query = $this->db->query( "UPDATE rooms SET p2team='" . $team['id'] . "' WHERE player2='" . $player . "' AND status='FINISHED';" );
         }
         return $query;
     }
