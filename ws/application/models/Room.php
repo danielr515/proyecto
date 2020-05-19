@@ -184,7 +184,7 @@ class Room extends CI_Model {
         $where = array(
             'id' => $roomid,
             'passwd' => $roompasswd,
-            'player2' => ''
+            'player2' => null
         );
         $query = $this->db->get_where( 'rooms', $where );
         var_dump( $query );
