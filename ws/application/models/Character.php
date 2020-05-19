@@ -211,7 +211,7 @@ class Character extends CI_Model {
         $this->load->database( 'rpg' );
         $this->db->select( 'id, name' );
         $where = array(
-            'id' => $character['id']
+            'id' => $id
         );
         $query = $this->db->get_where( 'characters', $where );
         return $query->result_array()[0];
