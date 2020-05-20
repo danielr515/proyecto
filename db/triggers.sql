@@ -65,5 +65,4 @@ DROP TRIGGER IF EXISTS initgame ON rooms;
 CREATE TRIGGER initgame 
 AFTER UPDATE ON rooms
 FOR EACH ROW 
-WHEN ((OLD.p1team IS DISTINCT FROM NEW.p1team OR OLD.p2team IS DISTINCT FROM NEW.p2team) AND (NEW.p1team != null AND NEW.p2team != null) AND NEW.turn = null)
 EXECUTE PROCEDURE initgame_func();
