@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from './state/game.service';
 import { GameQuery } from './state/game.query';
+import { take, concatAll } from 'rxjs/operators';
 
 @Component({
   selector: 'app-game',
@@ -10,7 +11,7 @@ import { GameQuery } from './state/game.query';
 export class GamePage implements OnInit {
   team$ = this.query.selectOwnData();
   enemyTeam$ = this.query.selectEnemyData();
-  gameStarted = this.query.selectGameStarted();
+  gameStarted$ = this.query.selectGameStarted();
   interval1;
   constructor(
     private service: GameService,
@@ -18,17 +19,19 @@ export class GamePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.interval1 = setInterval(this.isGameStarted, 3000);
-    this.service.updateOwnData();
-    this.service.updateEnemyData();
-
+    this.interval1 = setInterval(() => { this.isGameStarted(); }, 3000);
   }
 
-  async  isGameStarted() {
-    if (await this.gameStarted) {
-      clearInterval(this.interval1);
-    } else {
-      this.service.isGameStarted();
-    }
+  isGameStarted() {
+    this.gameStarted$ = this.query.selectGameStarted();
+    this.service.isGameStarted();
+    this.gameStarted$.pipe(take(1)).subscribe(elem => {
+      if (elem) {
+        console.log('is game started');
+        clearInterval(this.interval1);
+        this.service.updateOwnData();
+        this.service.updateEnemyData();
+      }
+    });
   }
 }

@@ -30,8 +30,9 @@ class Game extends CI_Model {
         $query = $this->db->query( "SELECT c.name, c.id, hp AS basehp, currhp, mana AS basemana, currmana , atk AS baseatk, curratk, def AS basedef, currdef, spatk AS basespatk, currspatk, spdef AS basespdef, currspdef, speed AS basespeed, currspeed  FROM characterbattlehistory AS ch LEFT JOIN characters AS c ON  ch.character = c.id WHERE player='" . $player . "' AND ch.room='" . $id . "';
 		" );
         $rows = $query->result_array();
+        $rows[$index]['skills'] = array();
         foreach ( $rows as $index=>$row ) {
-            $rows[$index]['skills'] = $this->getCharacterSkills( $row['id'] );
+            array_push( $rows[$index]['skills'], $this->getCharacterSkills( $row['id'] ) );
         }
         return $rows;
     }
