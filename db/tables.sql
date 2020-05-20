@@ -148,7 +148,7 @@ CREATE TABLE battlehistory(
 	id SERIAL NOT NULL,
 	turn INT NOT NULL,
 	room INT NOT NULL,
-	player VARCHAR(20) NOT NULL
+	player VARCHAR(20) NOT NULL,
 	character INT,
 	action VARCHAR(10),
 	actionvalue INT,
