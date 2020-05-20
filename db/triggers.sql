@@ -5,7 +5,6 @@ BEGIN
 		DECLARE team1 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p1team;
 		DECLARE team2 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p2team;
 		DECLARE character REFCURSOR;
-		DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=1;
 		UPDATE rooms SET status = 'PLAYING', turn = 0  WHERE id = new.id;
 		OPEN team1;
 			FETCH team1 INTO char1, char2, char3, char4;
