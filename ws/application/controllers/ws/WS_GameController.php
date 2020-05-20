@@ -10,6 +10,8 @@ class WS_GameController extends WS_MainController {
         $this->load->model( 'player' );
         $this->load->model( 'room' );
         $this->load->model( 'team' );
+        $this->load->model( 'game' );
+
     }
 
     public function ownData_options() {
