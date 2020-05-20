@@ -11,7 +11,7 @@ class Game extends CI_Model {
         $data = array(
             'roomid' => $idAndTurn['id'],
             'turn' => $idAndTurn['turn'],
-            'characters' => $this->getCurrentCharacters( $player, $idAndTurn['id'] );
+            'characters' => $this->getCurrentCharacters( $player, $idAndTurn['id'] )
         );
         if ( $idAndTurn['turn']>0 ) {
             $data['currchar'] = $this->getActiveCharacter( $player, $idAndTurn['id'], $idAndTurn['turn'] );
