@@ -43,13 +43,13 @@ class Game extends CI_Model {
         $skillsquery = $this->db->query( 'SELECT skill1, skill2, passive, ultimate FROM characters WHERE id='. $id .';' );
         $skillsrows = $skillsquery->result_array()[0];
         $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['skill1'] . "';" );
-        array_push( $skills['skill1'], $query->result_array()[0] );
+        $skills['skill1'] = $query->result_array()[0];
         $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['skill2'] . "';" );
-        array_push( $skills['skill2'], $query->result_array()[0] );
+        $skills['skill2'] = $query->result_array()[0];
         $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['passive'] . "';" );
-        array_push( $skills['passive'], $query->result_array()[0] );
+        $skills['passive'] = $query->result_array()[0];
         $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['ultimate'] . "';" );
-        array_push( $skills['ultimate'], $query->result_array()[0] );
+        $skills['ultimate'] = $query->result_array()[0];
         return $skills;
     }
 
