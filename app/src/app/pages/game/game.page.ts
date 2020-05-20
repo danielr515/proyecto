@@ -29,6 +29,9 @@ export class GamePage implements OnInit {
         console.log('is game started');
         clearInterval(this.interval1);
         this.service.updateOwnData();
+        this.service.updateEnemyData();
+      } else {
+        this.service.isGameStarted();
       }
     });
   }
