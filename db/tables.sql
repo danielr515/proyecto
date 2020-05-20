@@ -154,6 +154,7 @@ CREATE TABLE battlehistory(
 	actionvalue INT,
 	PRIMARY KEY(id),
 	FOREIGN KEY(player) REFERENCES players(uname) ON DELETE CASCADE,
+	FOREIGN KEY(room) REFERENCES rooms(id) ON DELETE CASCADE,
 	FOREIGN KEY(character) REFERENCES characterbattlehistory(id) ON DELETE CASCADE
 );
 CREATE TABLE shop(
