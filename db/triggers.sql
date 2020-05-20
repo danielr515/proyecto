@@ -5,6 +5,17 @@ DECLARE
 			team1 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p1team;
 			team2 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p2team;
 			character CURSOR (charid int) FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = charid;
+			char1 int;
+			char2 int;
+			char3 int;
+			char4 int;
+			hp int;
+			mana int;
+			atk int;
+			def int;
+			spatk int;
+			spdef int;
+			speed int;
 BEGIN	
 		OPEN team1;
 			FETCH team1 INTO char1, char2, char3, char4;
