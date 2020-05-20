@@ -30,10 +30,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'game',
+    loadChildren: () => import('./pages/game/game.module').then(m => m.GamePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   },
+
 
 
 
