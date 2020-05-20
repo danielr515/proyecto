@@ -115,9 +115,9 @@ class Game extends CI_Model {
         return $query->result_array()[0][$enemy];
     }
 
-    public function getEnemyActiveChar( $enemyName, $id, $turn ) {
+    public function getEnemyActiveChar( $enemyName, $room, $turn ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( 'SELECT c.name, c.id, hp AS basehp, currhp, mana AS basemana, currmana FROM characterbattlehistory AS ch LEFT JOIN characters AS c ON ch.character = c.id WHERE ch.character = (SELECT character FROM battlehistory WHERE room=' . $room . ' AND turn = ' . $turn . " AND player ='" . $enemyName . "') AND player='" . $enemyName . "' AND ch.room=" . $id . ' AND ch.turn=' . $turn . ";
+        $query = $this->db->query( 'SELECT c.name, c.id, hp AS basehp, currhp, mana AS basemana, currmana FROM characterbattlehistory AS ch LEFT JOIN characters AS c ON ch.character = c.id WHERE ch.character = (SELECT character FROM battlehistory WHERE room=' . $room . ' AND turn = ' . $turn . " AND player ='" . $enemyName . "') AND player='" . $enemyName . "' AND ch.room=" . $room . ' AND ch.turn=' . $turn . ";
 		" );
         return $query->result_array()[0];
     }
