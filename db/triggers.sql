@@ -61,7 +61,7 @@ END;
 $$
 LANGUAGE 'plpgsql';
 
-DROP TRIGGER IF EXISTS initgame;
+DROP TRIGGER IF EXISTS initgame ON rooms;
 CREATE TRIGGER initgame 
 AFTER UPDATE ON rooms
 FOR EACH ROW 
