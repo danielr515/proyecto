@@ -5,7 +5,6 @@ BEGIN
 		DECLARE team1 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p1team;
 		DECLARE team2 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p2team;
 		DECLARE character REFCURSOR;
-		UPDATE rooms SET status = 'PLAYING', turn = 0  WHERE id = new.id;
 		OPEN team1;
 			FETCH team1 INTO char1, char2, char3, char4;
 			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char1;
@@ -44,6 +43,7 @@ BEGIN
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
 		CLOSE team2;
+		UPDATE rooms SET status = 'PLAYING', turn = 0  WHERE id = new.id;
 		RETURN NEW;
 END;
 $$
