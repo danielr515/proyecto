@@ -148,15 +148,13 @@ CREATE TABLE battlehistory(
 	id SERIAL NOT NULL,
 	turn INT NOT NULL,
 	room INT NOT NULL,
-	p1char INT,
-	p2char INT,
-	p1move INT,
-	p2move INT,
+	player VARCHAR(20) NOT NULL
+	character INT,
+	action VARCHAR(10),
+	actionvalue INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(p1char) REFERENCES characterbattlehistory(id) ON DELETE CASCADE,
-	FOREIGN KEY(p2char) REFERENCES characterbattlehistory(id) ON DELETE CASCADE,
-	FOREIGN KEY(p1move) REFERENCES skills(id) ON DELETE CASCADE,
-	FOREIGN KEY(p2move) REFERENCES skills(id) ON DELETE CASCADE
+	FOREIGN KEY(player) REFERENCES players(uname) ON DELETE CASCADE,
+	FOREIGN KEY(character) REFERENCES characterbattlehistory(id) ON DELETE CASCADE
 );
 CREATE TABLE shop(
 	item INT,

@@ -55,7 +55,9 @@ BEGIN
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player2, char4, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
 		CLOSE team2;
-		UPDATE rooms SET status = 'PLAYING', turn = 0  WHERE id = new.id;
+		UPDATE rooms SET status = 'PLAYING', turn = 0  WHERE id = NEW.id;
+		INSERT INTO battlehistory (turn, room, player) VALUES (0, NEW.id, NEW.player1);
+		INSERT INTO battlehistory (turn, room, player) VALUES (0, NEW.id, NEW.player2);
 		RETURN NEW;
 END;
 $$
