@@ -70,7 +70,8 @@ $route['createRoom'] = 'ws/WS_RoomsController/createRoom';
 $route['enterRoom'] = 'ws/WS_RoomsController/enterRoom';
 $route['teamsByPlayer'] = 'ws/WS_TeamsController/teamsByPlayer';
 $route['setTeam'] = 'ws/WS_RoomsController/setTeam';
-
+$route['ownData'] = 'ws/WS_GameController/ownData';
+$route['enemyData'] = 'ws/WS_GameController/enemyData';
 
 
 
