@@ -31,6 +31,7 @@ class Game extends CI_Model {
 		" );
         $rows = $query->result_array();
         $rows[$index]['skills'] = array();
+        var_dump( $rows );
         foreach ( $rows as $index=>$row ) {
             array_push( $rows[$index]['skills'], $this->getCharacterSkills( $row['id'] ) );
         }
