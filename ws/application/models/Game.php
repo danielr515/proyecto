@@ -102,6 +102,7 @@ class Game extends CI_Model {
             'player1' => $player,
             'id' => $id
         );
+        var_dump( $where );
         $query = $this->db->get_where( 'rooms', $where );
         return $query->num_rows > 0;
     }
@@ -113,7 +114,6 @@ class Game extends CI_Model {
             $me => $player,
             'id' => $id
         );
-        var_dump( $where );
         $query = $this->db->get_where( 'rooms', $where );
         return $query->result_array()[0];
     }
