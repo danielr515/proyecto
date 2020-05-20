@@ -9,8 +9,8 @@ import { take, concatAll } from 'rxjs/operators';
   styleUrls: ['./game.page.scss'],
 })
 export class GamePage implements OnInit {
-  team$ = this.query.selectOwnData();
-  enemyTeam$ = this.query.selectEnemyData();
+  ownData$ = this.query.selectOwnData();
+  enemyData$ = this.query.selectEnemyData();
   gameStarted$ = this.query.selectGameStarted();
   interval1;
   constructor(
@@ -19,18 +19,16 @@ export class GamePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.service.isGameStarted();
     this.interval1 = setInterval(() => { this.isGameStarted(); }, 3000);
   }
 
   isGameStarted() {
-    this.gameStarted$ = this.query.selectGameStarted();
-    this.service.isGameStarted();
     this.gameStarted$.pipe(take(1)).subscribe(elem => {
       if (elem) {
         console.log('is game started');
         clearInterval(this.interval1);
         this.service.updateOwnData();
-        this.service.updateEnemyData();
       }
     });
   }
