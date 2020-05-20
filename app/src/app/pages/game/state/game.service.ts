@@ -45,7 +45,7 @@ export class GameService {
   selectCharacter(character, room, turn) {
     this.api.selectCharacter(character, room, turn, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-
+        this.updateOwnData();
       }
     });
   }

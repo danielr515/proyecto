@@ -13,6 +13,6 @@ export class SelectCharacterComponent implements OnInit {
   ngOnInit() { }
 
   onSelectCharacter(character) {
-    this.selectCharacter.emit(character.id);
+    this.selectCharacter.emit(character.tmpid);
   }
 }
