@@ -17,4 +17,8 @@ export class GameQuery extends Query<GameState> {
     return this.select(state => state.enemyData);
   }
 
+  selectGameStarted() {
+    return this.select(state => state.gameStarted);
+  }
+
 }

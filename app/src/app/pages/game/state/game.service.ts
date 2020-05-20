@@ -35,7 +35,13 @@ export class GameService {
     });
   }
 
-
+  isGameStarted() {
+    this.api.isGameStarted(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateGameStarted(response.body);
+      }
+    });
+  }
 
   getTokenAndUname() {
     const data = { token: '', uname: '' };

@@ -22,4 +22,11 @@ export class GameAction {
       enemyData
     });
   }
+
+  @action('updateGameStarted')
+  updateGameStarted(gameStarted: boolean) {
+    this.store.update({
+      gameStarted
+    });
+  }
 }

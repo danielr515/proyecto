@@ -53,6 +53,12 @@ class Game extends CI_Model {
         $query = $this->db->get_where( 'characterbattlehistory', $where );
         return $query->result_array()[0];
     }
+
+    public function isGameStarted( $player ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "SELECT id FROM rooms WHERE (player1='" . $player . "' OR player2='" . $player . "') AND status='PLAYING';" );
+        return $query->num_rows() > 0;
+    }
 }
 
 ?>

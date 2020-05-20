@@ -10,14 +10,25 @@ import { GameQuery } from './state/game.query';
 export class GamePage implements OnInit {
   team$ = this.query.selectOwnData();
   enemyTeam$ = this.query.selectEnemyData();
+  gameStarted = this.query.selectGameStarted();
+  interval1;
   constructor(
     private service: GameService,
     private query: GameQuery
   ) { }
 
   ngOnInit() {
+    this.interval1 = setInterval(this.isGameStarted, 3000);
     this.service.updateOwnData();
     this.service.updateEnemyData();
 
+  }
+
+  async  isGameStarted() {
+    if (await this.gameStarted) {
+      clearInterval(this.interval1);
+    } else {
+      this.service.isGameStarted();
+    }
   }
 }

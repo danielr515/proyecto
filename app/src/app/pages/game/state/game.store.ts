@@ -8,12 +8,14 @@ import { GameTeam } from './game.model';
 export interface GameState {
   ownData: any;
   enemyData: any;
+  gameStarted: boolean;
 }
 
 export function createInitialState() {
   return {
     ownData: {},
-    enemyData: {}
+    enemyData: {},
+    gameStarted: false
   };
 }
 
