@@ -81,8 +81,10 @@ class Game extends CI_Model {
         $idAndTurn = $this->getRoomId( $player );
         $enemyName = '';
         if ( $this->isPlayer1( $player, $idAndTurn['id'] ) ) {
+            var_dump( 'player1' );
             $enemyName = $this->getEnemyName( 'player1', 'player2', $player,  $idAndTurn['id'] );
         } else {
+            var_dump( 'player2' );
             $enemyName = $this->getEnemyName( 'player2', 'player1', $player,  $idAndTurn['id'] );
         }
         $data = array(
