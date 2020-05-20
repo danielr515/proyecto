@@ -61,7 +61,7 @@ class Game extends CI_Model {
             'turn' => $turn
         );
         $query = $this->db->get_where( 'battlehistory', $where );
-        return $query->result_array()[0];
+        return $query->result_array()[0]['character'];
     }
 
     public function isGameStarted( $player ) {
