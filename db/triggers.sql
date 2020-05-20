@@ -1,4 +1,3 @@
-DELIMITER $$
 DROP TRIGGER IF EXISTS initgame;
 CREATE TRIGGER initgame 
 AFTER UPDATE ON rooms
@@ -48,5 +47,4 @@ BEGIN
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
 		CLOSE team2;
-END $$
-DELIMITER ;
+END
