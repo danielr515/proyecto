@@ -148,7 +148,7 @@ class WS_GameController extends WS_MainController {
         } else {
             if ( $this->player->userAndTokenValid( $player, $token ) ) {
                 if ( $this->room->playedAlreadyInRoom( $player ) ) {
-                    $return = $this->game->selectCharacter( $player, $team, $turn, $character );
+                    $return = $this->game->selectCharacter( $player, $room, $turn, $character );
                     if ( $return ) {
                         $retmsg = 'Selección correcta';
                         $code = parent::HTTP_OK;
