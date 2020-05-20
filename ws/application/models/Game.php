@@ -112,7 +112,7 @@ class Game extends CI_Model {
             'id' => $id
         );
         $query = $this->db->get_where( 'rooms', $where );
-        return $query->result_array()[0];
+        return $query->result_array()[0][$enemy];
     }
 
     public function getEnemyActiveChar( $enemyName, $id, $turn ) {
