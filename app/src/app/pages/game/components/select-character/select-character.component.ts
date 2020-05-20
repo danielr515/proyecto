@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-select-character',
@@ -7,8 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SelectCharacterComponent implements OnInit {
   @Input() team;
+  @Output() selectCharacter: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() { }
 
+  onSelectCharacter(character) {
+    this.selectCharacter.emit(character.id);
+  }
 }

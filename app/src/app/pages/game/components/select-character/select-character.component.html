@@ -1,3 +1,8 @@
-<p>
-  select-character works!
-</p>
+<ion-card *ngFor="let character of team" (click)="onSelectCharacter(character)">
+  <ion-card-header>
+    <ion-img [src]="'../../../../../assets/chars/' + character.name + '.png'"></ion-img>
+  </ion-card-header>
+  <ion-card-content class="ion-text-center">
+    {{ character.name.split(',')[0] }}
+  </ion-card-content>
+</ion-card>

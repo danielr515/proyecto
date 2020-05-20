@@ -123,4 +123,49 @@ class WS_GameController extends WS_MainController {
         parent::setHeaders();
         $this->response( $retmsg, $code );
     }
+
+    public function selectCharacter_options() {
+        parent::setOptions();
+    }
+
+    public function selectCharacter_post() {
+        $character = $this->post( 'character' );
+        $player = $this->post( 'player' );
+        $room = $this->post( 'room' );
+
+        $turn = $this->post( 'turn' );
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $character == '' OR $room == '' OR $turn == '' ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = parent::HTTP_BAD_REQUEST;
+        } else {
+            if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                if ( $this->room->playedAlreadyInRoom( $player ) ) {
+                    $return = $this->game->selectCharacter( $player, $team, $turn, $character );
+                    if ( $return ) {
+                        $retmsg = 'Selección correcta';
+                        $code = parent::HTTP_OK;
+                    } else {
+                        $retmsg = 'Error al entrar';
+                        $code = parent::HTTP_INTERNAL_ERROR;
+                    }
+                } else {
+                    $retmsg = 'Este jugador no se encuentra en una sala en curso';
+                    $code = parent::HTTP_UNAUTHORIZED;
+                }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
+            }
+        }
+        parent::setHeaders();
+        $this->response( $retmsg, $code );
+    }
 }

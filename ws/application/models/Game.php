@@ -118,6 +118,12 @@ class Game extends CI_Model {
 		" );
         return $query->result_array()[0];
     }
+
+    public function selectCharacter( $player, $room, $turn, $character ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( 'UPDATE battlehistory SET character=' . $character . " WHERE player='" . $player . "' AND room=" . $room . ' AND turn=' . $turn . ';' );
+        return $query;
+    }
 }
 
 ?>

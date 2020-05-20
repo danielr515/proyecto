@@ -5,5 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <app-select-character [team]="ownData$ | async"></app-select-character>
+  <app-select-character [team]="(ownData$ | async).characters" *ngIf="!(ownData$ | async).currchar"
+    (selectCharacter)="selectCharacter($event)">
+  </app-select-character>
 </ion-content>
