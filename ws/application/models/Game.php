@@ -30,18 +30,27 @@ class Game extends CI_Model {
         $query = $this->db->query( "SELECT c.name, c.id, hp AS basehp, currhp, mana AS basemana, currmana , atk AS baseatk, curratk, def AS basedef, currdef, spatk AS basespatk, currspatk, spdef AS basespdef, currspdef, speed AS basespeed, currspeed  FROM characterbattlehistory AS ch LEFT JOIN characters AS c ON  ch.character = c.id WHERE player='" . $player . "' AND ch.room='" . $id . "';
 		" );
         $rows = $query->result_array();
-        $rows[$index]['skills'] = array();
-        var_dump( $rows );
+
         foreach ( $rows as $index=>$row ) {
-            array_push( $rows[$index]['skills'], $this->getCharacterSkills( $row['id'] ) );
+            $rows[$index]['skills'] = $this->getCharacterSkills( $row['id'] );
         }
         return $rows;
     }
 
     private function getCharacterSkills( $id ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $id . "';" );
-        return $query->result_array()[0];
+        $skills = array();
+        $skillsquery = $this->db->query( 'SELECT skill1, skill2, passive, ultimate FROM characters WHERE id='. $id .';' );
+        $skillsrows = $skillsquery->result_array()[0];
+        $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['skill1'] . "';" );
+        array_push( $skills, $query->result_array() );
+        $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['skill2'] . "';" );
+        array_push( $skills, $query->result_array() );
+        $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['passive'] . "';" );
+        array_push( $skills, $query->result_array() );
+        $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $skillsrows['ultimate'] . "';" );
+        array_push( $skills, $query->result_array() );
+        return $skills;
     }
 
     private function getActiveCharacter( $player, $room, $turn ) {
