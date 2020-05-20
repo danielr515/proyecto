@@ -91,6 +91,7 @@ class Game extends CI_Model {
             'name' => $enemyName,
             'currchar' => $this->getEnemyActiveChar( $enemyName, $idAndTurn['id'], $idAndTurn['turn'] )
         );
+        return $data;
     }
 
     public function isPlayer1( $player, $id ) {
