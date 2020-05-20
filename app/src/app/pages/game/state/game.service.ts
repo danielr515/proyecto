@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { RoomsApi } from './rooms.api';
-import { RoomsAction } from './rooms.actions';
-import { RoomsQuery } from './rooms.query';
+import { GameApi } from './game.api';
+import { GameAction } from './game.actions';
+import { GameQuery } from './game.query';
 import { HttpResponse } from '@angular/common/http';
 import { AppQuery } from 'src/core/state/app.query';
 import { take } from 'rxjs/operators';
@@ -10,37 +10,33 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class RoomsService {
+export class GameService {
   constructor(
-    private api: RoomsApi,
-    private action: RoomsAction,
-    private query: RoomsQuery,
+    private api: GameApi,
+    private action: GameAction,
+    private query: GameQuery,
     private appQuery: AppQuery,
     private router: Router
   ) { }
 
-  updateWaitingRooms() {
-    this.api.getWaitingRooms(this.getToken()).subscribe((response: HttpResponse<any>) => {
+  updateOwnData() {
+    this.api.getOwnData(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        this.action.updateWaitingRooms(response.body);
+        this.action.updateOwnData(response.body);
       }
     });
   }
 
-  createRoom(room) {
-    this.api.createRoom(room, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+  updateEnemyData() {
+    this.api.getEnemyData(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        this.router.navigate(['/select-team']);
+        this.action.updateEnemyData(response.body);
       }
     });
   }
-  enterRoom(id, passwd = '') {
-    this.api.enterRoom(id, passwd, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
-      if (response.ok) {
-        this.router.navigate(['/select-team']);
-      }
-    });
-  }
+
+
+
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {
