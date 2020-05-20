@@ -1,8 +1,6 @@
-DROP TRIGGER IF EXISTS initgame;
-CREATE TRIGGER initgame 
-AFTER UPDATE ON rooms
-FOR EACH ROW 
-WHEN ((OLD.p1team IS DISTINCT FROM NEW.p1team OR OLD.p2team IS DISTINCT FROM NEW.p2team) AND (NEW.p1team != null AND NEW.p2team != null) AND NEW.turn = null)
+CREATE OR REPLACE FUNCTION initgame_func()
+  RETURNS trigger AS
+$$
 BEGIN
 		DECLARE team1 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p1team;
 		DECLARE team2 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p2team;
@@ -47,4 +45,14 @@ BEGIN
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
 		CLOSE team2;
-END
+		RETURN NEW;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+DROP TRIGGER IF EXISTS initgame;
+CREATE TRIGGER initgame 
+AFTER UPDATE ON rooms
+FOR EACH ROW 
+WHEN ((OLD.p1team IS DISTINCT FROM NEW.p1team OR OLD.p2team IS DISTINCT FROM NEW.p2team) AND (NEW.p1team != null AND NEW.p2team != null) AND NEW.turn = null)
+EXECUTE PROCEDURE initgame_func();
