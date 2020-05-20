@@ -70,6 +70,12 @@ class Game extends CI_Model {
         return $query->num_rows() > 0;
     }
 
+    public function isSelectedCharacterEnemy( $player, $room, $turn ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "SELECT id FROM battlehistory WHERE player='" . $player . "' AND room=" . $room . ' AND turn=' . $turn . ';' );
+        return $query->num_rows() > 0;
+    }
+
     public function getEnemyCurrentRoomData( $player ) {
         $this->load->model( 'character' );
         $idAndTurn = $this->getRoomId( $player );

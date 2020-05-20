@@ -12,8 +12,11 @@ export class GamePage implements OnInit {
   ownData$ = this.query.selectOwnData();
   enemyData$ = this.query.selectEnemyData();
   gameStarted$ = this.query.selectGameStarted();
+  selectedCharacterEnemy$ = this.query.selectSelectedCharacterEnemy();
   intervalStart;
   intervalSelectChar;
+  room;
+  turn = 0;
   constructor(
     private service: GameService,
     private query: GameQuery
@@ -32,6 +35,13 @@ export class GamePage implements OnInit {
       if (elem) {
         clearInterval(this.intervalStart);
         this.service.updateOwnData();
+        this.ownData$.subscribe(elem => {
+          if (elem.currchar != null) {
+            this.room = elem.roomid;
+            this.turn = elem.turn;
+            this.intervalSelectChar = setInterval(() => { this.enemySelectedCharacter(); }, 3000);
+          }
+        });
       } else {
         this.service.isGameStarted();
       }
@@ -40,14 +50,23 @@ export class GamePage implements OnInit {
 
   selectCharacter(character) {
     this.ownData$.pipe(take(1)).subscribe(elem => {
+      this.room = elem.roomid;
+      this.turn = elem.turn;
       this.service.selectCharacter(character, elem.roomid, elem.turn);
+      this.service.isSelectedCharacterEnemy(elem.roomid, elem.turn);
     });
-
-    this.intervalSelectChar = setInterval(() => { this.enemySelectedCharacter(); }, 3000);
+    // this.intervalSelectChar = setInterval(() => { this.enemySelectedCharacter(); }, 3000);
   }
 
   enemySelectedCharacter() {
-
+    this.selectedCharacterEnemy$.pipe(take(1)).subscribe(elem => {
+      if (elem) {
+        clearInterval(this.intervalSelectChar);
+        this.service.updateEnemyData();
+      } else {
+        this.service.isSelectedCharacterEnemy(this.room, this.turn);
+      }
+    });
   }
 }
 

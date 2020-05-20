@@ -132,7 +132,6 @@ class WS_GameController extends WS_MainController {
         $character = $this->post( 'character' );
         $player = $this->post( 'player' );
         $room = $this->post( 'room' );
-
         $turn = $this->post( 'turn' );
 
         $authorization = $this->input->get_request_header( 'Authorization' );
@@ -158,6 +157,45 @@ class WS_GameController extends WS_MainController {
                     }
                 } else {
                     $retmsg = 'Este jugador no se encuentra en una sala en curso';
+                    $code = parent::HTTP_UNAUTHORIZED;
+                }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
+            }
+        }
+        parent::setHeaders();
+        $this->response( $retmsg, $code );
+    }
+
+    public function isSelectedCharacterEnemy_options() {
+        parent::setOptions();
+    }
+
+    public function isSelectedCharacterEnemy_get() {
+        $player = $this->get( 'player' );
+        $room = $this->get( 'room' );
+        $turn = $this->get( 'turn' );
+        $retmsg = '';
+        $code = '';
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $player == '' OR $room == '' OR $turn == '' ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = parent::HTTP_BAD_REQUEST;
+        } else {
+            if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                if ( $this->room->playedAlreadyInRoom( $player ) ) {
+                    $retmsg = $this->game->isSelectedCharacterEnemy( $player, $room, $turn );
+                    $code = parent::HTTP_OK;
+                } else {
+                    $retmsg = 'El jugador no se encuentra en partida';
                     $code = parent::HTTP_UNAUTHORIZED;
                 }
             } else {

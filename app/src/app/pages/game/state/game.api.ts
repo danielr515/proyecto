@@ -76,4 +76,22 @@ export class GameApi extends AppApi {
     return this.http.post(this.API + '/selectCharacter', { character, room, turn, player: player.uname }, options);
   }
 
+  isSelectedCharacterEnemy(room, turn, player) {
+    let headers = new HttpHeaders();
+    let queryParams = new HttpParams();
+
+    queryParams = this.appendQueryParams(queryParams, { player: player.uname, room, turn });
+    headers = headers.set('Authorization', 'Bearer ' + player.token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers,
+      params: queryParams
+    };
+
+    return this.http.get<HttpResponse<any>>(this.API + '/isSelectedCharacterEnemy', options);
+
+  }
+
 }
