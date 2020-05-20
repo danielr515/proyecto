@@ -82,18 +82,11 @@ class Game extends CI_Model {
         } else {
             $enemyName = $this->getEnemyName( 'player2', 'player1', $player, $id );
         }
-
-        if ( $idAndTurn['turn']>0 ) {
-            $enemyCurrChar['id'] = $this->getActiveCharacter( $enemyName, $idAndTurn['id'], $idAndTurn['turn'] );
-        } else {
-
-        }
-
         $data = array(
             'roomid' => $idAndTurn['id'],
             'turn' => $idAndTurn['turn'],
             'name' => $enemyName,
-            'currchar' =>
+            'currchar' => $this->getEnemyActiveChar( $enemyName, $idAndTurn['id'], $idAndTurn['turn'] )
         )
     }
 
@@ -119,10 +112,11 @@ class Game extends CI_Model {
         return $query->result_array()[0];
     }
 
-    public function getEnemyActiveChar( $enemyName, $id ) {
+    public function getEnemyActiveChar( $enemyName, $id, $turn, ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT c.name, c.id, hp AS basehp, currhp, mana AS basemana, currmana FROM characterbattlehistory AS ch LEFT JOIN characters AS c ON  ch.character = c.id WHERE player='" . $enemyName . "' AND ch.room='" . $id . "';
+        $query = $this->db->query( "SELECT c.name, c.id, hp AS basehp, currhp, mana AS basemana, currmana FROM characterbattlehistory AS ch LEFT JOIN characters AS c ON  ch.character = c.id LEFT JOIN battlehistory AS bh ON ch.character = bh.character WHERE player='" . $enemyName . "' AND ch.room=" . $id . ' AND ch.turn=' . $turn . ";
 		" );
+        return $query->result_array()[0];
     }
 }
 
