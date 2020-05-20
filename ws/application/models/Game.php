@@ -81,10 +81,8 @@ class Game extends CI_Model {
         $idAndTurn = $this->getRoomId( $player );
         $enemyName = '';
         if ( $this->isPlayer1( $player, $idAndTurn['id'] ) ) {
-            var_dump( 'player1' );
             $enemyName = $this->getEnemyName( 'player1', 'player2', $player,  $idAndTurn['id'] );
         } else {
-            var_dump( 'player2' );
             $enemyName = $this->getEnemyName( 'player2', 'player1', $player,  $idAndTurn['id'] );
         }
         $data = array(
@@ -102,9 +100,8 @@ class Game extends CI_Model {
             'player1' => $player,
             'id' => $id
         );
-        var_dump( $where );
         $query = $this->db->get_where( 'rooms', $where );
-        return $query->num_rows > 0;
+        return $query->num_rows() > 0;
     }
 
     public function getEnemyName( $me, $enemy, $player, $id ) {
