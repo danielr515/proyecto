@@ -1,44 +1,45 @@
 CREATE OR REPLACE FUNCTION initgame_func()
   RETURNS trigger AS
 $$
-BEGIN
-		DECLARE team1 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p1team;
-		DECLARE team2 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p2team;
-		DECLARE character REFCURSOR;
+DECLARE 
+			team1 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p1team;
+			team2 CURSOR FOR SELECT char1, char2, char3, char4 FROM teams WHERE id = NEW.p2team;
+			character CURSOR (charid int) FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = charid;
+BEGIN	
 		OPEN team1;
 			FETCH team1 INTO char1, char2, char3, char4;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char1;
+			OPEN character(char1);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char2;
+			OPEN character(char2);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char3;
+			OPEN character(char3);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char4;
+			OPEN character(char4);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
 		CLOSE team1;
 		OPEN team2;
 			FETCH team2 INTO char1, char2, char3, char4;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char1;
+			OPEN character(char1);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char2;
+			OPEN character(char2);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char3;
+			OPEN character(char3);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
-			OPEN character FOR SELECT hp, mana, atk, def, spatk, spdef, speed FROM characters WHERE id = char4;
+			OPEN character(char4);
 				FETCH character INTO hp, mana, atk, def, spatk, spdef, speed;
 				INSERT INTO characterbattlehistory (turn, room, player, character, currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed) VALUES(0, NEW.id, NEW.player1, hp, mana, atk, def, spatk, spdef, speed);
 			CLOSE character;
