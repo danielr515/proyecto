@@ -39,7 +39,7 @@ class Game extends CI_Model {
 
     private function getCharacterSkills( $id ) {
         $this->load->database( 'rpg' );
-        $query = $this->db->query( "SELECT s.id, s.name, t.name, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $id . "';" );
+        $query = $this->db->query( "SELECT s.id, s.name, t.name AS type, cost FROM skills AS s LEFT JOIN types AS t ON s.type = t.id WHERE s.id='" . $id . "';" );
         return $query->result_array()[0];
     }
 
