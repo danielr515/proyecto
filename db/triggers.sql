@@ -116,7 +116,7 @@ DECLARE
 			p1newmana int;
 			p2newmana int;
 BEGIN	
-		UPDATE rooms SET p1status = '', p2status = '',  turn = NEW.turn+1 WHERE id = NEW.id;
+		UPDATE rooms SET turn = NEW.turn+1 WHERE id = NEW.id;
 		OPEN battlehistory(NEW.player1);
 			FETCH battlehistory INTO p1charid, p1action, p1actionvalue;
 		CLOSE battlehistory;
