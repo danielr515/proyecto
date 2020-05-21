@@ -79,16 +79,16 @@ class Game extends CI_Model {
     public function getEnemyCurrentRoomData( $player, $room, $turn ) {
         $this->load->model( 'character' );
         $enemyName = '';
-        if ( $this->isPlayer1( $player, $id ) ) {
-            $enemyName = $this->getEnemyName( 'player1', 'player2', $player,  $id );
+        if ( $this->isPlayer1( $player, $room ) ) {
+            $enemyName = $this->getEnemyName( 'player1', 'player2', $player,  $room );
         } else {
-            $enemyName = $this->getEnemyName( 'player2', 'player1', $player,  $id );
+            $enemyName = $this->getEnemyName( 'player2', 'player1', $player,  $room );
         }
         $data = array(
-            'roomid' => $id,
+            'roomid' => $room,
             'turn' => $turn,
             'name' => $enemyName,
-            'currchar' => $this->getEnemyActiveChar( $enemyName, $id, $turn )
+            'currchar' => $this->getEnemyActiveChar( $enemyName, $room, $turn )
         );
         return $data;
     }
