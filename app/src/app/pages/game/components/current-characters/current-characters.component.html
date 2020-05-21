@@ -3,11 +3,11 @@
   <ion-img [src]="'../../../../../assets/chars/' + ownCurrChar.name + '.png'">
   </ion-img>
   <div class="hpmanacontainer">
-    <div class="hp" [style.width]="(ownCurrChar.basehp / ownCurrChar.currhp * 100)+'%'">
+    <div class="hp" [style.width]="(ownCurrChar.currhp / ownCurrChar.basehp * 100)+'%'">
     </div>
   </div>
   <div class="hpmanacontainer">
-    <div class="mana" [style.width]="(ownCurrChar.basemana / ownCurrChar.currmana * 100)+'%'">
+    <div class="mana" [style.width]="(ownCurrChar.currmana / ownCurrChar.basemana * 100)+'%'">
     </div>
   </div>
 
@@ -16,11 +16,11 @@
   <p class="ion-text-center">{{ enemyData.currchar.name.split(',')[0] }}</p>
   <ion-img [src]="'../../../../../assets/chars/' + enemyData.currchar.name + '.png'"></ion-img>
   <div class="hpmanacontainer">
-    <div class="hp" [style.width]="(enemyData.currchar.basehp / enemyData.currchar.currhp * 100)+'%'">
+    <div class="hp" [style.width]="(enemyData.currchar.currhp / enemyData.currchar.basehp * 100)+'%'">
     </div>
   </div>
   <div class="hpmanacontainer">
-    <div class="mana" [style.width]="(enemyData.currchar.basemana / enemyData.currchar.currmana * 100)+'%'">
+    <div class="mana" [style.width]="(enemyData.currchar.currmana / enemyData.currchar.basemana * 100)+'%'">
     </div>
   </div>
 </div>
