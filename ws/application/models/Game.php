@@ -152,11 +152,11 @@ class Game extends CI_Model {
     public function resetAction( $player, $room, $turn ) {
         $this->load->database( 'rpg' );
         if ( $this->isPlayer1( $player, $room ) ) {
-            $query2 = $this->db->query( "UPDATE rooms SET p1status='' WHERE player1='" . $player . "' AND id=" . $room . ';' );
+            $query = $this->db->query( "UPDATE rooms SET p1status='' WHERE player1='" . $player . "' AND id=" . $room . ';' );
         } else {
-            $query2 = $this->db->query( "UPDATE rooms SET p2status='' WHERE player2='" . $player . "' AND id=" . $room . ';' );
+            $query = $this->db->query( "UPDATE rooms SET p2status='' WHERE player2='" . $player . "' AND id=" . $room . ';' );
         }
-        return $query && $query2;
+        return $query;
     }
 }
 
