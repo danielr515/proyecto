@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from './state/game.service';
 import { GameQuery } from './state/game.query';
-import { take, concatAll } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
+import { ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -9,10 +10,12 @@ import { take, concatAll } from 'rxjs/operators';
   styleUrls: ['./game.page.scss'],
 })
 export class GamePage implements OnInit {
+  private destroyedGameStarted$: ReplaySubject<boolean> = new ReplaySubject(1);
   ownData$ = this.query.selectOwnData();
   enemyData$ = this.query.selectEnemyData();
   gameStarted$ = this.query.selectGameStarted();
   selectedCharacterEnemy$ = this.query.selectSelectedCharacterEnemy();
+  selectedActionEnemy$ = this.query.selectSelectedActionEnemy();
   intervalStart;
   intervalSelectChar;
   intervalSelectAction;
@@ -36,13 +39,15 @@ export class GamePage implements OnInit {
       if (elem) {
         clearInterval(this.intervalStart);
         this.service.updateOwnData();
-        this.ownData$.subscribe(elem => {
+        this.ownData$.pipe(takeUntil(this.destroyedGameStarted$)).subscribe(elem => {
           if (elem.currchar != null) {
             this.room = elem.roomid;
             this.turn = elem.turn;
+            this.destroyedGameStarted$.next(true);
+            this.destroyedGameStarted$.complete();
             this.intervalSelectChar = setInterval(() => { this.enemySelectedCharacter(); }, 3000);
           }
-        });
+        })
       } else {
         this.service.isGameStarted();
       }
@@ -81,10 +86,20 @@ export class GamePage implements OnInit {
   }
   selectAction(action) {
     this.service.selectAction(action, this.room, this.turn);
+    this.service.isSelectedActionEnemy(this.room, this.turn);
     this.intervalSelectAction = setInterval(() => { this.enemySelectedAction(); }, 3000);
   }
   enemySelectedAction() {
-    this.service.isSelectedActionEnemy(this.room, this.turn);
+
+    this.selectedActionEnemy$.pipe(take(1)).subscribe(elem => {
+      if (elem) {
+        clearInterval(this.intervalSelectAction);
+        this.service.updateOwnData();
+        this.service.updateEnemyData(this.room, this.turn);
+      } else {
+        this.service.isSelectedActionEnemy(this.room, this.turn);
+      }
+    });
   }
 }
 

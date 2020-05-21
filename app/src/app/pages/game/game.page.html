@@ -16,6 +16,7 @@
     [enemyData]="enemyData$ | async" *ngIf="(ownData$ | async).currchar && (enemyData$ | async).currchar">
   </app-current-characters>
   <app-skills [ownData]="ownData$ | async" [ownCurrChar]="getCurrentCharacter()"
-    *ngIf="(ownData$ | async).currchar && (enemyData$ | async).currchar" (skillSelected)="selectAction($event)">
+    *ngIf="(ownData$ | async).currchar && (enemyData$ | async).currchar && (selectedActionEnemy$ | async)"
+    (skillSelected)="selectAction($event)">
   </app-skills>
 </ion-content>
