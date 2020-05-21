@@ -125,10 +125,12 @@ BEGIN
 		CLOSE battlehistory;
 		CASE p1action
 		      WHEN 'SKILL' THEN
+		      	SELECT 'P1SKILL';
 		      	OPEN skill(p1actionvalue);
 					FETCH skill INTO p1mode, p1damage, p1cost, p1type;
 				CLOSE skill;
 		      WHEN 'BASIC' THEN
+		      	SELECT 'P1BASIC';
 		      	p1damage:=50;
 		      	p1mode:='ATK';
 		      ELSE
