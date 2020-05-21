@@ -15,9 +15,9 @@ export class SkillsComponent implements OnInit {
   }
 
   useSkill(skillid) {
-    this.skillSelected.emit({ actionvalue: skillid, action: 'SKILL' });
+    this.skillSelected.emit({ character: this.ownCurrChar.tmpid, actionvalue: skillid, action: 'SKILL' });
   }
   useBasic() {
-    this.skillSelected.emit({ actionvalue: 0, action: 'BASIC' });
+    this.skillSelected.emit({ character: this.ownCurrChar.tmpid, actionvalue: 0, action: 'BASIC' });
   }
 }
