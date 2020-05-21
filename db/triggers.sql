@@ -133,8 +133,8 @@ BEGIN
 		      	p1mode:='ATK';
 		END CASE;
 		OPEN stats(p1charid, NEW.player1);
-			FETCH p1charid INTO p1hp, p1mana, p1atk, p1def, p1spatk, p1spdef, p1speed;
-		CLOSE p1charid;
+			FETCH stats INTO p1hp, p1mana, p1atk, p1def, p1spatk, p1spdef, p1speed;
+		CLOSE stats;
 		OPEN basehp(p1charid);
 			FETCH basehp INTO p1maxhp;
 		CLOSE basehp;
@@ -148,8 +148,8 @@ BEGIN
 		      	p2mode:='ATK';
 		END CASE;
 		OPEN stats(p2charid, NEW.player2);
-			FETCH p2charid INTO p2hp, p2mana, p2atk, p2def, p2spatk, p2spdef, p2speed;
-		CLOSE p2charid;
+			FETCH stats INTO p2hp, p2mana, p2atk, p2def, p2spatk, p2spdef, p2speed;
+		CLOSE stats;
 		OPEN basehp(p2charid);
 			FETCH basehp INTO p2maxhp;
 		CLOSE basehp;
