@@ -155,6 +155,12 @@ BEGIN
 		OPEN basehp(p2charid);
 			FETCH basehp INTO p2basehp;
 		CLOSE basehp;
+		
+		p1newhp = p1hp;
+		p1newmana = p1mana;
+		p2newhp = p2hp;
+		p2newmana = p2mana;
+		
 
 		IF p1speed>=p2speed THEN
 			CASE p1mode
