@@ -18,4 +18,8 @@ export class TeamsPageComponent implements OnInit {
   ngOnInit() {
     this.service.updateTeams();
   }
+
+  addTeam() {
+    console.log('Add team');
+  }
 }

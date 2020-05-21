@@ -57,7 +57,6 @@ export class AppService {
   register(user) {
     this.api.register(user).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        console.log(response);
         this.login(user);
       }
     });

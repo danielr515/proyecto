@@ -33,14 +33,11 @@ export class CreateRoomPageComponent implements OnInit {
   createRoom() {
     if (this.form.valid) {
       if (this.form.value.type === 'PRIVATE' && this.form.value.passwd !== '') {
-        console.log('PRIVATE');
         this.service.createRoom(this.form.value);
       } else if (this.form.value.type === 'PUBLIC') {
-        console.log('PUBLIC');
         this.form.patchValue({ passwd: '' });
         this.service.createRoom(this.form.value);
       }
     }
-    console.log(this.form.value);
   }
 }

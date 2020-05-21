@@ -228,8 +228,8 @@ BEGIN
 			END CASE;
 		END IF;
 
-		UPDATE characterbattlehistory SET currhp = p1newhp, currmana = p1newmana, turn = NEW.turn+1 WHERE room = NEW.id AND player = NEW.player1 AND id = p1charid;
-		UPDATE characterbattlehistory SET currhp = p2newhp, currmana = p2newmana, turn = NEW.turn+1 WHERE room = NEW.id AND player = NEW.player2 AND id = p2charid;
+		UPDATE characterbattlehistory SET currhp = p1newhp, currmana = p1newmana WHERE room = NEW.id AND player = NEW.player1 AND id = p1charid;
+		UPDATE characterbattlehistory SET currhp = p2newhp, currmana = p2newmana WHERE room = NEW.id AND player = NEW.player2 AND id = p2charid;
 		UPDATE battlehistory SET turn=NEW.turn+1, action = '', actionvalue = null WHERE room = NEW.id AND player = NEW.player1 AND character = p1charid;
 		UPDATE battlehistory SET turn=NEW.turn+1, action = '', actionvalue = null WHERE room = NEW.id AND player = NEW.player2 AND character = p2charid;
 		IF p1newhp<=0 THEN
@@ -238,6 +238,7 @@ BEGIN
 		IF p2newhp<=0 THEN
 			UPDATE battlehistory SET character = null WHERE room = NEW.id AND player = NEW.player1 AND character = p2charid;
 		END IF;
+		UPDATE characterbattlehistory SET turn = NEW.turn+1 WHERE room = NEW.id;
 		RETURN NEW;
 END;
 $$
