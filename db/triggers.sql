@@ -80,7 +80,7 @@ DECLARE
 			battlehistory CURSOR (playername VARCHAR(50)) FOR SELECT character, action, actionvalue FROM battlehistory WHERE player = playername AND room = NEW.id;
 			skill CURSOR (skillid int) FOR SELECT mode, damage, cost, type FROM skills WHERE id=skillid;
 			stats CURSOR (charid int, playername VARCHAR(50)) FOR SELECT currhp, currmana, curratk, currdef, currspatk, currspdef, currspeed FROM characterbattlehistory WHERE id = charid AND room = NEW.id AND player = playername;
-			basehp CURSOR (charid int) FOR SELECT hp FROM characters WHERE id = charid;
+			basehp CURSOR (charid int) FOR SELECT hp FROM characters WHERE id = (SELECT character FROM characterbattlehistory WHERE id = charid);
 			p1basehp int;
 			p2basehp int;
 			p1charid int;
@@ -220,8 +220,8 @@ BEGIN
 			END CASE;
 		END IF;
 
-		UPDATE characterbattlehistory SET currhp = p1newhp, currmana = p1newmana, turn = NEW.turn+1 WHERE room = NEW.id AND player = NEW.player1 AND character = p1charid;
-		UPDATE characterbattlehistory SET currhp = p2newhp, currmana = p2newmana, turn = NEW.turn+1 WHERE room = NEW.id AND player = NEW.player2 AND character = p2charid;
+		UPDATE characterbattlehistory SET currhp = p1newhp, currmana = p1newmana, turn = NEW.turn+1 WHERE room = NEW.id AND player = NEW.player1 AND id = p1charid;
+		UPDATE characterbattlehistory SET currhp = p2newhp, currmana = p2newmana, turn = NEW.turn+1 WHERE room = NEW.id AND player = NEW.player2 AND id = p2charid;
 		UPDATE battlehistory SET turn=NEW.turn+1, action = '', actionvalue = null WHERE room = NEW.id AND player = NEW.player1 AND character = p1charid;
 		UPDATE battlehistory SET turn=NEW.turn+1, action = '', actionvalue = null WHERE room = NEW.id AND player = NEW.player2 AND character = p2charid;
 		IF p1newhp<=0 THEN
