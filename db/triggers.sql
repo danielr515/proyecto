@@ -161,14 +161,14 @@ BEGIN
 		IF p1speed>=p2speed THEN
 			CASE p1mode
 				WHEN 'ATK' THEN
-					SET p1newmana = SELECT p1mana - p1cost;
-					SET p2newhp = SELECT p2hp + p2spdef - p1spatk - p1damage;
+					SET p1newmana = p1mana-p1cost;
+					SET p2newhp = p2hp+p2def-p1atk-p1damage;
 				WHEN 'SPATK' THEN
-					SET p1newmana = SELECT p1mana - p1cost;
-					SET p2newhp = SELECT p2hp + p2spdef - p1spatk - p1damage;
+					SET p1newmana = p1mana-p1cost;
+					SET p2newhp = p2hp+p2spdef-p1spatk-p1damage;
 				WHEN 'HEAL' THEN
-					SET p1newmana = SELECT p1mana - p1cost;
-					SET p1newhp = SELECT p1hp + p1damage;
+					SET p1newmana = p1mana-p1cost;
+					SET p1newhp = p1hp+p1damage;
 					IF p1newhp>p1basehp THEN
 						SET p1newhp = p1basehp;
 					END IF;
@@ -177,14 +177,14 @@ BEGIN
 			IF p2newhp>0 THEN
 				CASE p2mode
 					WHEN 'ATK' THEN
-						SET p2newmana = SELECT p2mana - p2cost;
-						SET p1newhp = SELECT  p1hp + p1spdef - p2spatk - p2damage;
+						SET p2newmana = p2mana-p2cost;
+						SET p1newhp = p1hp+p1def-p2atk-p2damage;
 					WHEN 'SPATK' THEN
-						SET p2newmana = SELECT p1mana - p1cost;
-						SET p1newhp = SELECT p1hp + p1spdef - p2spatk - p2damage;
+						SET p2newmana = p1mana-p1cost;
+						SET p1newhp = p1hp+p1spdef-p2spatk-p2damage;
 					WHEN 'HEAL' THEN
-						SET p2newmana = SELECT p2mana - p2cost;
-						SET p2newhp = SELECT p2hp + p2damage;
+						SET p2newmana = p2mana-p2cost;
+						SET p2newhp = p2hp+p2damage;
 						IF p2newhp>p2basehp THEN
 							SET p2newhp = p2basehp;
 						END IF;
@@ -194,14 +194,14 @@ BEGIN
 		ELSE		
 			CASE p2mode
 					WHEN 'ATK' THEN
-						SET p2newmana = SELECT p2mana - p2cost;
-						SET p1newhp = SELECT  p1hp + p1spdef - p2spatk - p2damage;
+						SET p2newmana = p2mana - p2cost;
+						SET p1newhp = p1hp + p1def - p2atk - p2damage;
 					WHEN 'SPATK' THEN
-						SET p2newmana = SELECT p1mana - p1cost;
-						SET p1newhp = SELECT p1hp + p1spdef - p2spatk - p2damage;
+						SET p2newmana = p1mana - p1cost;
+						SET p1newhp = p1hp + p1spdef - p2spatk - p2damage;
 					WHEN 'HEAL' THEN
-						SET p2newmana = SELECT p2mana - p2cost;
-						SET p2newhp = SELECT p2hp + p2damage;
+						SET p2newmana = p2mana - p2cost;
+						SET p2newhp = p2hp + p2damage;
 						IF p2newhp>p2basehp THEN
 							SET p2newhp = p2basehp;
 						END IF;
@@ -210,14 +210,14 @@ BEGIN
 			IF p1newhp>0 THEN
 				CASE p1mode
 					WHEN 'ATK' THEN
-						SET p1newmana = SELECT p1mana - p1cost;
-						SET p2newhp = SELECT p2hp + p2spdef - p1spatk - p1damage;
+						SET p1newmana = p1mana - p1cost;
+						SET p2newhp = p2hp + p2def - p1atk - p1damage;
 					WHEN 'SPATK' THEN
-						SET p1newmana = SELECT p1mana - p1cost;
-						SET p2newhp = SELECT SELECT p2hp + p2spdef - p1spatk - p1damage;
+						SET p1newmana = p1mana - p1cost;
+						SET p2newhp = p2hp + p2spdef - p1spatk - p1damage;
 					WHEN 'HEAL' THEN
-						SET p1newmana = SELECT p1mana - p1cost;
-						SET p1newhp = SELECT p1hp + p1damage;
+						SET p1newmana = p1mana - p1cost;
+						SET p1newhp = p1hp + p1damage;
 						IF p1newhp>p1basehp THEN
 							SET p1newhp = p1basehp;
 						END IF;
