@@ -131,6 +131,7 @@ BEGIN
 		      WHEN 'BASIC' THEN
 		      	p1damage=50;
 		      	p1mode='ATK';
+		      	p1cost=0;
 		      ELSE
 		END CASE;
 		OPEN stats(p1charid, NEW.player1);
@@ -147,6 +148,7 @@ BEGIN
 		      WHEN 'BASIC' THEN 
 					p2damage=50;
 		      		p2mode='ATK';
+		      		p2cost=0;
 		      ELSE
 		END CASE;
 		OPEN stats(p2charid, NEW.player2);
@@ -155,7 +157,7 @@ BEGIN
 		OPEN basehp(p2charid);
 			FETCH basehp INTO p2basehp;
 		CLOSE basehp;
-		
+
 		p1newhp = p1hp;
 		p1newmana = p1mana;
 		p2newhp = p2hp;
