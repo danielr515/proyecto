@@ -131,6 +131,7 @@ BEGIN
 		      WHEN 'BASIC' THEN
 		      	p1damage:=50;
 		      	p1mode:='ATK';
+		      ELSE
 		END CASE;
 		OPEN stats(p1charid, NEW.player1);
 			FETCH stats INTO p1hp, p1mana, p1atk, p1def, p1spatk, p1spdef, p1speed;
@@ -146,6 +147,7 @@ BEGIN
 		      WHEN 'BASIC' THEN 
 				p2damage:=50;
 		      	p2mode:='ATK';
+		      ELSE
 		END CASE;
 		OPEN stats(p2charid, NEW.player2);
 			FETCH stats INTO p2hp, p2mana, p2atk, p2def, p2spatk, p2spdef, p2speed;
@@ -168,6 +170,7 @@ BEGIN
 					IF p1newhp>p1basehp THEN
 						p1newhp := p1basehp;
 					END IF;
+				ELSE
 			END CASE;
 			IF p2newhp>0 THEN
 				CASE p2mode
@@ -183,6 +186,7 @@ BEGIN
 						IF p2newhp>p2basehp THEN
 							p2newhp := p2basehp;
 						END IF;
+					ELSE
 				END CASE;
 			END IF;
 		ELSE		
@@ -199,6 +203,7 @@ BEGIN
 						IF p2newhp>p2basehp THEN
 							p2newhp := p2basehp;
 						END IF;
+					ELSE
 				END CASE;
 			IF p1newhp>0 THEN
 				CASE p1mode
@@ -214,6 +219,7 @@ BEGIN
 						IF p1newhp>p1basehp THEN
 							p1newhp := p1basehp;
 						END IF;
+					ELSE
 				END CASE;
 			END IF;
 		END IF;
