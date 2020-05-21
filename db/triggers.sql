@@ -125,7 +125,7 @@ BEGIN
 		CLOSE battlehistory;
 		CASE p1action
 		      WHEN 'SKILL' THEN
-		      	OPEN skill(p1actionvalue, NEW.player1);
+		      	OPEN skill(p1actionvalue);
 					FETCH skill INTO p1mode, p1damage, p1cost, p1type;
 				CLOSE skill;
 		      WHEN 'BASIC' THEN
@@ -140,7 +140,7 @@ BEGIN
 		CLOSE basehp;
 		CASE p2action
 		      WHEN 'SKILL' THEN
-		      	OPEN skill(p2actionvalue, NEW.player2);
+		      	OPEN skill(p2actionvalue);
 					FETCH skill INTO p2mode, p2damage, p2cost, p2type;
 				CLOSE skill;
 		      WHEN 'BASIC' THEN 
