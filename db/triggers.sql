@@ -172,56 +172,52 @@ BEGIN
 					END IF;
 				ELSE
 			END CASE;
-			IF p2newhp>0 THEN
-				CASE p2mode
-					WHEN 'ATK' THEN
-						p2newmana = p2mana - p2cost;
-						p1newhp = p1hp + p1def - p2atk - p2damage;
-					WHEN 'SPATK' THEN
-						p2newmana = p1mana - p1cost;
-						p1newhp = p1hp + p1spdef - p2spatk - p2damage;
-					WHEN 'HEAL' THEN
-						p2newmana = p2mana - p2cost;
-						p2newhp = p2hp + p2damage;
-						IF p2newhp>p2basehp THEN
-							p2newhp = p2basehp;
-						END IF;
-					ELSE
-				END CASE;
-			END IF;
+			CASE p2mode
+				WHEN 'ATK' THEN
+					p2newmana = p2mana - p2cost;
+					p1newhp = p1hp + p1def - p2atk - p2damage;
+				WHEN 'SPATK' THEN
+					p2newmana = p1mana - p1cost;
+					p1newhp = p1hp + p1spdef - p2spatk - p2damage;
+				WHEN 'HEAL' THEN
+					p2newmana = p2mana - p2cost;
+					p2newhp = p2hp + p2damage;
+					IF p2newhp>p2basehp THEN
+						p2newhp = p2basehp;
+					END IF;
+				ELSE
+			END CASE;
 		ELSE		
 			CASE p2mode
-					WHEN 'ATK' THEN
-						p2newmana = p2mana - p2cost;
-						p1newhp = p1hp + p1def - p2atk - p2damage;
-					WHEN 'SPATK' THEN
-						p2newmana = p1mana - p1cost;
-						p1newhp = p1hp + p1spdef - p2spatk - p2damage;
-					WHEN 'HEAL' THEN
-						p2newmana = p2mana - p2cost;
-						p2newhp = p2hp + p2damage;
-						IF p2newhp>p2basehp THEN
-							p2newhp = p2basehp;
-						END IF;
-					ELSE
-				END CASE;
-			IF p1newhp>0 THEN
-				CASE p1mode
-					WHEN 'ATK' THEN
-						p1newmana = p1mana - p1cost;
-						p2newhp = p2hp + p2def - p1atk - p1damage;
-					WHEN 'SPATK' THEN
-						p1newmana = p1mana - p1cost;
-						p2newhp = p2hp + p2spdef - p1spatk - p1damage;
-					WHEN 'HEAL' THEN
-						p1newmana = p1mana - p1cost;
-						p1newhp = p1hp + p1damage;
-						IF p1newhp>p1basehp THEN
-							p1newhp = p1basehp;
-						END IF;
-					ELSE
-				END CASE;
-			END IF;
+				WHEN 'ATK' THEN
+					p2newmana = p2mana - p2cost;
+					p1newhp = p1hp + p1def - p2atk - p2damage;
+				WHEN 'SPATK' THEN
+					p2newmana = p1mana - p1cost;
+					p1newhp = p1hp + p1spdef - p2spatk - p2damage;
+				WHEN 'HEAL' THEN
+					p2newmana = p2mana - p2cost;
+					p2newhp = p2hp + p2damage;
+					IF p2newhp>p2basehp THEN
+						p2newhp = p2basehp;
+					END IF;
+				ELSE
+			END CASE;
+			CASE p1mode
+				WHEN 'ATK' THEN
+					p1newmana = p1mana - p1cost;
+					p2newhp = p2hp + p2def - p1atk - p1damage;
+				WHEN 'SPATK' THEN
+					p1newmana = p1mana - p1cost;
+					p2newhp = p2hp + p2spdef - p1spatk - p1damage;
+				WHEN 'HEAL' THEN
+					p1newmana = p1mana - p1cost;
+					p1newhp = p1hp + p1damage;
+					IF p1newhp>p1basehp THEN
+						p1newhp = p1basehp;
+					END IF;
+				ELSE
+			END CASE;
 		END IF;
 
 		UPDATE characterbattlehistory SET currhp = p1newhp, currmana = p1newmana, turn = NEW.turn+1 WHERE room = NEW.id AND player = NEW.player1 AND character = p1charid;
