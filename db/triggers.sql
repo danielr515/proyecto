@@ -147,8 +147,8 @@ BEGIN
 					FETCH skill INTO p2mode, p2damage, p2cost, p2type;
 				CLOSE skill;
 		      WHEN 'BASIC' THEN 
-				SET p2damage=50;
-		      	SET p2mode='ATK';
+					p2damage=50;
+		      		p2mode='ATK';
 		      ELSE
 		END CASE;
 		OPEN stats(p2charid, NEW.player2);
@@ -161,32 +161,32 @@ BEGIN
 		IF p1speed>=p2speed THEN
 			CASE p1mode
 				WHEN 'ATK' THEN
-					SET p1newmana = p1mana-p1cost;
-					SET p2newhp = p2hp+p2def-p1atk-p1damage;
+						p1newmana = p1mana - p1cost;
+						p2newhp = p2hp + p2def - p1atk - p1damage;
 				WHEN 'SPATK' THEN
-					SET p1newmana = p1mana-p1cost;
-					SET p2newhp = p2hp+p2spdef-p1spatk-p1damage;
+						p1newmana = p1mana - p1cost;
+						p2newhp = p2hp + p2spdef - p1spatk - p1damage;
 				WHEN 'HEAL' THEN
-					SET p1newmana = p1mana-p1cost;
-					SET p1newhp = p1hp+p1damage;
+						p1newmana = p1mana - p1cost;
+						p1newhp = p1hp + p1damage;
 					IF p1newhp>p1basehp THEN
-						SET p1newhp = p1basehp;
+							p1newhp = p1basehp;
 					END IF;
 				ELSE
 			END CASE;
 			IF p2newhp>0 THEN
 				CASE p2mode
 					WHEN 'ATK' THEN
-						SET p2newmana = p2mana-p2cost;
-						SET p1newhp = p1hp+p1def-p2atk-p2damage;
+						p2newmana = p2mana - p2cost;
+						p1newhp = p1hp + p1def - p2atk - p2damage;
 					WHEN 'SPATK' THEN
-						SET p2newmana = p1mana-p1cost;
-						SET p1newhp = p1hp+p1spdef-p2spatk-p2damage;
+						p2newmana = p1mana - p1cost;
+						p1newhp = p1hp + p1spdef - p2spatk - p2damage;
 					WHEN 'HEAL' THEN
-						SET p2newmana = p2mana-p2cost;
-						SET p2newhp = p2hp+p2damage;
+						p2newmana = p2mana - p2cost;
+						p2newhp = p2hp + p2damage;
 						IF p2newhp>p2basehp THEN
-							SET p2newhp = p2basehp;
+							p2newhp = p2basehp;
 						END IF;
 					ELSE
 				END CASE;
@@ -194,32 +194,32 @@ BEGIN
 		ELSE		
 			CASE p2mode
 					WHEN 'ATK' THEN
-						SET p2newmana = p2mana - p2cost;
-						SET p1newhp = p1hp + p1def - p2atk - p2damage;
+						p2newmana = p2mana - p2cost;
+						p1newhp = p1hp + p1def - p2atk - p2damage;
 					WHEN 'SPATK' THEN
-						SET p2newmana = p1mana - p1cost;
-						SET p1newhp = p1hp + p1spdef - p2spatk - p2damage;
+						p2newmana = p1mana - p1cost;
+						p1newhp = p1hp + p1spdef - p2spatk - p2damage;
 					WHEN 'HEAL' THEN
-						SET p2newmana = p2mana - p2cost;
-						SET p2newhp = p2hp + p2damage;
+						p2newmana = p2mana - p2cost;
+						p2newhp = p2hp + p2damage;
 						IF p2newhp>p2basehp THEN
-							SET p2newhp = p2basehp;
+							p2newhp = p2basehp;
 						END IF;
 					ELSE
 				END CASE;
 			IF p1newhp>0 THEN
 				CASE p1mode
 					WHEN 'ATK' THEN
-						SET p1newmana = p1mana - p1cost;
-						SET p2newhp = p2hp + p2def - p1atk - p1damage;
+						p1newmana = p1mana - p1cost;
+						p2newhp = p2hp + p2def - p1atk - p1damage;
 					WHEN 'SPATK' THEN
-						SET p1newmana = p1mana - p1cost;
-						SET p2newhp = p2hp + p2spdef - p1spatk - p1damage;
+						p1newmana = p1mana - p1cost;
+						p2newhp = p2hp + p2spdef - p1spatk - p1damage;
 					WHEN 'HEAL' THEN
-						SET p1newmana = p1mana - p1cost;
-						SET p1newhp = p1hp + p1damage;
+						p1newmana = p1mana - p1cost;
+						p1newhp = p1hp + p1damage;
 						IF p1newhp>p1basehp THEN
-							SET p1newhp = p1basehp;
+							p1newhp = p1basehp;
 						END IF;
 					ELSE
 				END CASE;
