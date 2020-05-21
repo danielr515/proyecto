@@ -25,4 +25,7 @@ export class GameQuery extends Query<GameState> {
     return this.select(state => state.selectedCharacterEnemy);
   }
 
+  selectSelectedActionEnemy() {
+    return this.select(state => state.selectedActionEnemy);
+  }
 }

@@ -253,4 +253,44 @@ class WS_GameController extends WS_MainController {
         parent::setHeaders();
         $this->response( $retmsg, $code );
     }
+
+    public function isSelectedActionEnemy_options() {
+        parent::setOptions();
+    }
+
+    public function isSelectedActionEnemy_get() {
+        $player = $this->get( 'player' );
+        $room = $this->get( 'room' );
+        $turn = $this->get( 'turn' );
+        $retmsg = '';
+        $code = '';
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $player == '' OR $room == '' OR $turn == '' ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = parent::HTTP_BAD_REQUEST;
+        } else {
+            if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                if ( $this->room->playedAlreadyInRoom( $player ) ) {
+                    $retmsg = $this->game->isSelectedActionEnemy( $player, $room, $turn );
+                    $code = parent::HTTP_OK;
+                } else {
+                    $retmsg = 'El jugador no se encuentra en partida';
+                    $code = parent::HTTP_UNAUTHORIZED;
+                }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
+            }
+        }
+        parent::setHeaders();
+        $this->response( $retmsg, $code );
+    }
+
 }

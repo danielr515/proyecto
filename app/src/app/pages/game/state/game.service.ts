@@ -65,6 +65,14 @@ export class GameService {
       }
     });
   }
+
+  isSelectedActionEnemy(room, turn) {
+    this.api.isSelectedActionEnemy(room, turn, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.action.updateSelectedCharacterEnemy(response.body);
+      }
+    });
+  }
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {

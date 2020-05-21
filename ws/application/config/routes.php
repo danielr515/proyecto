@@ -74,9 +74,9 @@ $route['ownData'] = 'ws/WS_GameController/ownData';
 $route['enemyData'] = 'ws/WS_GameController/enemyData';
 $route['isGameStarted'] = 'ws/WS_GameController/isGameStarted';
 $route['isSelectedCharacterEnemy'] = 'ws/WS_GameController/isSelectedCharacterEnemy';
+$route['isSelectedActionEnemy'] = 'ws/WS_GameController/isSelectedActionEnemy';
 $route['selectCharacter'] = 'ws/WS_GameController/selectCharacter';
 $route['selectAction'] = 'ws/WS_GameController/selectAction';
-
 
 
 

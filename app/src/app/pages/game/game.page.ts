@@ -84,7 +84,7 @@ export class GamePage implements OnInit {
     this.intervalSelectAction = setInterval(() => { this.enemySelectedAction(); }, 3000);
   }
   enemySelectedAction() {
-
+    this.service.isSelectedActionEnemy(this.room, this.turn);
   }
 }
 

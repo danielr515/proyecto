@@ -10,6 +10,7 @@ export interface GameState {
   enemyData: any;
   gameStarted: boolean;
   selectedCharacterEnemy: boolean;
+  selectedActionEnemy: boolean;
 }
 
 export function createInitialState() {
@@ -17,7 +18,8 @@ export function createInitialState() {
     ownData: {},
     enemyData: {},
     gameStarted: false,
-    selectedCharacterEnemy: false
+    selectedCharacterEnemy: false,
+    selectedActionEnemy: true
   };
 }
 

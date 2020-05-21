@@ -36,4 +36,12 @@ export class GameAction {
       selectedCharacterEnemy
     });
   }
+
+  @action('updateSelectedActionEnemy')
+  updateSelectedActionEnemy(selectedActionEnemy: boolean) {
+    this.store.update({
+      selectedActionEnemy
+    });
+  }
+
 }
