@@ -227,7 +227,7 @@ class WS_GameController extends WS_MainController {
         }
         $retmsg = '';
         $code = '';
-        if ( $character == '' OR $room == '' OR $turn == '' ) {
+        if ( $action == '' OR $room == '' OR $turn == '' ) {
             $retmsg = 'Faltan datos obligatorios';
             $code = parent::HTTP_BAD_REQUEST;
         } else {
