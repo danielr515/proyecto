@@ -15,6 +15,7 @@ export class GamePage implements OnInit {
   selectedCharacterEnemy$ = this.query.selectSelectedCharacterEnemy();
   intervalStart;
   intervalSelectChar;
+  intervalSelectAction;
   room;
   turn = 0;
   constructor(
@@ -62,11 +63,28 @@ export class GamePage implements OnInit {
     this.selectedCharacterEnemy$.pipe(take(1)).subscribe(elem => {
       if (elem) {
         clearInterval(this.intervalSelectChar);
-        this.service.updateEnemyData();
+        this.service.updateEnemyData(this.room, this.turn);
       } else {
         this.service.isSelectedCharacterEnemy(this.room, this.turn);
       }
     });
+  }
+
+  getCurrentCharacter() {
+    let data;
+    this.ownData$.subscribe(elem => {
+      data = elem.characters.filter(filt => {
+        return filt.tmpid == elem.currchar;
+      });
+    });
+    return data[0];
+  }
+  selectAction(action) {
+    this.service.selectAction(action, this.room, this.turn);
+    this.intervalSelectAction = setInterval(() => { this.enemySelectedAction(); }, 3000);
+  }
+  enemySelectedAction() {
+
   }
 }
 

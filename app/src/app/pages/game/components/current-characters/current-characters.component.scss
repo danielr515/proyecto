@@ -1,0 +1,26 @@
+.left {
+    float: left;
+}
+.rigth {
+    float: right;
+    ion-img {
+        transform: scaleX(-1);
+    }
+}
+.left, .rigth {
+    width: 50%;
+    margin: 0;
+    padding: 20px;
+}
+
+.hpmanacontainer {
+    background-color: gray;
+    .hp {
+        background-color: red;
+        height: 10px;
+    }
+    .mana {
+        background-color: blue;
+        height: 10px;
+    }
+}

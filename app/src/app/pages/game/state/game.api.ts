@@ -29,11 +29,11 @@ export class GameApi extends AppApi {
     return this.http.get<HttpResponse<any>>(this.API + '/ownData', options);
   }
 
-  getEnemyData(player) {
+  getEnemyData(room, turn, player) {
     let headers = new HttpHeaders();
     let queryParams = new HttpParams();
 
-    queryParams = this.appendQueryParams(queryParams, { player: player.uname });
+    queryParams = this.appendQueryParams(queryParams, { room, turn, player: player.uname });
     headers = headers.set('Authorization', 'Bearer ' + player.token);
     headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
 
@@ -92,6 +92,19 @@ export class GameApi extends AppApi {
 
     return this.http.get<HttpResponse<any>>(this.API + '/isSelectedCharacterEnemy', options);
 
+  }
+
+  selectAction(action, room, turn, player) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + player.token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers
+    };
+
+    return this.http.post(this.API + '/selectAction', { action, room, turn, player: player.uname }, options);
   }
 
 }

@@ -1,6 +1,10 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>game</ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Partida vs
+      <div class="enemyNameTitle" *ngIf="(enemyData$ | async).name">{{ (enemyData$ | async).name }}</div>
+    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
@@ -8,4 +12,10 @@
   <app-select-character [team]="(ownData$ | async).characters" *ngIf="!(ownData$ | async).currchar"
     (selectCharacter)="selectCharacter($event)">
   </app-select-character>
+  <app-current-characters [ownData]="ownData$ | async" [ownCurrChar]="getCurrentCharacter()"
+    [enemyData]="enemyData$ | async" *ngIf="(ownData$ | async).currchar && (enemyData$ | async).currchar">
+  </app-current-characters>
+  <app-skills [ownData]="ownData$ | async" [ownCurrChar]="getCurrentCharacter()"
+    *ngIf="(ownData$ | async).currchar && (enemyData$ | async).currchar" (skillSelected)="selectAction($event)">
+  </app-skills>
 </ion-content>

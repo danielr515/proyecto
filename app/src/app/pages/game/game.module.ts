@@ -8,6 +8,8 @@ import { GamePageRoutingModule } from './game-routing.module';
 
 import { GamePage } from './game.page';
 import { SelectCharacterComponent } from './components/select-character/select-character.component';
+import { CurrentCharactersComponent } from './components/current-characters/current-characters.component';
+import { SkillsComponent } from './components/skills/skills.component';
 
 @NgModule({
   imports: [
@@ -16,6 +18,6 @@ import { SelectCharacterComponent } from './components/select-character/select-c
     IonicModule,
     GamePageRoutingModule
   ],
-  declarations: [GamePage, SelectCharacterComponent]
+  declarations: [GamePage, SelectCharacterComponent, CurrentCharactersComponent, SkillsComponent]
 })
 export class GamePageModule { }

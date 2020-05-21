@@ -1,0 +1,64 @@
+button {
+    width: 50%;
+    margin: 0;
+    height: 10%;
+    border: solid thin black;
+    background-color: lightgrey;   
+    &:nth-child(1) {
+        width: 100%;
+        height: 8%;
+        border-bottom: none;
+        border-top-left-radius: 100%;
+        border-top-right-radius: 100%;
+    }
+     &:nth-child(3) {
+        border-left: none;
+    }
+    &:nth-child(4) {
+        width: 100%;
+        border-top: none;
+        border-bottom-left-radius: 100%;
+        border-bottom-right-radius: 100%;
+    }
+    
+}
+
+.Ígneo {
+    background-color: rgb(161, 38, 38);
+    color: white;
+}
+.Naturaleza {
+    background-color: rgb(71, 207, 78);
+}
+.Océano {
+    background-color: rgb(87, 124, 226);
+}
+.Eléctrico {
+    background-color: rgb(198, 201, 36);
+}
+.Montaña {
+    background-color: rgb(129, 78, 35);
+    color: white;
+}
+.Tóxico {
+    background-color: rgb(134, 1, 134);
+    color: white;
+}
+.Muerte {
+    background-color: rgb(73, 83, 73);
+    color: white;
+}
+.Sagrado {
+    background-color: rgb(254, 255, 169);
+}
+.Sombra {
+    background-color: rgb(37, 30, 35);
+    color: white;
+}
+
+.noMana {
+    -webkit-box-shadow: inset 0px 0px 71px -5px rgba(122,122,122,1);
+    -moz-box-shadow: inset 0px 0px 71px -5px rgba(122,122,122,1);
+    box-shadow: inset 0px 0px 71px -5px rgba(122,122,122,1);
+}
+

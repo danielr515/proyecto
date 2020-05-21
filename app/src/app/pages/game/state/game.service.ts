@@ -27,8 +27,8 @@ export class GameService {
     });
   }
 
-  updateEnemyData() {
-    this.api.getEnemyData(this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+  updateEnemyData(room, turn) {
+    this.api.getEnemyData(room, turn, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
         this.action.updateEnemyData(response.body);
       }
@@ -58,6 +58,13 @@ export class GameService {
     });
   }
 
+  selectAction(action, room, turn) {
+    this.api.selectAction(action, room, turn, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
+        this.updateOwnData();
+      }
+    });
+  }
   getTokenAndUname() {
     const data = { token: '', uname: '' };
     this.appQuery.selectSessionToken().subscribe(tk => {

@@ -1,0 +1,27 @@
+<div class="left" *ngIf="ownData.currchar">
+  <p class="ion-text-center">{{ ownCurrChar.name.split(',')[0] }}</p>
+  <ion-img [src]="'../../../../../assets/chars/' + ownCurrChar.name + '.png'">
+  </ion-img>
+  <div class="hpmanacontainer">
+    <div class="hp" [style.width]="(ownCurrChar.basehp / ownCurrChar.currhp * 100)+'%'">
+    </div>
+  </div>
+  <div class="hpmanacontainer">
+    <div class="mana" [style.width]="(ownCurrChar.basemana / ownCurrChar.currmana * 100)+'%'">
+    </div>
+  </div>
+
+</div>
+<div class="rigth" *ngIf="enemyData.currchar">
+  <p class="ion-text-center">{{ enemyData.currchar.name.split(',')[0] }}</p>
+  <ion-img [src]="'../../../../../assets/chars/' + enemyData.currchar.name + '.png'"></ion-img>
+  <div class="hpmanacontainer">
+    <div class="hp" [style.width]="(enemyData.currchar.basehp / enemyData.currchar.currhp * 100)+'%'">
+    </div>
+  </div>
+  <div class="hpmanacontainer">
+    <div class="mana" [style.width]="(enemyData.currchar.basemana / enemyData.currchar.currmana * 100)+'%'">
+    </div>
+  </div>
+</div>
+<div style="clear:both"></div>

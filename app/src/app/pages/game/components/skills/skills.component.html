@@ -1,0 +1,21 @@
+<button (click)="useBasic()">
+  Ataque básico
+</button>
+<button [class]="ownCurrChar.skills.skill1.type"
+  [ngClass]="{'noMana': ownCurrChar.skills.skill1.cost*1 > ownCurrChar.currmana*1}"
+  [disabled]="ownCurrChar.skills.skill1.cost*1 > ownCurrChar.currmana*1"
+  (click)="useSkill(ownCurrChar.skills.skill1.id)">
+  {{ ownCurrChar.skills.skill1.name }}
+</button>
+<button [class]="ownCurrChar.skills.skill2.type"
+  [ngClass]="{'noMana': ownCurrChar.skills.skill2.cost*1 > ownCurrChar.currmana*1}"
+  [disabled]="ownCurrChar.skills.skill2.cost*1 > ownCurrChar.currmana*1"
+  (click)="useSkill(ownCurrChar.skills.skill2.id)">
+  {{ ownCurrChar.skills.skill2.name }}
+</button>
+<button [class]=" ownCurrChar.skills.skill1.type"
+  [ngClass]="{'noMana': ownCurrChar.skills.ultimate.cost*1 > ownCurrChar.currmana*1}"
+  [disabled]="ownCurrChar.skills.ultimate.cost*1 > ownCurrChar.currmana*1"
+  (click)="useSkill(ownCurrChar.skills.ultimate.id)">
+  {{ ownCurrChar.skills.ultimate.name }}
+</button>
