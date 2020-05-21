@@ -142,13 +142,10 @@ class Game extends CI_Model {
     public function isSelectedActionEnemy( $player, $room, $turn ) {
         $this->load->database( 'rpg' );
         if ( $this->isPlayer1( $player, $room ) ) {
-            var_dump( 'player2' );
             $query = $this->db->query( "SELECT id FROM rooms WHERE player1='" . $player . "' AND id=" . $room . ' AND turn=' . $turn . " AND p2status='DONE';" );
         } else {
-            var_dump( 'player1' );
             $query = $this->db->query( "SELECT id FROM rooms WHERE player2='" . $player . "' AND id=" . $room . ' AND turn=' . $turn . " AND p1status='DONE';" );
         }
-        var_dump( $query );
         return $query->num_rows() > 0;
     }
 }

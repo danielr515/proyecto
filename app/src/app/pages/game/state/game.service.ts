@@ -69,6 +69,7 @@ export class GameService {
   isSelectedActionEnemy(room, turn) {
     this.api.isSelectedActionEnemy(room, turn, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
+        console.log(response.body);
         this.action.updateSelectedActionEnemy(response.body);
       }
     });

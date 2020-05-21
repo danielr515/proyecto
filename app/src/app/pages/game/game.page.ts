@@ -89,17 +89,22 @@ export class GamePage implements OnInit {
     this.service.isSelectedActionEnemy(this.room, this.turn);
     this.intervalSelectAction = setInterval(() => { this.enemySelectedAction(); }, 3000);
   }
+  ft = true;
   enemySelectedAction() {
+    if (!this.ft) {
+      this.selectedActionEnemy$.pipe(take(1)).subscribe(elem => {
+        // console.log(elem);
+        if (elem == true) {
+          clearInterval(this.intervalSelectAction);
+          this.service.updateOwnData();
+          this.service.updateEnemyData(this.room, this.turn);
+        } else {
+          this.service.isSelectedActionEnemy(this.room, this.turn);
+        }
+      });
+    }
+    this.ft = false;
 
-    this.selectedActionEnemy$.pipe(take(1)).subscribe(elem => {
-      if (elem) {
-        clearInterval(this.intervalSelectAction);
-        this.service.updateOwnData();
-        this.service.updateEnemyData(this.room, this.turn);
-      } else {
-        this.service.isSelectedActionEnemy(this.room, this.turn);
-      }
-    });
   }
 }
 
