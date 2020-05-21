@@ -165,8 +165,8 @@ BEGIN
 				WHEN 'HEAL' THEN
 					p1newmana := p1mana - p1cost;
 					p1newhp := p1hp + p1damage;
-					IF p1newhp>p1maxhp THEN
-						p1newhp := p1maxhp;
+					IF p1newhp>p1basehp THEN
+						p1newhp := p1basehp;
 					END IF;
 			END CASE;
 			IF p2newhp>0 THEN
@@ -180,8 +180,8 @@ BEGIN
 					WHEN 'HEAL' THEN
 						p2newmana := p2mana - p2cost;
 						p2newhp := p2hp + p2damage;
-						IF p2newhp>p2maxhp THEN
-							p2newhp := p2maxhp;
+						IF p2newhp>p2basehp THEN
+							p2newhp := p2basehp;
 						END IF;
 				END CASE;
 			END IF;
@@ -196,8 +196,8 @@ BEGIN
 					WHEN 'HEAL' THEN
 						p2newmana := p2mana - p2cost;
 						p2newhp := p2hp + p2damage;
-						IF p2newhp>p2maxhp THEN
-							p2newhp := p2maxhp;
+						IF p2newhp>p2basehp THEN
+							p2newhp := p2basehp;
 						END IF;
 				END CASE;
 			IF p1newhp>0 THEN
@@ -211,8 +211,8 @@ BEGIN
 					WHEN 'HEAL' THEN
 						p1newmana := p1mana - p1cost;
 						p1newhp := p1hp + p1damage;
-						IF p1newhp>p1maxhp THEN
-							p1newhp := p1maxhp;
+						IF p1newhp>p1basehp THEN
+							p1newhp := p1basehp;
 						END IF;
 				END CASE;
 			END IF;
