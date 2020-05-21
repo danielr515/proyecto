@@ -136,7 +136,7 @@ BEGIN
 			FETCH stats INTO p1hp, p1mana, p1atk, p1def, p1spatk, p1spdef, p1speed;
 		CLOSE stats;
 		OPEN basehp(p1charid);
-			FETCH basehp INTO p1maxhp;
+			FETCH basehp INTO p1basehp;
 		CLOSE basehp;
 		CASE p2action
 		      WHEN 'SKILL' THEN
@@ -151,7 +151,7 @@ BEGIN
 			FETCH stats INTO p2hp, p2mana, p2atk, p2def, p2spatk, p2spdef, p2speed;
 		CLOSE stats;
 		OPEN basehp(p2charid);
-			FETCH basehp INTO p2maxhp;
+			FETCH basehp INTO p2basehp;
 		CLOSE basehp;
 
 		IF p1speed>=p2speed THEN
