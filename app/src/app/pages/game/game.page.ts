@@ -93,11 +93,13 @@ export class GamePage implements OnInit {
   enemySelectedAction() {
     if (!this.ft) {
       this.selectedActionEnemy$.pipe(take(1)).subscribe(elem => {
-        // console.log(elem);
         if (elem == true) {
           clearInterval(this.intervalSelectAction);
+          this.turn = this.turn + 1;
           this.service.updateOwnData();
           this.service.updateEnemyData(this.room, this.turn);
+          this.service.resetAction(this.room, this.turn);
+          this.ft = true;
         } else {
           this.service.isSelectedActionEnemy(this.room, this.turn);
         }

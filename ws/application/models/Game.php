@@ -148,6 +148,17 @@ class Game extends CI_Model {
         }
         return $query->num_rows() > 0;
     }
+
+    public function resetAction( $player, $room, $turn ) {
+        $this->load->database( 'rpg' );
+        $query = $this->db->query( "UPDATE battlehistory SET action='" . $action['action'] . "', actionvalue=" . $action['actionvalue'] . ' WHERE room=' . $room . ' AND turn=' . $turn . " AND player='" . $player . "';" );
+        if ( $this->isPlayer1( $player, $room ) ) {
+            $query2 = $this->db->query( "UPDATE rooms SET p1status='DONE' WHERE player1='" . $player . "' AND id=" . $room . ';' );
+        } else {
+            $query2 = $this->db->query( "UPDATE rooms SET p2status='DONE' WHERE player2='" . $player . "' AND id=" . $room . ';' );
+        }
+        return $query && $query2;
+    }
 }
 
 ?>

@@ -122,4 +122,17 @@ export class GameApi extends AppApi {
 
     return this.http.get<HttpResponse<any>>(this.API + '/isSelectedActionEnemy', options);
   }
+
+  resetAction(room, turn, player) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + player.token);
+    headers = headers.set('Access-Control-Expose-Headers', 'Authorization');
+
+    const options = {
+      observe: 'response' as 'body',
+      headers
+    };
+
+    return this.http.post(this.API + '/resetAction', { room, turn, player: player.uname }, options);
+  }
 }

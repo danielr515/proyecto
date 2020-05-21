@@ -61,7 +61,6 @@ export class GameService {
   selectAction(action, room, turn) {
     this.api.selectAction(action, room, turn, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
       if (response.ok) {
-        this.updateOwnData();
       }
     });
   }
@@ -71,6 +70,12 @@ export class GameService {
       if (response.ok) {
         console.log(response.body);
         this.action.updateSelectedActionEnemy(response.body);
+      }
+    });
+  }
+  resetAction(room, turn) {
+    this.api.resetAction(room, turn, this.getTokenAndUname()).subscribe((response: HttpResponse<any>) => {
+      if (response.ok) {
       }
     });
   }

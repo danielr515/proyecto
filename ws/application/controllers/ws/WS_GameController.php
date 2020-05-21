@@ -293,4 +293,47 @@ class WS_GameController extends WS_MainController {
         $this->response( $retmsg, $code );
     }
 
+    public function resetAction_options() {
+        parent::SetOptions();
+    }
+
+    public function resetAction_post() {
+        $player = $this->post( 'player' );
+        $room = $this->post( 'room' );
+        $turn = $this->post( 'turn' );
+
+        $authorization = $this->input->get_request_header( 'Authorization' );
+        $token = explode( ' ', $authorization );
+        if ( count( $token ) > 1 ) {
+            $token = $token[1];
+        }
+        $retmsg = '';
+        $code = '';
+        if ( $room == '' OR $turn == '' ) {
+            $retmsg = 'Faltan datos obligatorios';
+            $code = parent::HTTP_BAD_REQUEST;
+        } else {
+            if ( $this->player->userAndTokenValid( $player, $token ) ) {
+                if ( $this->room->playedAlreadyInRoom( $player ) ) {
+                    $return = $this->game->resetAction( $player, $room, $turn );
+                    if ( $return ) {
+                        $retmsg = 'Acción correcta';
+                        $code = parent::HTTP_OK;
+                    } else {
+                        $retmsg = 'Error al entrar';
+                        $code = parent::HTTP_INTERNAL_ERROR;
+                    }
+                } else {
+                    $retmsg = 'Este jugador no se encuentra en una sala en curso';
+                    $code = parent::HTTP_UNAUTHORIZED;
+                }
+            } else {
+                $retmsg = 'Datos erróneos';
+                $code = parent::HTTP_UNAUTHORIZED;
+            }
+        }
+        parent::setHeaders();
+        $this->response( $retmsg, $code );
+    }
+
 }

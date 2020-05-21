@@ -77,6 +77,7 @@ $route['isSelectedCharacterEnemy'] = 'ws/WS_GameController/isSelectedCharacterEn
 $route['isSelectedActionEnemy'] = 'ws/WS_GameController/isSelectedActionEnemy';
 $route['selectCharacter'] = 'ws/WS_GameController/selectCharacter';
 $route['selectAction'] = 'ws/WS_GameController/selectAction';
+$route['resetAction'] = 'ws/WS_GameController/resetAction';
 
 
 
